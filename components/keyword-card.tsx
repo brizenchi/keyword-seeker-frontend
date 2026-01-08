@@ -14,9 +14,10 @@ interface KeywordCardProps {
   growth: number
   source: string
   trendData: number[]
+  onClick?: () => void
 }
 
-export function KeywordCard({ keyword, growth, source, trendData }: KeywordCardProps) {
+export function KeywordCard({ keyword, growth, source, trendData, onClick }: KeywordCardProps) {
   const [showPricing, setShowPricing] = useState(false)
   const isHot = growth >= 500
   const greenColor = "#22c55e"
@@ -24,15 +25,18 @@ export function KeywordCard({ keyword, growth, source, trendData }: KeywordCardP
   return (
     <>
       <Card
+        onClick={onClick}
         className={cn(
-          "relative overflow-hidden border-border bg-card transition-all duration-300 hover:border-indigo/50",
+          "relative overflow-hidden border-border bg-card transition-all duration-300",
+          "hover:border-indigo/50 hover:shadow-[0_0_15px_-3px_rgba(99,102,241,0.2)]", // Border Beam / Glow effect
           isHot && "glow-hot border-rose/50",
+          onClick && "cursor-pointer"
         )}
       >
         {isHot && (
           <div className="absolute right-3 top-3 flex items-center gap-1">
             <Flame className="h-4 w-4 text-rose animate-pulse" />
-            <span className="text-xs font-bold text-rose">HOT</span>
+            <span className="text-xs font-bold text-rose font-mono">HOT</span>
           </div>
         )}
 
@@ -56,14 +60,14 @@ export function KeywordCard({ keyword, growth, source, trendData }: KeywordCardP
           </div>
 
           <div className="flex items-center justify-between gap-2">
-            <Badge variant="outline" className="text-xs border-border text-muted-foreground">
+            <Badge variant="outline" className="text-xs border-border text-muted-foreground font-mono">
               Source: {source}
             </Badge>
 
             <Button
               variant="ghost"
               size="sm"
-              className="h-7 text-xs text-muted-foreground hover:text-indigo gap-1 px-2"
+              className="h-7 text-xs text-muted-foreground hover:text-indigo gap-1 px-2 font-mono"
               onClick={() => setShowPricing(true)}
             >
               <FileText className="h-3 w-3" />

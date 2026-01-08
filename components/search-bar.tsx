@@ -17,15 +17,26 @@ const timeFilters = [
 ]
 const categoryFilters = ["SaaS", "AI", "Fintech", "Health", "E-commerce", "Developer Tools"]
 
-export function SearchBar() {
+interface SearchBarProps {
+  onSearch?: (query: string) => void
+}
+
+export function SearchBar({ onSearch }: SearchBarProps) {
   const [selectedTime, setSelectedTime] = useState("Last 7 days")
   const [showPricing, setShowPricing] = useState(false)
+  const [query, setQuery] = useState("")
 
   const handleTimeSelect = (filter: { label: string; locked: boolean }) => {
     if (filter.locked) {
       setShowPricing(true)
     } else {
       setSelectedTime(filter.label)
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && onSearch) {
+      onSearch(query)
     }
   }
 
@@ -38,6 +49,9 @@ export function SearchBar() {
             <Input
               placeholder="Search for startup opportunities, pain points, or keywords..."
               className="bg-background pl-10 h-12 text-sm font-mono border-border focus-visible:ring-indigo"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
           </div>
 

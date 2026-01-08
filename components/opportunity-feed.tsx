@@ -55,6 +55,26 @@ const opportunities: Opportunity[] = [
   },
 ]
 
+const NEGATIVE_KEYWORDS = ["struggling", "hate", "nightmare", "slow", "failures", "hallucinations", "bad", "terrible"]
+
+function highlightSentiment(text: string) {
+  const words = text.split(" ")
+  return words.map((word, index) => {
+    // Clean punctuation for matching
+    const cleanWord = word.toLowerCase().replace(/[^a-z0-9]/g, "")
+    const isNegative = NEGATIVE_KEYWORDS.some(keyword => cleanWord.includes(keyword))
+    
+    if (isNegative) {
+      return (
+        <span key={index} className="bg-red-500/20 text-red-200 px-0.5 rounded mx-0.5">
+          {word}
+        </span>
+      )
+    }
+    return <span key={index}>{word} </span>
+  })
+}
+
 export function OpportunityFeed() {
   return (
     <Card className="border-border bg-card h-full">
@@ -88,7 +108,9 @@ export function OpportunityFeed() {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
-                  <h4 className="text-sm font-medium text-foreground leading-tight">{opp.title}</h4>
+                  <h4 className="text-sm font-medium text-foreground leading-tight">
+                    {highlightSentiment(opp.title)}
+                  </h4>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -97,14 +119,16 @@ export function OpportunityFeed() {
                     <ExternalLink className="h-3 w-3" />
                   </Button>
                 </div>
-                <p className="mt-1 text-xs text-muted-foreground line-clamp-2">{opp.description}</p>
+                <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
+                  {highlightSentiment(opp.description)}
+                </p>
                 <div className="mt-2 flex items-center gap-2 text-xs">
                   <Badge variant="outline" className="border-border text-muted-foreground text-[10px] px-1.5 py-0">
                     {opp.source}
                   </Badge>
                   <span className="font-mono text-emerald-400">▲ {opp.votes}</span>
                   <span className="text-muted-foreground">•</span>
-                  <span className="text-muted-foreground">{opp.time}</span>
+                  <span className="text-muted-foreground font-mono">{opp.time}</span>
                 </div>
               </div>
             </div>

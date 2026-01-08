@@ -23,7 +23,7 @@ export function StatsCard({ title, value, change, changeType, icon: Icon, accent
       <CardContent className="p-4">
         <div className="flex items-start justify-between">
           <div className="space-y-1">
-            <p className="text-xs text-muted-foreground uppercase tracking-wider">{title}</p>
+            <p className="text-xs text-muted-foreground uppercase tracking-wider font-mono">{title}</p>
             <p className="font-mono text-2xl font-bold text-foreground">{value}</p>
           </div>
           <div className={cn("rounded-lg p-2", colors[accentColor])}>
