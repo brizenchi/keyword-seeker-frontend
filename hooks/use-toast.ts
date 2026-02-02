@@ -4,9 +4,10 @@
 import * as React from 'react'
 
 import type { ToastActionElement, ToastProps } from '@/components/ui/toast'
+import { UI_CONSTANTS } from '@/lib/config/constants'
 
-const TOAST_LIMIT = 1
-const TOAST_REMOVE_DELAY = 1000000
+const TOAST_LIMIT = UI_CONSTANTS.TOAST_LIMIT
+const TOAST_REMOVE_DELAY = UI_CONSTANTS.TOAST_REMOVE_DELAY
 
 type ToasterToast = ToastProps & {
   id: string

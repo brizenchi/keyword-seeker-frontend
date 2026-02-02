@@ -1,6 +1,7 @@
 import * as React from 'react'
+import { env } from '@/lib/env'
 
-const MOBILE_BREAKPOINT = 768
+const MOBILE_BREAKPOINT = env.NEXT_PUBLIC_MOBILE_BREAKPOINT
 
 export function useIsMobile() {
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)

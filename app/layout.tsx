@@ -2,17 +2,24 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { AuthProvider } from "@/hooks/useAuth"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({
+  subsets: ["latin"],
+  display: 'swap',
+  fallback: ['system-ui', 'arial']
+})
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
+  display: 'swap',
+  fallback: ['monospace']
 })
 
 export const metadata: Metadata = {
-  title: "IdeaMine - Startup Idea Mining Tool",
-  description: "Discover trending startup opportunities by mining data from Reddit, Google Trends, and more.",
+  title: "NichePop - Discover Trending Niches",
+  description: "Discover trending niche opportunities by analyzing data from Reddit, Google Trends, and more.",
   generator: "v0.app",
   icons: {
     icon: [
@@ -41,8 +48,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.className} ${jetbrainsMono.variable} font-sans antialiased`}>
-        {children}
-        <Analytics />
+        <AuthProvider>
+          {children}
+          <Analytics />
+        </AuthProvider>
       </body>
     </html>
   )

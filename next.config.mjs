@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  // 禁用 React Strict Mode（避免开发时双重渲染）
+  reactStrictMode: false,
+
   images: {
-    unoptimized: true,
+    // Enable Next.js image optimization for better performance
+    unoptimized: false,
   },
 }
 

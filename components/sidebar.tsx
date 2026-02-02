@@ -1,58 +1,89 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { TrendingUp, Search, Bookmark, Settings, Flame, CreditCard } from "lucide-react"
+import { TrendingUp, Search, Bookmark, Settings, Flame, CreditCard, User, Rss } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { useAuth } from "@/hooks/useAuth"
+import LoginDialog from "@/components/LoginDialog"
+import { UserMenu } from "@/components/user-menu"
 
 const navItems = [
-  { icon: TrendingUp, label: "Trends", href: "/" },
-  { icon: Search, label: "Reddit Search", href: "/reddit" },
-  { icon: Bookmark, label: "Saved Ideas", href: "/saved" },
+  { icon: TrendingUp, label: "Dashboard", href: "/dashboard" },
+  { icon: Rss, label: "Live Feed", href: "/dashboard/live-feed" },
   { icon: CreditCard, label: "Pricing", href: "/pricing" },
-  { icon: Settings, label: "Settings", href: "/settings" },
 ]
 
 export function Sidebar() {
   const pathname = usePathname()
+  const { user, isAuthenticated, loading } = useAuth()
+  const [loginDialogOpen, setLoginDialogOpen] = useState(false)
 
   return (
     <TooltipProvider>
-      <aside className="fixed left-0 top-0 z-40 h-screen w-16 border-r border-border bg-sidebar flex flex-col items-center py-6 gap-2">
-        <Link
-          href="/"
-          className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo text-primary-foreground"
-        >
-          <Flame className="h-5 w-5" />
-        </Link>
+      <aside className="fixed left-0 top-0 z-40 h-screen w-16 border-r border-border bg-sidebar flex flex-col items-center py-6 gap-2 justify-between">
+        <div className="flex flex-col items-center gap-2">
+          <Link
+            href="/"
+            className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo text-primary-foreground"
+          >
+            <Flame className="h-5 w-5" />
+          </Link>
 
-        <nav className="flex flex-col items-center gap-2">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href
-            return (
-              <Tooltip key={item.label} delayDuration={0}>
-                <TooltipTrigger asChild>
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-200",
-                      isActive
-                        ? "bg-sidebar-accent text-indigo"
-                        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-foreground",
-                    )}
-                  >
-                    <item.icon className="h-5 w-5" />
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent side="right" className="bg-card border-border">
-                  <p>{item.label}</p>
-                </TooltipContent>
-              </Tooltip>
-            )
-          })}
-        </nav>
+          <nav className="flex flex-col items-center gap-2">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href
+              return (
+                <Tooltip key={item.label} delayDuration={0}>
+                  <TooltipTrigger asChild>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-200",
+                        isActive
+                          ? "bg-sidebar-accent text-indigo"
+                          : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-foreground",
+                      )}
+                    >
+                      <item.icon className="h-5 w-5" />
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent side="right" className="bg-card border-border">
+                    <p>{item.label}</p>
+                  </TooltipContent>
+                </Tooltip>
+              )
+            })}
+          </nav>
+        </div>
+
+        <div className="flex flex-col items-center gap-2">
+          {loading ? (
+            <div className="flex h-10 w-10 items-center justify-center">
+              <div className="h-2 w-2 rounded-full bg-sidebar-foreground animate-pulse" />
+            </div>
+          ) : isAuthenticated && user ? (
+            <UserMenu  />
+          ) : (
+            <Tooltip delayDuration={0}>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => setLoginDialogOpen(true)}
+                  className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo text-primary-foreground hover:bg-indigo/90 transition-all duration-200"
+                >
+                  <User className="h-5 w-5" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="right" className="bg-card border-border">
+                <p>Sign in</p>
+              </TooltipContent>
+            </Tooltip>
+          )}
+        </div>
       </aside>
+      <LoginDialog open={loginDialogOpen} onClose={() => setLoginDialogOpen(false)} />
     </TooltipProvider>
   )
 }
