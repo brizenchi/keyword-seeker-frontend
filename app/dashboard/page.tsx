@@ -53,7 +53,7 @@ export default function Dashboard() {
 
           {/* Search Bar */}
           <Suspense fallback={null}>
-            <SearchBar onSearch={handleSearch} />
+            {/* <SearchBar onSearch={handleSearch} /> */}
           </Suspense>
 
           {/* Loading State */}
