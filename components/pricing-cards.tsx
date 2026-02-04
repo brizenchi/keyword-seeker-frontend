@@ -38,7 +38,7 @@ const tiers: Tier[] = [
     description: "Perfect for getting started",
     features: [
       { icon: TrendingUpIcon, text: "View 1 trending keyword daily" },
-      { icon: Search, text: "1 search per day" },
+      { icon: Search, text: "1 research per day" },
       { icon: Eye, text: "Access to 1 trending keyword" },
     ],
     cta: "Get Started Free",
@@ -48,11 +48,11 @@ const tiers: Tier[] = [
   {
     name: "Pro",
     monthlyPrice: 9.9,
-    yearlyPrice: 99.18, // $9.9 × 12 × 0.83 (17% discount)
+    yearlyPrice: 99, // Annual price with 17% discount
     description: "Best for content creators",
     features: [
       { icon: TrendingUp, text: "View all trending keywords" },
-      { icon: Search, text: "20 searches per day" },
+      { icon: Search, text: "20 researches per day" },
       { icon: CheckCircle2, text: "Priority support" },
       { icon: Zap, text: "Real-time data updates" },
       { icon: TrendingUp, text: "Advanced analytics" },
@@ -72,11 +72,11 @@ const tiers: Tier[] = [
   {
     name: "Premium",
     monthlyPrice: 19.9,
-    yearlyPrice: 198.22, // $19.9 × 12 × 0.83 (17% discount)
+    yearlyPrice: 199, // Annual price with 17% discount
     description: "For power users and teams",
     features: [
       { icon: Crown, text: "View all trending keywords" },
-      { icon: Search, text: "50 searches per day" },
+      { icon: Search, text: "50 researches per day" },
       { icon: CheckCircle2, text: "Priority support" },
       { icon: Zap, text: "Real-time data updates" },
       { icon: TrendingUp, text: "Advanced analytics" },
@@ -209,12 +209,12 @@ export function PricingCards() {
     <>
       {/* Billing Toggle */}
       <div className="mb-8 flex items-center justify-center gap-4">
-        <span className={cn("text-sm font-medium", !isYearly && "text-foreground")}>Monthly</span>
+        <span className={cn("text-sm font-medium transition-colors", !isYearly ? "text-white" : "text-[#8B92B3]")}>Monthly</span>
         <button
           onClick={() => setIsYearly(!isYearly)}
           className={cn(
-            "relative inline-flex h-6 w-11 items-center rounded-full transition-colors",
-            isYearly ? "bg-indigo" : "bg-muted",
+            "relative inline-flex h-6 w-11 items-center rounded-full transition-colors border",
+            isYearly ? "bg-[#0ea5e9] border-[#0ea5e9]" : "bg-[#1E2650] border-[#3E4670]",
           )}
         >
           <span
@@ -224,8 +224,8 @@ export function PricingCards() {
             )}
           />
         </button>
-        <span className={cn("text-sm font-medium", isYearly && "text-foreground")}>
-          Yearly <span className="text-emerald-600">(Save 17%)</span>
+        <span className={cn("text-sm font-medium transition-colors", isYearly ? "text-white" : "text-[#8B92B3]")}>
+          Yearly <span className="text-[#10b981]">(Save 17%)</span>
         </span>
       </div>
 
@@ -243,14 +243,25 @@ export function PricingCards() {
               className={cn(
                 "relative flex flex-col rounded-2xl border bg-card p-6 transition-all duration-300",
                 tier.popular
-                  ? "border-indigo shadow-lg shadow-indigo/20 scale-105"
+                  ? "border-[#0ea5e9] shadow-lg shadow-[#0ea5e9]/20 scale-105"
                   : "border-border hover:border-muted-foreground/50",
               )}
             >
               {tier.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="rounded-full bg-indigo px-3 py-1 text-xs font-semibold text-white">
+                  <span className="rounded-full bg-[#0ea5e9] px-3 py-1 text-xs font-semibold text-white">
                     Most Popular
+                  </span>
+                </div>
+              )}
+
+              {showDiscount && (
+                <div className="absolute top-4 right-4 flex flex-col items-end gap-1">
+                  <span className="text-sm font-bold text-[#10b981] bg-[#10b981]/10 dark:bg-[#10b981]/20 px-3 py-1.5 rounded-full whitespace-nowrap">
+                    Save 17%
+                  </span>
+                  <span className="text-xs text-muted-foreground/60 line-through">
+                    ${originalPrice.toFixed(2)}
                   </span>
                 </div>
               )}
@@ -258,32 +269,18 @@ export function PricingCards() {
               <div className="mb-6">
                 <h3 className="text-lg font-semibold text-foreground">{tier.name}</h3>
                 <div className="mt-4">
-                  <div className="flex items-baseline gap-3">
-                    <div className="flex flex-col">
-                      {showDiscount && (
-                        <span className="text-sm font-mono text-muted-foreground line-through mb-1">
-                          ${originalPrice.toFixed(2)}
-                        </span>
+                  <div className="flex items-baseline">
+                    <span
+                      className={cn(
+                        "font-mono text-4xl font-bold",
+                        tier.accent === "indigo" && "text-[#0ea5e9]",
+                        tier.accent === "rose" && "text-[#f43f5e]",
+                        tier.accent === "zinc" && "text-foreground",
                       )}
-                      <div className="flex items-baseline">
-                        <span
-                          className={cn(
-                            "font-mono text-4xl font-bold",
-                            tier.accent === "indigo" && "text-indigo",
-                            tier.accent === "rose" && "text-rose",
-                            tier.accent === "zinc" && "text-foreground",
-                          )}
-                        >
-                          ${price.toFixed(price === 0 ? 0 : 2)}
-                        </span>
-                        <span className="ml-1 text-muted-foreground">{period}</span>
-                      </div>
-                    </div>
-                    {showDiscount && (
-                      <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 px-2 py-1 rounded-full whitespace-nowrap self-start mt-1">
-                        Save 17%
-                      </span>
-                    )}
+                    >
+                      ${price.toFixed(price === 0 ? 0 : 2)}
+                    </span>
+                    <span className="ml-1 text-sm text-muted-foreground">{period}</span>
                   </div>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">{tier.description}</p>
@@ -304,10 +301,10 @@ export function PricingCards() {
                         feature.disabled
                           ? "text-muted-foreground/50"
                           : tier.accent === "indigo"
-                            ? "text-indigo"
+                            ? "text-[#0ea5e9]"
                             : tier.accent === "rose"
-                              ? "text-rose"
-                              : "text-emerald-500",
+                              ? "text-[#f43f5e]"
+                              : "text-[#10b981]",
                       )}
                     />
                     <span className={feature.disabled ? "line-through" : ""}>{feature.text}</span>
@@ -321,7 +318,7 @@ export function PricingCards() {
                 className={cn(
                   "w-full font-semibold cursor-pointer transition-all duration-200",
                   tier.popular
-                    ? "bg-indigo hover:bg-indigo/90 text-white"
+                    ? "bg-[#0ea5e9] hover:bg-[#0284c7] text-white"
                     : "bg-secondary hover:bg-secondary/80",
                   tier.name === "Free" && "cursor-default opacity-70"
                 )}

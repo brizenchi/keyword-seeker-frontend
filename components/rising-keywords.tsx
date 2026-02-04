@@ -267,21 +267,21 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
                       />
 
                       {shouldBlur && (
-                        <div className="absolute inset-0 backdrop-blur-[6px] bg-background/40 rounded-xl z-10 flex flex-col items-center justify-center p-4 gap-3">
+                        <div className="absolute inset-0 backdrop-blur-[6px] bg-[#0A0E27]/60 rounded-xl z-10 flex flex-col items-center justify-center p-4 gap-3">
                           {kw.highlight && (
-                            <div className="bg-white dark:bg-gray-900 p-3 rounded-lg shadow-lg border-2 border-amber-500 max-w-[180px]">
+                            <div className="bg-[#0F1629] p-3 rounded-lg shadow-lg border-2 border-[#67f745] max-w-[180px]">
                               <div className="flex items-center gap-1.5 mb-1.5">
-                                <Sparkles className="h-4 w-4 text-amber-600" />
-                                <span className="text-xs font-bold text-amber-600">Premium</span>
+                                <Sparkles className="h-4 w-4 text-[#67f745]" />
+                                <span className="text-xs font-bold text-[#67f745]">Premium</span>
                               </div>
-                              <p className="text-xs font-medium text-foreground">
+                              <p className="text-xs font-medium text-white">
                                 {kw.highlight.highlight_text}
                               </p>
                             </div>
                           )}
                           <Button
                             size="sm"
-                            className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 shadow-lg cursor-pointer h-8 text-xs px-3"
+                            className="bg-[#67f745] hover:bg-[#67f745]/90 text-[#0A0E27] font-semibold shadow-[0_0_20px_rgba(103,247,69,0.4)] cursor-pointer h-8 text-xs px-3"
                             onClick={(e) => {
                               e.stopPropagation()
                               if (isUnauthenticatedLock) {

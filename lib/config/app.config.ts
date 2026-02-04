@@ -170,7 +170,7 @@ export const appConfig: AppConfig = {
         price: '$0',
         description: 'Get started with basics',
         features: [
-          { text: '3 searches per day', included: true },
+          { text: '1 searches per day', included: true },
           { text: 'Top 1 result visible', included: true },
           { text: 'Last 7 days data', included: true },
           { text: 'Real-time trends', included: false },
@@ -201,7 +201,7 @@ export const appConfig: AppConfig = {
       {
         id: 'pro-yearly',
         name: 'Pro',
-        price: '$290',
+        price: '$99',
         period: '/year',
         description: 'Perfect for creators (Save 17%)',
         stripePriceId: env.NEXT_PUBLIC_STRIPE_PRICE_ID_PRO_YEARLY,

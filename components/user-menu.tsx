@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
 import { User, LogOut, Settings, Gift, CreditCard, Crown, TrendingUp, Copy, Check } from "lucide-react"
 import {
   DropdownMenu,
@@ -14,6 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { useAuth } from "@/hooks/useAuth"
 import { useToast } from "@/hooks/use-toast"
+import { SettingsDialog } from "@/components/settings-dialog"
 import { cn } from "@/lib/utils"
 
 interface UserMenuProps {
@@ -27,6 +27,7 @@ export function UserMenu({ credits: propCredits, userPlan: propUserPlan }: UserM
   const { toast } = useToast()
   const [loggingOut, setLoggingOut] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
 
   // Use real user data from localStorage, fallback to props or defaults
   const credits = user?.credits ?? propCredits ?? 0
@@ -80,77 +81,80 @@ export function UserMenu({ credits: propCredits, userPlan: propUserPlan }: UserM
   if (!user) return null
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button className="flex h-10 w-10 items-center justify-center rounded-lg bg-sidebar-accent hover:bg-sidebar-accent/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          {user.avatar_url ? (
-            <img
-              src={user.avatar_url}
-              alt={user.username || user.email}
-              className="h-8 w-8 rounded-lg object-cover"
-            />
-          ) : (
-            <User className="h-5 w-5 text-sidebar-foreground" />
-          )}
-        </button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-64">
-        <DropdownMenuLabel>
-          <div className="flex flex-col space-y-2">
-            <div className="flex items-center justify-between">
-              <p className="text-sm font-medium leading-none">{user.username || "User"}</p>
-              {getPlanBadge()}
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button className="flex h-10 w-10 items-center justify-center rounded-lg bg-sidebar-accent hover:bg-sidebar-accent/80 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            {user.avatar_url ? (
+              <img
+                src={user.avatar_url}
+                alt={user.username || user.email}
+                className="h-8 w-8 rounded-lg object-cover"
+              />
+            ) : (
+              <User className="h-5 w-5 text-sidebar-foreground" />
+            )}
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-64">
+          <DropdownMenuLabel>
+            <div className="flex flex-col space-y-2">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium leading-none">{user.username || "User"}</p>
+                {getPlanBadge()}
+              </div>
+              <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
             </div>
-            <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
-          </div>
-        </DropdownMenuLabel>
+          </DropdownMenuLabel>
 
-        <DropdownMenuSeparator />
+          <DropdownMenuSeparator />
 
-        {/* Credits */}
-        <div className="px-2 py-2">
-          <div className="flex items-center justify-between p-2 rounded-md bg-indigo-50 dark:bg-indigo-950/30">
-            <div className="flex items-center gap-2">
-              <CreditCard className="h-4 w-4 text-indigo-600" />
-              <span className="text-sm font-medium">Credits</span>
+          {/* Credits */}
+          <div className="px-2 py-2">
+            <div className="flex items-center justify-between p-2 rounded-md bg-indigo-50 dark:bg-indigo-950/30">
+              <div className="flex items-center gap-2">
+                <CreditCard className="h-4 w-4 text-indigo-600" />
+                <span className="text-sm font-medium">Credits</span>
+              </div>
+              <Badge className="bg-indigo-600 text-white">{credits}</Badge>
             </div>
-            <Badge className="bg-indigo-600 text-white">{credits}</Badge>
           </div>
-        </div>
 
-        <DropdownMenuSeparator />
+          <DropdownMenuSeparator />
 
-        {/* Invite */}
-        <DropdownMenuItem className="cursor-pointer" onClick={handleInviteFriends}>
-          {copied ? (
-            <Check className="mr-2 h-4 w-4 text-green-600" />
-          ) : (
-            <Gift className="mr-2 h-4 w-4" />
-          )}
-          <span>{copied ? "Link Copied!" : "Invite Friends"}</span>
-          <Badge variant="secondary" className="ml-auto text-xs">+5 Credits</Badge>
-        </DropdownMenuItem>
+          {/* Invite */}
+          <DropdownMenuItem className="cursor-pointer" onClick={handleInviteFriends}>
+            {copied ? (
+              <Check className="mr-2 h-4 w-4 text-green-600" />
+            ) : (
+              <Gift className="mr-2 h-4 w-4" />
+            )}
+            <span>{copied ? "Link Copied!" : "Invite Friends"}</span>
+            <Badge variant="secondary" className="ml-auto text-xs">+5 Credits</Badge>
+          </DropdownMenuItem>
 
-        <DropdownMenuSeparator />
+          <DropdownMenuSeparator />
 
-        {/* Settings */}
-        <Link href="/settings">
-          <DropdownMenuItem className="cursor-pointer">
+          {/* Settings */}
+          <DropdownMenuItem className="cursor-pointer" onClick={() => setShowSettings(true)}>
             <Settings className="mr-2 h-4 w-4" />
             <span>Settings</span>
           </DropdownMenuItem>
-        </Link>
 
-        {/* Logout */}
-        <DropdownMenuItem
-          className="cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50 dark:focus:bg-red-950/30"
-          onClick={handleLogout}
-          disabled={loggingOut}
-        >
-          <LogOut className="mr-2 h-4 w-4" />
-          <span>{loggingOut ? "Logging out..." : "Log out"}</span>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+          {/* Logout */}
+          <DropdownMenuItem
+            className="cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50 dark:focus:bg-red-950/30"
+            onClick={handleLogout}
+            disabled={loggingOut}
+          >
+            <LogOut className="mr-2 h-4 w-4" />
+            <span>{loggingOut ? "Logging out..." : "Log out"}</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      {/* Settings Dialog */}
+      <SettingsDialog open={showSettings} onOpenChange={setShowSettings} />
+    </>
   )
 }

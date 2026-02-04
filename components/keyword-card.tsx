@@ -33,7 +33,7 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
   const trendInfo = getTrendDirection(metrics.growthRate)
 
   const isHot = (metrics.growthRate ?? 0) >= 50
-  const greenColor = "#22c55e"
+  const greenColor = "#10b981"
 
   // 获取趋势图标
   const TrendIcon = trendInfo.direction === 'up' ? TrendingUp : trendInfo.direction === 'down' ? TrendingDown : Minus
@@ -43,16 +43,16 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
       <Card
         onClick={onClick}
         className={cn(
-          "relative overflow-hidden border-border bg-card transition-all duration-300",
-          "hover:border-indigo/50 hover:shadow-[0_0_15px_-3px_rgba(99,102,241,0.2)]",
-          isHot && "glow-hot border-rose/50",
+          "relative overflow-hidden border-[#1E2650] bg-[#0F1629] transition-all duration-300",
+          "hover:border-[#67f745]/50 hover:shadow-[0_0_20px_rgba(103,247,69,0.15)] hover:-translate-y-1",
+          isHot && "glow-hot border-[#67f745]/50",
           onClick && "cursor-pointer"
         )}
       >
         {isHot && (
           <div className="absolute right-3 top-3 flex items-center gap-1">
-            <Flame className="h-4 w-4 text-rose animate-pulse" />
-            <span className="text-xs font-bold text-rose font-mono">HOT</span>
+            <Flame className="h-4 w-4 text-[#67f745] animate-pulse" />
+            <span className="text-xs font-bold text-[#67f745] font-mono">HOT</span>
           </div>
         )}
 
@@ -65,12 +65,12 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
 
         <CardContent className="space-y-4">
           {/* 机会价值比 - 主指标 */}
-          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-lg p-3 border border-indigo-200 dark:border-indigo-800">
+          <div className="bg-gradient-to-br from-[#67f745]/15 to-[#0080FF]/15 rounded-lg p-3 border border-[#67f745]/30">
             <div className="flex items-center gap-2 mb-1">
-              <Target className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
-              <span className="text-xs font-medium text-indigo-600 dark:text-indigo-400">Opportunity Score</span>
+              <Target className="h-4 w-4 text-[#67f745]" />
+              <span className="text-xs font-medium text-[#67f745]">Opportunity Score</span>
             </div>
-            <div className="font-mono text-2xl font-bold text-indigo-700 dark:text-indigo-300">
+            <div className="font-mono text-2xl font-bold text-[#67f745]">
               {formatNumber(metrics.opportunityScore)}
             </div>
             <span className={cn("text-xs font-medium", opportunityGrade.color)}>
@@ -83,7 +83,7 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
             {/* 利润预估 */}
             <div className="space-y-1">
               <div className="flex items-center gap-1">
-                <DollarSign className="h-3 w-3 text-green-600" />
+                <DollarSign className="h-3 w-3 text-[#10b981]" />
                 <span className="text-xs text-muted-foreground">Profit</span>
               </div>
               <div className="font-mono text-sm font-semibold text-foreground">
@@ -94,7 +94,7 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
             {/* 市场规模 */}
             <div className="space-y-1">
               <div className="flex items-center gap-1">
-                <Users className="h-3 w-3 text-blue-600" />
+                <Users className="h-3 w-3 text-[#06b6d4]" />
                 <span className="text-xs text-muted-foreground">Market</span>
               </div>
               <div className="font-mono text-sm font-semibold text-foreground">
@@ -105,7 +105,7 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
             {/* 搜索量 */}
             <div className="space-y-1">
               <div className="flex items-center gap-1">
-                <Users className="h-3 w-3 text-purple-600" />
+                <Users className="h-3 w-3 text-[#8b5cf6]" />
                 <span className="text-xs text-muted-foreground">Volume</span>
               </div>
               <div className="font-mono text-sm font-semibold text-foreground">

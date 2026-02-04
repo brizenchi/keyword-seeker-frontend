@@ -93,7 +93,7 @@ function MetricHelp({
     <Popover>
       <PopoverTrigger asChild>
         <button className="inline-flex items-center ml-1 hover:scale-110 transition-transform duration-200">
-          <HelpCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground hover:text-indigo-600 dark:hover:text-indigo-400 cursor-help transition-colors" />
+          <HelpCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-muted-foreground hover:text-[#67f745] cursor-help transition-colors" />
         </button>
       </PopoverTrigger>
       <PopoverContent className="w-80 sm:w-96 p-3 sm:p-4 space-y-2.5 sm:space-y-3 shadow-lg border-border/50" align="start">
@@ -187,8 +187,8 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
         <DialogContent className="max-w-md sm:max-w-lg">
           <div className="flex flex-col items-center justify-center py-10 sm:py-12 gap-4 sm:gap-5">
             <div className="relative">
-              <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-full border-4 border-indigo-100 dark:border-indigo-900/50" />
-              <div className="absolute inset-0 h-14 w-14 sm:h-16 sm:w-16 rounded-full border-4 border-indigo-600 dark:border-indigo-500 border-t-transparent animate-spin" />
+              <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-full border-4 border-[#67f745]/20" />
+              <div className="absolute inset-0 h-14 w-14 sm:h-16 sm:w-16 rounded-full border-4 border-[#67f745] border-t-transparent animate-spin" />
             </div>
             <div className="text-center space-y-1.5 sm:space-y-2">
               <div className="font-semibold text-base sm:text-lg text-foreground">Loading Keyword Details</div>
@@ -205,7 +205,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
       <DialogContent className="max-w-[90vw] lg:max-w-[80vw] xl:max-w-[75vw] w-full max-h-[92vh] p-0 gap-0">
         {detail ? (
           <>
-            <DialogHeader className="px-6 sm:px-8 pt-6 sm:pt-8 pb-5 sm:pb-6 border-b bg-gradient-to-r from-indigo-50/80 to-purple-50/80 dark:from-indigo-950/30 dark:to-purple-950/30 backdrop-blur-sm">
+            <DialogHeader className="px-6 sm:px-8 pt-6 sm:pt-8 pb-5 sm:pb-6 border-b border-[#1E2650] bg-gradient-to-r from-[#67f745]/10 to-[#0080FF]/10 backdrop-blur-sm">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
                 <div className="flex-1 min-w-0">
                   <DialogTitle className="text-2xl sm:text-3xl font-bold tracking-tight mb-1.5 sm:mb-2 break-words">{detail.keyword}</DialogTitle>
@@ -214,7 +214,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                   </DialogDescription>
                 </div>
                 <div className="flex items-center gap-2 self-start sm:self-auto">
-                  <Badge className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 text-sm font-semibold shadow-sm">
+                  <Badge className="bg-[#67f745] hover:bg-[#67f745]/90 text-[#0A0E27] px-3 py-1.5 text-sm font-semibold shadow-sm">
                     Score: {formatNumber(opportunityScore)}
                   </Badge>
                 </div>
@@ -224,9 +224,9 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
             <ScrollArea className="h-[calc(92vh-10rem)] sm:h-[calc(92vh-11rem)]">
             <div className="px-4 sm:px-6 lg:px-8 py-5 sm:py-6 space-y-6 sm:space-y-8">
               {/* 核心指标总览 */}
-              <Card className="border-indigo-200 dark:border-indigo-800 bg-gradient-to-br from-indigo-50/90 to-purple-50/90 dark:from-indigo-950/40 dark:to-purple-950/40 shadow-md hover:shadow-lg transition-shadow duration-300">
+              <Card className="border-[#67f745]/30 bg-gradient-to-br from-[#67f745]/15 to-[#0080FF]/15 shadow-md hover:shadow-lg transition-shadow duration-300">
                 <CardHeader className="pb-3 sm:pb-4">
-                  <CardTitle className="flex items-center gap-2 text-indigo-700 dark:text-indigo-300 text-lg sm:text-xl">
+                  <CardTitle className="flex items-center gap-2 text-[#67f745] text-lg sm:text-xl">
                     <Target className="h-5 w-5 sm:h-6 sm:w-6" />
                     Opportunity Score
                     <MetricHelp
@@ -238,7 +238,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                 </CardHeader>
                 <CardContent className="space-y-4 sm:space-y-6">
                   <div className="flex items-end gap-3 sm:gap-4">
-                    <div className="font-mono text-4xl sm:text-5xl font-bold text-indigo-700 dark:text-indigo-300 leading-none">
+                    <div className="font-mono text-4xl sm:text-5xl font-bold text-[#67f745] leading-none">
                       {formatNumber(opportunityScore)}
                     </div>
                     <Badge className={cn("mb-1 sm:mb-2 text-sm sm:text-base px-2.5 sm:px-3 py-1 font-semibold shadow-sm", opportunityGrade.color)}>
@@ -246,8 +246,8 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                     </Badge>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 pt-3 sm:pt-4 border-t border-indigo-200 dark:border-indigo-800">
-                    <div className="bg-white/60 dark:bg-black/30 rounded-xl p-3 sm:p-4 hover:bg-white/80 dark:hover:bg-black/40 transition-colors duration-200 shadow-sm">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 pt-3 sm:pt-4 border-t border-[#67f745]/30">
+                    <div className="bg-[#0F1629]/60 rounded-xl p-3 sm:p-4 hover:bg-[#0F1629]/80 transition-colors duration-200 shadow-sm border border-[#1E2650]">
                       <div className="text-xs sm:text-sm font-medium text-muted-foreground mb-1.5 sm:mb-2 flex items-center gap-1">
                         Search Volume
                         <MetricHelp
@@ -258,7 +258,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                       </div>
                       <div className="font-mono text-xl sm:text-2xl font-bold text-foreground leading-tight">{formatNumber(detail.search_volume ?? 0)}</div>
                     </div>
-                    <div className="bg-white/60 dark:bg-black/30 rounded-xl p-3 sm:p-4 hover:bg-white/80 dark:hover:bg-black/40 transition-colors duration-200 shadow-sm">
+                    <div className="bg-[#0F1629]/60 rounded-xl p-3 sm:p-4 hover:bg-[#0F1629]/80 transition-colors duration-200 shadow-sm border border-[#1E2650]">
                       <div className="text-xs sm:text-sm font-medium text-muted-foreground mb-1.5 sm:mb-2 flex items-center gap-1">
                         Growth Rate
                         <MetricHelp
@@ -272,7 +272,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                         {formatPercentage(detail.growth_rate ?? 0)}
                       </div>
                     </div>
-                    <div className="bg-white/60 dark:bg-black/30 rounded-xl p-3 sm:p-4 hover:bg-white/80 dark:hover:bg-black/40 transition-colors duration-200 shadow-sm">
+                    <div className="bg-[#0F1629]/60 rounded-xl p-3 sm:p-4 hover:bg-[#0F1629]/80 transition-colors duration-200 shadow-sm border border-[#1E2650]">
                       <div className="text-xs sm:text-sm font-medium text-muted-foreground mb-1.5 sm:mb-2 flex items-center gap-1">
                         CPC
                         <MetricHelp
@@ -283,7 +283,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                       </div>
                       <div className="font-mono text-xl sm:text-2xl font-bold text-green-600 dark:text-green-500 leading-tight">${(detail.cpc ?? 0).toFixed(2)}</div>
                     </div>
-                    <div className="bg-white/60 dark:bg-black/30 rounded-xl p-3 sm:p-4 hover:bg-white/80 dark:hover:bg-black/40 transition-colors duration-200 shadow-sm">
+                    <div className="bg-[#0F1629]/60 rounded-xl p-3 sm:p-4 hover:bg-[#0F1629]/80 transition-colors duration-200 shadow-sm border border-[#1E2650]">
                       <div className="text-xs sm:text-sm font-medium text-muted-foreground mb-1.5 sm:mb-2 flex items-center gap-1">
                         Competition
                         <MetricHelp
@@ -301,7 +301,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                     </div>
                   </div>
 
-                  <div className="pt-4 sm:pt-6 border-t border-indigo-200 dark:border-indigo-800">
+                  <div className="pt-4 sm:pt-6 border-t border-[#67f745]/30">
                     <div className="text-xs sm:text-sm font-medium text-muted-foreground mb-1.5 sm:mb-2 flex items-center gap-1">
                       Top of Page Bid Range
                       <MetricHelp
@@ -318,10 +318,10 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
               </Card>
 
               {/* 机会价值详解 */}
-              <Card className="shadow-md hover:shadow-lg transition-shadow duration-300 border-border/50">
+              <Card className="shadow-md hover:shadow-lg transition-shadow duration-300 border-[#1E2650] bg-[#0F1629]">
                 <CardHeader className="pb-3 sm:pb-4">
                   <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-                    <Award className="h-5 w-5 sm:h-6 sm:w-6 text-amber-600" />
+                    <Award className="h-5 w-5 sm:h-6 sm:w-6 text-[#67f745]" />
                     Opportunity Analysis
                   </CardTitle>
                 </CardHeader>
@@ -427,10 +427,10 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
               </Card>
 
               {/* 竞争对手分析 */}
-              <Card className="shadow-md hover:shadow-lg transition-shadow duration-300 border-border/50">
+              <Card className="shadow-md hover:shadow-lg transition-shadow duration-300 border-[#1E2650] bg-[#0F1629]">
                 <CardHeader className="pb-3 sm:pb-4">
                   <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-                    <Users className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+                    <Users className="h-5 w-5 sm:h-6 sm:w-6 text-[#0080FF]" />
                     Competitive Landscape
                   </CardTitle>
                 </CardHeader>
@@ -484,7 +484,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2">
                         {detail.top_domains.map((domain, index) => (
                           <div key={domain} className="flex items-center gap-2 p-2 sm:p-2.5 bg-muted/40 hover:bg-muted/60 rounded-lg text-xs sm:text-sm transition-colors duration-200 border border-border/30">
-                            <span className="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 font-semibold text-xs flex-shrink-0">
+                            <span className="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#67f745]/20 text-[#67f745] font-semibold text-xs flex-shrink-0">
                               {index + 1}
                             </span>
                             <span className="truncate">{domain}</span>
@@ -504,7 +504,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                         {detail.competitors.slice(0, 10).map((competitor, index) => (
                           <div key={competitor.domain} className="flex items-center justify-between p-2.5 sm:p-3 bg-muted/50 hover:bg-muted/70 rounded-xl transition-colors duration-200 border border-border/30">
                             <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-                              <div className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 font-bold text-xs sm:text-sm flex-shrink-0">
+                              <div className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#67f745]/20 text-[#67f745] font-bold text-xs sm:text-sm flex-shrink-0">
                                 {index + 1}
                               </div>
                               <div className="min-w-0">
@@ -513,7 +513,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                               </div>
                             </div>
                             <div className="text-right flex-shrink-0">
-                              <div className="font-mono text-xs sm:text-sm font-semibold text-green-600 dark:text-green-500">
+                              <div className="font-mono text-xs sm:text-sm font-semibold text-[#67f745]">
                                 {formatCurrency(competitor.etv ?? 0)}
                               </div>
                               <div className="text-xs text-muted-foreground">
@@ -537,10 +537,10 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
 
               {/* 利润预估和市场规模 */}
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
-                <Card className="shadow-md hover:shadow-lg transition-shadow duration-300 border-border/50">
+                <Card className="shadow-md hover:shadow-lg transition-shadow duration-300 border-[#1E2650] bg-[#0F1629]">
                   <CardHeader className="pb-3 sm:pb-4">
                     <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-                      <DollarSign className="h-5 w-5 sm:h-6 sm:w-6 text-green-600" />
+                      <DollarSign className="h-5 w-5 sm:h-6 sm:w-6 text-[#67f745]" />
                       Profit Opportunity
                       <MetricHelp
                         formula="(Profit Estimation × Growth Rate) / Competition Score"
@@ -556,7 +556,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                           Calculated Value
                           <MetricHelp formula="Higher value = Better profit opportunity relative to competition" />
                         </div>
-                        <div className="font-mono text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-500">
+                        <div className="font-mono text-2xl sm:text-3xl font-bold text-[#67f745]">
                           {formatCurrency(profitOpportunity)}
                         </div>
                       </div>
@@ -581,10 +581,10 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                   </CardContent>
                 </Card>
 
-                <Card className="shadow-md hover:shadow-lg transition-shadow duration-300 border-border/50">
+                <Card className="shadow-md hover:shadow-lg transition-shadow duration-300 border-[#1E2650] bg-[#0F1629]">
                   <CardHeader className="pb-3 sm:pb-4">
                     <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-                      <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+                      <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 text-[#0080FF]" />
                       Market Opportunity
                       <MetricHelp
                         formula="(Search Volume × CPC × Growth Rate) / Competition Score"
@@ -600,7 +600,7 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                           Calculated Value
                           <MetricHelp formula="Higher value = Better traffic monetization opportunity" />
                         </div>
-                        <div className="font-mono text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-500">
+                        <div className="font-mono text-2xl sm:text-3xl font-bold text-[#0080FF]">
                           {formatCurrency(marketOpportunity)}
                         </div>
                       </div>
@@ -631,10 +631,10 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
               </div>
 
               {/* 搜索量趋势 */}
-              <Card className="shadow-md hover:shadow-lg transition-shadow duration-300 border-border/50">
+              <Card className="shadow-md hover:shadow-lg transition-shadow duration-300 border-[#1E2650] bg-[#0F1629]">
                 <CardHeader className="pb-3 sm:pb-4">
                   <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
-                    <Activity className="h-5 w-5 sm:h-6 sm:w-6" />
+                    <Activity className="h-5 w-5 sm:h-6 sm:w-6 text-[#67f745]" />
                     Search Volume Trend
                     <MetricHelp formula="Historical search volume growth trends over different time periods" />
                   </CardTitle>
@@ -691,17 +691,17 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
               </Card>
 
               {/* 专家分析 - 预留 */}
-              <Card className="border-purple-200 dark:border-purple-800 shadow-md hover:shadow-lg transition-shadow duration-300">
+              <Card className="border-[#67f745]/30 shadow-md hover:shadow-lg transition-shadow duration-300 bg-[#0F1629]">
                 <CardHeader className="pb-3 sm:pb-4">
-                  <CardTitle className="flex items-center gap-2 text-purple-700 dark:text-purple-300 text-lg sm:text-xl">
+                  <CardTitle className="flex items-center gap-2 text-[#67f745] text-lg sm:text-xl">
                     <Sparkles className="h-5 w-5 sm:h-6 sm:w-6" />
                     AI Expert Analysis
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="h-28 sm:h-32 flex items-center justify-center bg-gradient-to-br from-purple-50/50 to-pink-50/50 dark:from-purple-950/20 dark:to-pink-950/20 rounded-xl border-2 border-dashed border-purple-300/30 dark:border-purple-700/30">
+                  <div className="h-28 sm:h-32 flex items-center justify-center bg-gradient-to-br from-[#67f745]/10 to-[#0080FF]/10 rounded-xl border-2 border-dashed border-[#67f745]/30">
                     <div className="text-center text-muted-foreground">
-                      <Sparkles className="h-7 w-7 sm:h-8 sm:w-8 mx-auto mb-2 opacity-50 text-purple-500" />
+                      <Sparkles className="h-7 w-7 sm:h-8 sm:w-8 mx-auto mb-2 opacity-50 text-[#67f745]" />
                       <div className="text-xs sm:text-sm font-medium">AI expert analysis coming soon</div>
                     </div>
                   </div>

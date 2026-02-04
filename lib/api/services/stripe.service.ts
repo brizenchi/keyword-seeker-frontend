@@ -109,11 +109,39 @@ class StripeService {
   }
 
   /**
-   * 取消订阅
-   * @param subscriptionId 订阅 ID
+   * 取消订阅（期末取消）
+   * 订阅将在当前周期结束时取消，用户可以继续使用到周期结束
+   * @returns 取消订阅响应
    */
-  async cancelSubscription(subscriptionId: string): Promise<void> {
-    await apiClient.post(`/api/v1/stripe/subscription/${subscriptionId}/cancel`);
+  async cancelSubscription(): Promise<{
+    message: string;
+    cancel_at_period_end: boolean;
+    current_period_end: string;
+  }> {
+    const response = await apiClient.post<{
+      message: string;
+      cancel_at_period_end: boolean;
+      current_period_end: string;
+    }>('/api/v1/stripe/subscription/cancel');
+    return response;
+  }
+
+  /**
+   * 重新激活订阅
+   * 取消之前标记的期末取消，订阅将继续自动续费
+   * @returns 重新激活响应
+   */
+  async reactivateSubscription(): Promise<{
+    message: string;
+    cancel_at_period_end: boolean;
+    current_period_end: string;
+  }> {
+    const response = await apiClient.post<{
+      message: string;
+      cancel_at_period_end: boolean;
+      current_period_end: string;
+    }>('/api/v1/stripe/subscription/reactivate');
+    return response;
   }
 
   /**

@@ -11,9 +11,10 @@ import LoginDialog from "@/components/LoginDialog"
 import { UserMenu } from "@/components/user-menu"
 
 const navItems = [
-  { label: "Features", href: "#features" },
+  { label: "Features", href: "/#features" },
+  { label: "Blog", href: "/blog" },
+  { label: "Use Cases", href: "/use-cases" },
   { label: "Pricing", href: "/pricing" },
-  { label: "About", href: "#about" },
 ]
 
 export function Navbar() {
@@ -24,15 +25,15 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[#1E2650] bg-[#0A0E27]/95 backdrop-blur supports-[backdrop-filter]:bg-[#0A0E27]/60">
+        <div className="container mx-auto min-w-[1200px] max-w-7xl px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 group-hover:from-indigo-500 group-hover:to-purple-500 transition-all duration-200">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-[#0080FF] to-[#39FF14] group-hover:shadow-[0_0_20px_rgba(0,128,255,0.5)] transition-all duration-200">
                 <Flame className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-xl font-bold bg-gradient-to-r from-[#0080FF] to-[#39FF14] bg-clip-text text-transparent" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                 NichePop
               </span>
             </Link>
@@ -43,7 +44,7 @@ export function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm font-medium text-[#8B92B3] hover:text-white transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -55,7 +56,7 @@ export function Navbar() {
               {isAuthenticated && user ? (
                 <>
                   <Link href="/dashboard">
-                    <Button variant="ghost" size="sm" className="cursor-pointer">
+                    <Button variant="ghost" size="sm" className="cursor-pointer text-[#8B92B3] hover:text-white">
                       Dashboard
                     </Button>
                   </Link>
@@ -67,14 +68,14 @@ export function Navbar() {
                     variant="ghost"
                     size="sm"
                     onClick={() => setLoginDialogOpen(true)}
-                    className="cursor-pointer"
+                    className="cursor-pointer text-[#67f745] hover:text-[#67f745]/80"
                   >
                     Sign in
                   </Button>
                   <Link href="/dashboard">
                     <Button
                       size="sm"
-                      className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 cursor-pointer"
+                      className="bg-[#67f745] hover:bg-[#67f745]/90 text-[#0A0E27] font-semibold cursor-pointer rounded-xl hover:shadow-[0_0_20px_rgba(103,247,69,0.4)] transition-all duration-200"
                     >
                       Get Started
                     </Button>
@@ -85,7 +86,7 @@ export function Navbar() {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 text-muted-foreground hover:text-foreground"
+              className="md:hidden p-2 text-[#8B92B3] hover:text-white"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? (
@@ -99,23 +100,23 @@ export function Navbar() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border/40 bg-background">
-            <div className="container mx-auto px-4 py-4 space-y-3">
+          <div className="md:hidden border-t border-[#1E2650] bg-[#0A0E27]">
+            <div className="container mx-auto min-w-[1200px] max-w-7xl px-4 py-4 space-y-3">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="block py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  className="block py-2 text-sm font-medium text-[#8B92B3] hover:text-white transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <div className="pt-3 border-t border-border/40 space-y-2">
+              <div className="pt-3 border-t border-[#1E2650] space-y-2">
                 {isAuthenticated && user ? (
                   <>
                     <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
-                      <Button variant="ghost" size="sm" className="w-full justify-start cursor-pointer">
+                      <Button variant="ghost" size="sm" className="w-full justify-start cursor-pointer text-[#8B92B3] hover:text-white">
                         Dashboard
                       </Button>
                     </Link>
@@ -128,7 +129,7 @@ export function Navbar() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="w-full cursor-pointer"
+                      className="w-full cursor-pointer text-[#67f745] hover:text-[#67f745]/80"
                       onClick={() => {
                         setLoginDialogOpen(true)
                         setMobileMenuOpen(false)
@@ -139,7 +140,7 @@ export function Navbar() {
                     <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
                       <Button
                         size="sm"
-                        className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 cursor-pointer"
+                        className="w-full bg-[#67f745] hover:bg-[#67f745]/90 text-[#0A0E27] font-semibold cursor-pointer rounded-xl"
                       >
                         Get Started
                       </Button>

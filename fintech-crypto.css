@@ -1,0 +1,193 @@
+/* Fintech Crypto Template – Design Tokens & Components */
+/* Author: AnyGen for Brizen Chi */
+
+/* =============================
+   Design Tokens (CSS Variables)
+   Scope: .fintech-crypto
+   ============================= */
+.fintech-crypto {
+  /* Brand Colors */
+  --primary: #0080FF;          /* Electric Blue */
+  --secondary: #39FF14;         /* Neon Green */
+  --cta: #39FF14;               /* Primary CTA green */
+
+  /* Surface & Backgrounds */
+  --bg: #0A0E27;                /* Page background (dark navy) */
+  --bg-card: #0F1635;           /* Card base */
+  --bg-card-hover: #141B42;     /* Card hover */
+
+  /* Text & Lines */
+  --text: #FFFFFF;              /* Primary text */
+  --text-muted: #8B92B3;        /* Secondary text */
+  --border: #1E2650;            /* Neutral border */
+
+  /* Typography */
+  font-family: DM Sans, sans-serif;
+  color: var(--text);
+}
+
+/* Headings use Space Grotesk */
+.fintech-crypto h1,
+.fintech-crypto h2,
+.fintech-crypto h3,
+.fintech-crypto h4 {
+  font-family: Space Grotesk, sans-serif;
+}
+
+/* =============================
+   Utility Effects
+   ============================= */
+/* Frosted glass card */
+.fintech-crypto .glass-card {
+  background: #0f1635cc; /* 80% opacity */
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(30, 38, 80, 0.5);
+  border-radius: 1rem;
+}
+
+/* Hoverable glass cards */
+.fintech-crypto .glass-card-hover {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.fintech-crypto .glass-card-hover:hover {
+  background: #141b42e6; /* ~90% opacity */
+  border-color: var(--primary);
+  box-shadow: 0 0 30px #0080ff26; /* soft blue glow */
+}
+
+/* Glow helpers */
+.fintech-crypto .glow-primary { box-shadow: 0 0 20px #0080ff4d; }
+.fintech-crypto .glow-secondary { box-shadow: 0 0 20px #39ff144d; }
+.fintech-crypto .text-glow { text-shadow: 0 0 20px rgba(57, 255, 20, 0.5); }
+
+/* Gradient text (blue → green) */
+.fintech-crypto .gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =============================
+   Buttons
+   ============================= */
+/* Primary CTA button */
+.fintech-crypto .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  background: var(--cta);
+  color: var(--bg);
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+.fintech-crypto .btn-primary:hover {
+  box-shadow: 0 0 30px #39ff1466;
+  transform: translateY(-2px);
+}
+
+/* Secondary button */
+.fintech-crypto .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 500;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.fintech-crypto .btn-secondary:hover {
+  border-color: var(--primary);
+  background: #0080ff1a; /* 10% blue */
+}
+
+/* =============================
+   Backgrounds
+   ============================= */
+/* Grid background (for hero section) */
+.fintech-crypto .grid-bg {
+  background-image:
+    linear-gradient(rgba(30, 38, 80, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 38, 80, 0.3) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* =============================
+   Motion Preferences
+   ============================= */
+@media (prefers-reduced-motion: reduce) {
+  .fintech-crypto *,
+  .fintech-crypto *::before,
+  .fintech-crypto *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =============================
+   Example Component Blocks
+   ============================= */
+/* Hero Title */
+.fintech-crypto .hero-title {
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Stat Chip */
+.fintech-crypto .stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  background: #0F1635;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* Market Card */
+.fintech-crypto .market-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+.fintech-crypto .market-card .symbol { color: var(--text-muted); }
+.fintech-crypto .market-card .price-up { color: #39FF14; }
+.fintech-crypto .market-card .price-down { color: #FF4D4D; }
+
+/* Section Title */
+.fintech-crypto .section-title {
+  font-family: Space Grotesk, sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  margin-bottom: 0.75rem;
+}
+
+/* Card Group */
+.fintech-crypto .card-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+/* Footer Links */
+.fintech-crypto .footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.fintech-crypto .footer-links a:hover { color: var(--text); }
