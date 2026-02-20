@@ -3,12 +3,13 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Flame, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/hooks/useAuth"
 import LoginDialog from "@/components/LoginDialog"
 import { UserMenu } from "@/components/user-menu"
+import { BrandLogo } from "@/components/brand-logo"
 
 const navItems = [
   { label: "Features", href: "/#features" },
@@ -30,12 +31,10 @@ export function Navbar() {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-[#0080FF] to-[#39FF14] group-hover:shadow-[0_0_20px_rgba(0,128,255,0.5)] transition-all duration-200">
-                <Flame className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-[#0080FF] to-[#39FF14] bg-clip-text text-transparent" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                NichePop
-              </span>
+              <BrandLogo
+                size="md"
+                markClassName="transition-all duration-200 group-hover:drop-shadow-[0_0_12px_rgba(0,128,255,0.55)]"
+              />
             </Link>
 
             {/* Desktop Navigation */}

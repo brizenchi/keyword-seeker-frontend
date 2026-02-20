@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { Flame, Mail } from "lucide-react"
+import { Mail } from "lucide-react"
+import { BrandLogo } from "@/components/brand-logo"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -15,12 +16,11 @@ export function Footer() {
             {/* Brand Section */}
             <div className="lg:col-span-4">
               <Link href="/" className="flex items-center gap-2 group mb-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#0080FF] to-[#67f745] group-hover:shadow-[0_0_20px_rgba(103,247,69,0.4)] transition-all duration-200">
-                  <Flame className="h-5 w-5 text-white" />
-                </div>
-                <span className="text-2xl font-black bg-gradient-to-r from-[#0080FF] to-[#67f745] bg-clip-text text-transparent" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                  NichePop
-                </span>
+                <BrandLogo
+                  size="lg"
+                  markClassName="transition-all duration-200 group-hover:drop-shadow-[0_0_12px_rgba(103,247,69,0.5)]"
+                  textClassName="font-black"
+                />
               </Link>
               <p className="text-sm text-[#8B92B3] leading-relaxed mb-6 max-w-sm">
                 Discover trending keyword opportunities with real-time data. AI-powered niche analysis, competition insights, and profit estimation for marketers and entrepreneurs.

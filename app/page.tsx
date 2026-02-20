@@ -15,9 +15,9 @@ import {
   BarChart3,
   Sparkles,
   CheckCircle2,
-  ArrowRight,
-  Flame
+  ArrowRight
 } from "lucide-react"
+import { BrandMark } from "@/components/brand-logo"
 
 export default function HomePage() {
   return (
@@ -307,8 +307,8 @@ export default function HomePage() {
           <Card className="border-2 border-[#0080FF]/30 bg-[#0F1635]/80 backdrop-blur-xl shadow-2xl shadow-[#0080FF]/20">
             <CardContent className="p-12 text-center space-y-6">
               <div className="flex justify-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0080FF] to-[#39FF14] shadow-2xl shadow-[#0080FF]/50">
-                  <Flame className="h-10 w-10 text-white" />
+                <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[#1E2650] bg-[#0A0E27]/80 shadow-2xl shadow-[#0080FF]/40">
+                  <BrandMark className="h-12 w-12" withGlow />
                 </div>
               </div>
               <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>

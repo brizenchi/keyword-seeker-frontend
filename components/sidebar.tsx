@@ -3,12 +3,13 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { TrendingUp, Search, Bookmark, Settings, Flame, CreditCard, User, Rss } from "lucide-react"
+import { TrendingUp, Search, Bookmark, Settings, CreditCard, User, Rss } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { useAuth } from "@/hooks/useAuth"
 import LoginDialog from "@/components/LoginDialog"
 import { UserMenu } from "@/components/user-menu"
+import { BrandMark } from "@/components/brand-logo"
 
 const navItems = [
   { icon: TrendingUp, label: "Dashboard", href: "/dashboard" },
@@ -27,9 +28,9 @@ export function Sidebar() {
         <div className="flex flex-col items-center gap-2">
           <Link
             href="/"
-            className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo text-primary-foreground"
+            className="mb-6"
           >
-            <Flame className="h-5 w-5" />
+            <BrandMark className="h-10 w-10 transition-all duration-200 hover:drop-shadow-[0_0_12px_rgba(0,128,255,0.55)]" />
           </Link>
 
           <nav className="flex flex-col items-center gap-2">
