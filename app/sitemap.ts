@@ -24,19 +24,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'always',
       priority: 0.8,
     },
-    {
-      url: `${baseUrl}/dashboard/live-feed`,
-      lastModified: currentDate,
-      changeFrequency: 'always',
-      priority: 0.8,
-    },
-    // Settings page - lower priority as it's user-specific
-    {
-      url: `${baseUrl}/settings`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
     // Blog
     {
       url: `${baseUrl}/blog`,
