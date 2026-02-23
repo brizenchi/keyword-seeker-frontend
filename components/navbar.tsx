@@ -76,7 +76,7 @@ export function Navbar() {
                       size="sm"
                       className="bg-[#67f745] hover:bg-[#67f745]/90 text-[#0A0E27] font-semibold cursor-pointer rounded-xl hover:shadow-[0_0_20px_rgba(103,247,69,0.4)] transition-all duration-200"
                     >
-                      Get Started
+                      Try Free
                     </Button>
                   </Link>
                 </>
@@ -141,7 +141,7 @@ export function Navbar() {
                         size="sm"
                         className="w-full bg-[#67f745] hover:bg-[#67f745]/90 text-[#0A0E27] font-semibold cursor-pointer rounded-xl"
                       >
-                        Get Started
+                        Try Free
                       </Button>
                     </Link>
                   </>

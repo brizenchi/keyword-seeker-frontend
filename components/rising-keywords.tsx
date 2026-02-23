@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Sparkles, Unlock } from "lucide-react"
+import { Sparkles, Unlock, ChevronLeft, ChevronRight } from "lucide-react"
 import { UnlockKeywordDialog } from "@/components/unlock-keyword-dialog"
 import { KeywordCard } from "@/components/keyword-card"
 import { PricingModal } from "@/components/pricing-modal"
@@ -31,11 +31,10 @@ const generateTrendDataFromKeyword = (kw: Keyword) => {
   return data
 }
 
-// 模块级缓存 - 在组件外部，页面切换时数据仍然保留
-let cachedKeywords: Keyword[] | null = null
-let cacheTimestamp: number | null = null
-let ongoingRequest: Promise<Keyword[]> | null = null // 正在进行的请求
+// 模块级缓存 - 按页缓存
+const pageCache = new Map<number, { data: Keyword[], timestamp: number }>()
 const CACHE_DURATION = 5 * 60 * 1000 // 5分钟缓存
+const PAGE_SIZE = 8
 
 export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
   const { isAuthenticated, user, refresh } = useAuth()
@@ -49,37 +48,46 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date())
   const [showUnlockDialog, setShowUnlockDialog] = useState(false)
   const [keywordToUnlock, setKeywordToUnlock] = useState<Keyword | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [total, setTotal] = useState(0)
 
   // Fetch keywords from API - 使用缓存策略
   useEffect(() => {
     let ignore = false
 
-    async function fetchKeywords() {
+    async function fetchKeywords(page: number) {
       // 检查缓存是否有效
       const now = Date.now()
-      if (cachedKeywords && cacheTimestamp && (now - cacheTimestamp < CACHE_DURATION)) {
-        // 使用缓存，不发起请求
-        console.log('✅ Using cached data')
-        processKeywords(cachedKeywords)
-        setLoading(false) // 重要：使用缓存时也要设置 loading 为 false
+      const cached = pageCache.get(page)
+      if (cached && (now - cached.timestamp < CACHE_DURATION)) {
+        console.log(`✅ Using cached data for page ${page}`)
+        setBackendKeywords(cached.data)
+        setLoading(false)
         return
       }
 
       setLoading(true)
 
       try {
-        const data = await keywordService.getList({
-          limit: 10,
-          offset: 0,
+        const offset = (page - 1) * PAGE_SIZE
+        const response = await keywordService.getList({
+          limit: PAGE_SIZE,
+          offset: offset,
         })
 
         if (ignore) return
 
         // 更新缓存
-        if (data && data.length > 0) {
-          cachedKeywords = data
-          cacheTimestamp = Date.now()
-          processKeywords(data)
+        if (response && response.items && response.items.length > 0) {
+          pageCache.set(page, {
+            data: response.items,
+            timestamp: Date.now()
+          })
+          setBackendKeywords(response.items)
+          setTotal(response.total)
+          setTotalPages(response.total_pages)
+          setLastUpdated(new Date())
         }
       } catch (error) {
         if (!ignore) {
@@ -92,52 +100,12 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
       }
     }
 
-    // 处理关键词数据的函数
-    function processKeywords(data: Keyword[]) {
-      if (!data || data.length === 0) return
-
-      // 直接使用后端返回的顺序，不进行排序
-      const paddedData = [...data]
-
-      // 如果返回的关键词少于 10 个，补充占位数据
-      const MIN_KEYWORDS = 10
-
-      if (data.length < MIN_KEYWORDS) {
-        const placeholdersNeeded = MIN_KEYWORDS - data.length
-        for (let i = 0; i < placeholdersNeeded; i++) {
-          paddedData.push({
-            id: -(i + 1),
-            keyword: `Keyword ${data.length + i + 1}`,
-            search_volume: 0,
-            cpc: 0,
-            competition_score: 0,
-            competition_level: 'LOW',
-            growth_rate: 0,
-            profit_estimation: 0,
-            is_placeholder: true,
-          } as any)
-        }
-      }
-
-      setBackendKeywords(paddedData)
-      setLastUpdated(new Date())
-    }
-
-    // 首次加载时获取数据（可能使用缓存）
-    fetchKeywords()
-
-    // 每5分钟自动刷新（会发起真实请求更新缓存）
-    const interval = setInterval(() => {
-      // 定时器触发时强制刷新，清除缓存
-      cacheTimestamp = null
-      fetchKeywords()
-    }, 5 * 60 * 1000)
+    fetchKeywords(currentPage)
 
     return () => {
       ignore = true
-      clearInterval(interval)
     }
-  }, [])
+  }, [currentPage])
 
   const handleKeywordClick = (keyword: Keyword) => {
     // Check if keyword is locked based on backend data
@@ -177,8 +145,7 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
       ))
 
       // Clear cache to force refresh on next load
-      cachedKeywords = null
-      cacheTimestamp = null
+      pageCache.clear()
 
       // Close unlock dialog
       setShowUnlockDialog(false)
@@ -303,6 +270,50 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
                   )
                 })}
               </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 mt-6">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1 || loading}
+                    className="border-[#1E2650] bg-[#0F1635] text-white hover:bg-[#0080FF]/20 hover:border-[#0080FF] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
+
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                      <Button
+                        key={page}
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(page)}
+                        disabled={loading}
+                        className={`min-w-[32px] border-[#1E2650] cursor-pointer ${
+                          currentPage === page
+                            ? 'bg-[#0080FF] text-white border-[#0080FF]'
+                            : 'bg-[#0F1635] text-[#8B92B3] hover:bg-[#0080FF]/20 hover:border-[#0080FF] hover:text-white'
+                        } disabled:opacity-50 disabled:cursor-not-allowed`}
+                      >
+                        {page}
+                      </Button>
+                    ))}
+                  </div>
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages || loading}
+                    className="border-[#1E2650] bg-[#0F1635] text-white hover:bg-[#0080FF]/20 hover:border-[#0080FF] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
             </>
           ) : (
             <div className="flex items-center justify-center py-12">

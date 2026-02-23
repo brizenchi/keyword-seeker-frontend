@@ -10,6 +10,7 @@ import type {
   KeywordDetailData,
   KeywordListParams,
   KeywordListResponse,
+  KeywordListData,
   UnlockKeywordResponse,
 } from '@/lib/types';
 
@@ -20,12 +21,12 @@ class KeywordService {
   /**
    * 获取关键词列表
    * @param params - 查询参数（limit, offset, keyword_status, search）
-   * @returns 关键词列表
+   * @returns 关键词列表数据（包含 items, total, limit, offset, total_pages）
    */
-  async getList(params?: KeywordListParams): Promise<Keyword[]> {
+  async getList(params?: KeywordListParams): Promise<KeywordListData> {
     // apiClient.get 已经通过 unwrapApiResponse 自动解包了 data 字段
-    // 所以直接返回即可，不需要再访问 .data
-    return apiClient.get<Keyword[]>(
+    // 返回的是 { items: [], total: number, limit: number, offset: number, total_pages: number }
+    return apiClient.get<KeywordListData>(
       API_ENDPOINTS.KEYWORD.LIST,
       params
     );
@@ -71,11 +72,11 @@ class KeywordService {
    * 搜索关键词
    * @param query - 搜索关键词
    * @param params - 其他查询参数
-   * @returns 关键词列表
+   * @returns 关键词列表数据（包含 items, total, limit, offset, total_pages）
    */
-  async search(query: string, params?: Omit<KeywordListParams, 'search'>): Promise<Keyword[]> {
+  async search(query: string, params?: Omit<KeywordListParams, 'search'>): Promise<KeywordListData> {
     // apiClient.get 已经通过 unwrapApiResponse 自动解包了 data 字段
-    return apiClient.get<Keyword[]>(
+    return apiClient.get<KeywordListData>(
       API_ENDPOINTS.KEYWORD.SEARCH,
       { ...params, search: query }
     );

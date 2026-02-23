@@ -15,7 +15,7 @@ export const TIME_CONSTANTS = {
   /**
    * 登录成功后重定向延迟
    */
-  LOGIN_SUCCESS_REDIRECT_DELAY: 1200, // 1.2 秒
+  LOGIN_SUCCESS_REDIRECT_DELAY: 300, // 0.3 秒
 
   /**
    * 通用 API 请求超时

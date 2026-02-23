@@ -126,26 +126,14 @@ export interface UnlockKeywordResponse {
  */
 export interface Keyword {
   id: number;
-  task_id: number;
+  task_id: number | null;
   keyword: string;
-  seed_keyword: string;
-  is_seed: boolean;
-  keyword_status: KeywordStatus;
-  search_volume: number | null;
-  competition: number | null;
-  competition_level: CompetitionLevel | null;
-  cpc: number | null;
   growth_rate: number | null;
   competition_score: number | null;
   profit_estimation: number | null;
-  has_wikipedia: boolean;
-  has_high_authority_site: boolean;
-  error_message: string | null;
-  search_intent_info?: SearchIntentInfo; // 可选字段
-  created_at?: string; // 创建时间（可选）
-  updated_at?: string; // 更新时间（可选）
-  is_locked?: boolean; // 是否锁定（free 用户）
-  highlight?: KeywordHighlight; // 高亮信息（free 用户的 locked 数据）
+  is_locked: boolean;
+  is_unlocked: boolean;
+  highlight: KeywordHighlight;
 }
 
 /**
@@ -181,12 +169,23 @@ export interface KeywordListParams {
 }
 
 /**
+ * 关键词列表响应数据
+ */
+export interface KeywordListData {
+  items: Keyword[];
+  total: number;
+  limit: number;
+  offset: number;
+  total_pages: number;
+}
+
+/**
  * 关键词列表响应
  */
 export interface KeywordListResponse {
   code: number;
   message: string;
-  data: Keyword[];
+  data: KeywordListData;
 }
 
 // 旧的类型定义（向后兼容，后续可以逐步迁移）

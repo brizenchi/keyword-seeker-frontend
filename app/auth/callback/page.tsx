@@ -16,7 +16,18 @@ export default function AuthCallbackPage() {
   useEffect(() => {
     if (user) {
       setStatus('success');
-      const timer = setTimeout(() => router.replace('/'), TIME_CONSTANTS.LOGIN_SUCCESS_REDIRECT_DELAY);
+
+      // Get the return URL from localStorage, default to /dashboard
+      const returnUrl = typeof window !== 'undefined'
+        ? localStorage.getItem('auth_return_url') || '/dashboard'
+        : '/dashboard';
+
+      // Clear the stored URL
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('auth_return_url');
+      }
+
+      const timer = setTimeout(() => router.replace(returnUrl), TIME_CONSTANTS.LOGIN_SUCCESS_REDIRECT_DELAY);
       return () => clearTimeout(timer);
     }
 

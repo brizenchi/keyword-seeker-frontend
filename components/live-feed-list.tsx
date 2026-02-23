@@ -158,20 +158,20 @@ export function LiveFeedList({ sortBy = "trending", filterBy = "all" }: LiveFeed
       setLoading(true)
 
       try {
-        const data = await keywordService.getList({
+        const response = await keywordService.getList({
           limit: 10,
           offset: 0,
         })
 
         if (ignore) return
 
-        // 更新缓存
-        if (data && data.length > 0) {
-          cachedLiveFeedKeywords = data
+        // 更新缓存 - 使用 response.items
+        if (response && response.items && response.items.length > 0) {
+          cachedLiveFeedKeywords = response.items
           liveFeedCacheTimestamp = Date.now()
         }
 
-        processKeywords(data || [])
+        processKeywords(response?.items || [])
       } catch (error) {
         if (!ignore) {
           console.error('Failed to fetch keywords:', error)

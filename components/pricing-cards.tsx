@@ -47,12 +47,12 @@ const tiers: Tier[] = [
   },
   {
     name: "Pro",
-    monthlyPrice: 9.9,
-    yearlyPrice: 99, // Annual price with 17% discount
+    monthlyPrice: 12.9,
+    yearlyPrice: 129, // Annual price with 17% discount
     description: "Best for content creators",
     features: [
       { icon: TrendingUp, text: "View all trending keywords" },
-      { icon: Search, text: "20 researches per day" },
+      // { icon: Search, text: "20 researches per day" },
       { icon: CheckCircle2, text: "Priority support" },
       { icon: Zap, text: "Real-time data updates" },
       { icon: TrendingUp, text: "Advanced analytics" },
@@ -76,7 +76,7 @@ const tiers: Tier[] = [
     description: "For power users and teams",
     features: [
       { icon: Crown, text: "View all trending keywords" },
-      { icon: Search, text: "50 researches per day" },
+      // { icon: Search, text: "50 researches per day" },
       { icon: CheckCircle2, text: "Priority support" },
       { icon: Zap, text: "Real-time data updates" },
       { icon: TrendingUp, text: "Advanced analytics" },
