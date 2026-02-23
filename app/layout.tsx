@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   },
   description: "Discover trending keyword opportunities with real-time data from Reddit, Google Trends & more. AI-powered niche analysis, competition insights & profit estimation. Start free!",
   keywords: [
+    // Core keywords
     "keyword research",
     "keyword research tool",
     "niche finder",
@@ -39,7 +40,32 @@ export const metadata: Metadata = {
     "real-time keywords",
     "keyword tracking",
     "SERP analysis",
-    "keyword profitability"
+    "keyword profitability",
+    // User pain points
+    "affordable keyword research",
+    "cheap keyword tool",
+    "ahrefs alternative",
+    "semrush alternative",
+    "free keyword research",
+    "keyword research on budget",
+    "keyword tool for beginners",
+    "low cost SEO tool",
+    // Reddit & opportunity discovery
+    "reddit keyword opportunities",
+    "find business ideas reddit",
+    "reddit market research",
+    "reddit niche finder",
+    "trending subreddits business",
+    "reddit trend analysis",
+    "discover opportunities reddit",
+    // Problem-solving keywords
+    "how to find profitable niches",
+    "how to find untapped keywords",
+    "how to validate keyword ideas",
+    "find keywords without paying",
+    "keyword research for new blog",
+    "low competition keyword finder",
+    "trending keyword finder"
   ],
   authors: [{ name: "NichePop" }],
   creator: "NichePop",
