@@ -128,9 +128,13 @@ export interface Keyword {
   id: number;
   task_id: number | null;
   keyword: string;
+  search_volume: number | null;
+  cpc: number | null;
   growth_rate: number | null;
+  competition_level: CompetitionLevel | null;
   competition_score: number | null;
   profit_estimation: number | null;
+  search_intent_info?: SearchIntentInfo;
   is_locked: boolean;
   is_unlocked: boolean;
   highlight: KeywordHighlight;
