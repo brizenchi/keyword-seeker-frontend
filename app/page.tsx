@@ -136,17 +136,31 @@ export default function HomePage() {
               </Badge>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white" style={{ fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '-0.02em', lineHeight: '1.1' }}>
-                Find Trending Keywords
+                Find Profitable Niches
                 <br />
                 <span className="bg-gradient-to-r from-[#0080FF] to-[#39FF14] bg-clip-text text-transparent">
                   Before Everyone Else
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-[#8B92B3] max-w-xl lg:max-w-none leading-relaxed font-light">
-                Discover high-potential keywords with low competition. Analyze search trends,
-                competition levels, and profit opportunities in real-time.
+              <p className="text-lg text-white max-w-xl lg:max-w-none leading-relaxed font-medium">
+                Discover trending, low-competition niches 3 months before they peak. Real-time Reddit insights + AI analysis—starting at $12.9/month.
               </p>
+
+              <div className="grid grid-cols-3 gap-4 max-w-xl lg:max-w-none mb-4">
+                <div className="text-left">
+                  <div className="text-2xl font-bold text-[#39FF14]">10,000+</div>
+                  <div className="text-xs text-[#8B92B3]">Reddit discussions analyzed daily</div>
+                </div>
+                <div className="text-left">
+                  <div className="text-2xl font-bold text-[#39FF14]">3 months</div>
+                  <div className="text-xs text-[#8B92B3]">Earlier trend detection</div>
+                </div>
+                <div className="text-left">
+                  <div className="text-2xl font-bold text-[#39FF14]">95%</div>
+                  <div className="text-xs text-[#8B92B3]">Lower competition keywords</div>
+                </div>
+              </div>
 
               <div className="flex flex-col sm:flex-row items-center lg:items-start lg:justify-start justify-center gap-3 pt-2">
                 <Link href="/dashboard">
@@ -267,6 +281,167 @@ export default function HomePage() {
 
                     {/* Stats */}
                     
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pain Points + How It Works Section */}
+      <section className="py-20 bg-[#0A0E27]">
+        <div className="container mx-auto min-w-[1200px] max-w-7xl px-8">
+          {/* Pain Points */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              Tired of Missing Profitable Opportunities?
+            </h2>
+            <p className="text-lg text-[#8B92B3] max-w-3xl mx-auto">
+              Traditional keyword research tools are holding you back. Here's why:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-20">
+            <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+              <CardContent className="p-6">
+                <div className="text-4xl mb-3">💸</div>
+                <h3 className="text-white font-bold text-lg mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Too Expensive</h3>
+                <p className="text-sm text-[#8B92B3] leading-relaxed">
+                  Ahrefs and SEMrush cost $99-999/month. That's $1,188-11,988/year. NichePop starts at just $12.9/month—87% cheaper with the insights you actually need.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+              <CardContent className="p-6">
+                <div className="text-4xl mb-3">⏰</div>
+                <h3 className="text-white font-bold text-lg mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Always Too Late</h3>
+                <p className="text-sm text-[#8B92B3] leading-relaxed">
+                  By the time keywords show up in traditional tools, the opportunity is already saturated. You need to find trends before they explode, not after.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+              <CardContent className="p-6">
+                <div className="text-4xl mb-3">🤯</div>
+                <h3 className="text-white font-bold text-lg mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Overwhelming Complexity</h3>
+                <p className="text-sm text-[#8B92B3] leading-relaxed">
+                  Too many features, confusing metrics, and no clear direction. You spend hours analyzing data instead of creating content and making money.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="space-y-6">
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                How NichePop Solves This
+              </h2>
+              <p className="text-base text-[#8B92B3] leading-relaxed">
+                NichePop monitors real conversations happening right now on Reddit, niche forums, and social platforms. Our AI identifies emerging topics and validates them against Google Trends data—giving you a 3-month head start before keywords become competitive.
+              </p>
+              <p className="text-base text-[#8B92B3] leading-relaxed">
+                We analyze 10,000+ Reddit discussions daily, tracking sentiment shifts, engagement patterns, and early search signals. When a niche shows momentum, you'll know immediately—with a clear opportunity score and profit estimate.
+              </p>
+              <div className="space-y-4 pt-4">
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#0080FF]/20 flex items-center justify-center">
+                    <span className="text-[#0080FF] font-bold">1</span>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold mb-1">Real-Time Conversation Monitoring</h3>
+                    <p className="text-sm text-[#8B92B3]">Track Reddit, forums, and social signals for emerging problems and solutions people are actively discussing</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#0080FF]/20 flex items-center justify-center">
+                    <span className="text-[#0080FF] font-bold">2</span>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold mb-1">AI Opportunity Validation</h3>
+                    <p className="text-sm text-[#8B92B3]">Analyze competition, search trends, and profit potential using machine learning—no guesswork required</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-[#39FF14]/20 flex items-center justify-center">
+                    <span className="text-[#39FF14] font-bold">3</span>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold mb-1">Actionable Opportunity Scores</h3>
+                    <p className="text-sm text-[#8B92B3]">Get ranked opportunities with clear profitability estimates—know exactly which niches to pursue</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                Why NichePop Beats Traditional Tools
+              </h2>
+              <div className="space-y-4">
+                <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="h-5 w-5 text-[#39FF14] flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h3 className="text-white font-semibold mb-1">3-Month Head Start</h3>
+                        <p className="text-sm text-[#8B92B3]">Ahrefs and SEMrush show what's already popular. NichePop identifies opportunities 3 months before they peak—when competition is still low and ranking is easy.</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="h-5 w-5 text-[#39FF14] flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h3 className="text-white font-semibold mb-1">Reddit-Powered Discovery</h3>
+                        <p className="text-sm text-[#8B92B3]">Find niches from real conversations where people discuss actual problems—not just search volume estimates that might be inaccurate.</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="h-5 w-5 text-[#39FF14] flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h3 className="text-white font-semibold mb-1">Affordable & Simple</h3>
+                        <p className="text-sm text-[#8B92B3]">Starting at $12.9/month—87% cheaper than Ahrefs. No overwhelming dashboards. Just clear, actionable niche opportunities.</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="pt-4">
+                <h3 className="text-xl font-bold text-white mb-4" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Perfect For:</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center gap-2 text-sm text-[#8B92B3]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#39FF14]"></div>
+                    Affiliate Marketers
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-[#8B92B3]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#39FF14]"></div>
+                    Content Creators
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-[#8B92B3]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#39FF14]"></div>
+                    Niche Site Builders
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-[#8B92B3]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#39FF14]"></div>
+                    SEO Freelancers
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-[#8B92B3]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#39FF14]"></div>
+                    E-commerce Owners
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-[#8B92B3]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#39FF14]"></div>
+                    Solo Entrepreneurs
                   </div>
                 </div>
               </div>
