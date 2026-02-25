@@ -9,12 +9,14 @@ import "./globals.css"
 const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
+  preload: true,
   fallback: ['system-ui', 'arial']
 })
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   display: 'swap',
+  preload: true,
   fallback: ['monospace']
 })
 
