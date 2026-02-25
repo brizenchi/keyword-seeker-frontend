@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import dynamic from "next/dynamic"
 import { Navbar } from "@/components/navbar"
@@ -18,16 +20,19 @@ import {
 } from "lucide-react"
 import { BrandMark } from "@/components/brand-logo"
 
-const RadarChart = dynamic(() => import("@/components/radar-chart").then(mod => ({ default: mod.RadarChart })), {
-  ssr: false,
-  loading: () => (
-    <div className="relative w-full max-w-lg">
-      <div className="relative rounded-2xl bg-[#0F1635]/80 backdrop-blur-xl border border-[#1E2650] p-6 shadow-2xl shadow-[#0080FF]/20 h-[500px] flex items-center justify-center">
-        <div className="text-[#8B92B3]">Loading radar...</div>
+const RadarChart = dynamic(
+  () => import("@/components/radar-chart").then((mod) => mod.RadarChart),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="relative w-full max-w-lg">
+        <div className="relative rounded-2xl bg-[#0F1635]/80 backdrop-blur-xl border border-[#1E2650] p-6 shadow-2xl shadow-[#0080FF]/20 h-[500px] flex items-center justify-center">
+          <div className="text-[#8B92B3]">Loading radar...</div>
+        </div>
       </div>
-    </div>
-  )
-})
+    ),
+  }
+)
 
 export default function HomePage() {
 

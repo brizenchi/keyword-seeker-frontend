@@ -14,7 +14,7 @@ export interface MvpSuggestion {
 /**
  * 关键词竞争等级
  */
-export type CompetitionLevel = 'LOW' | 'MEDIUM' | 'HIGH';
+export type CompetitionLevel = 'low' | 'medium' | 'high';
 
 /**
  * 关键词状态
@@ -126,18 +126,19 @@ export interface UnlockKeywordResponse {
  */
 export interface Keyword {
   id: number;
-  task_id: number | null;
+  task_id?: number | null;
   keyword: string;
-  search_volume: number | null;
-  cpc: number | null;
+  search_volume?: number | null;
+  cpc?: number | null;
   growth_rate: number | null;
   competition_level: CompetitionLevel | null;
-  competition_score: number | null;
+  competition_score?: number | null;
   profit_estimation: number | null;
   search_intent_info?: SearchIntentInfo;
   is_locked: boolean;
-  is_unlocked: boolean;
-  highlight: KeywordHighlight;
+  is_unlocked?: boolean;
+  free: boolean;
+  highlight?: KeywordHighlight;
 }
 
 /**

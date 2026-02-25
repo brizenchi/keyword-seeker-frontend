@@ -141,30 +141,30 @@ export function calculateKeywordMetrics(keyword: Keyword) {
   const opportunityScore = calculateOpportunityScore(
     keyword.profit_estimation,
     keyword.growth_rate,
-    keyword.competition_score
+    keyword.competition_score ?? 50 // 默认中等竞争
   );
 
   const marketOpportunity = calculateMarketOpportunity(
-    keyword.search_volume,
-    keyword.cpc,
+    keyword.search_volume ?? 0,
+    keyword.cpc ?? 0,
     keyword.growth_rate,
-    keyword.competition_score
+    keyword.competition_score ?? 50
   );
 
   const profitOpportunity = calculateProfitOpportunity(
     keyword.profit_estimation,
     keyword.growth_rate,
-    keyword.competition_score
+    keyword.competition_score ?? 50
   );
 
   return {
     opportunityScore,
     marketOpportunity,
     profitOpportunity,
-    searchVolume: keyword.search_volume,
-    growthRate: keyword.growth_rate,
-    competitionScore: keyword.competition_score,
-    cpc: keyword.cpc,
-    profitEstimation: keyword.profit_estimation,
+    searchVolume: keyword.search_volume ?? 0,
+    growthRate: keyword.growth_rate ?? 0,
+    competitionScore: keyword.competition_score ?? 50,
+    cpc: keyword.cpc ?? 0,
+    profitEstimation: keyword.profit_estimation ?? 0,
   };
 }
