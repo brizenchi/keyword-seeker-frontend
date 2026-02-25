@@ -27,9 +27,11 @@ const mockKeywords: Keyword[] = [
     search_volume: 45000,
     cpc: 3.2,
     competition_score: 65,
-    competition_level: "MEDIUM",
+    competition_level: "medium",
     growth_rate: 15.5,
     profit_estimation: 125000,
+    is_locked: false,
+    free: true,
   },
   {
     id: -2,
@@ -37,9 +39,11 @@ const mockKeywords: Keyword[] = [
     search_volume: 82000,
     cpc: 4.5,
     competition_score: 78,
-    competition_level: "HIGH",
+    competition_level: "high",
     growth_rate: 22.3,
     profit_estimation: 280000,
+    is_locked: false,
+    free: true,
   },
   {
     id: -3,
@@ -47,9 +51,11 @@ const mockKeywords: Keyword[] = [
     search_volume: 33000,
     cpc: 2.1,
     competition_score: 45,
-    competition_level: "MEDIUM",
+    competition_level: "medium",
     growth_rate: 18.7,
     profit_estimation: 95000,
+    is_locked: false,
+    free: true,
   },
   {
     id: -4,
@@ -57,9 +63,11 @@ const mockKeywords: Keyword[] = [
     search_volume: 125000,
     cpc: 8.9,
     competition_score: 92,
-    competition_level: "HIGH",
+    competition_level: "high",
     growth_rate: 35.2,
     profit_estimation: 650000,
+    is_locked: false,
+    free: true,
   },
   {
     id: -5,
@@ -67,9 +75,11 @@ const mockKeywords: Keyword[] = [
     search_volume: 67000,
     cpc: 5.3,
     competition_score: 71,
-    competition_level: "HIGH",
+    competition_level: "high",
     growth_rate: 12.8,
     profit_estimation: 220000,
+    is_locked: false,
+    free: true,
   },
 ] as Keyword[]
 
@@ -290,12 +300,12 @@ export function LiveFeedList({ sortBy = "trending", filterBy = "all" }: LiveFeed
       <div className="space-y-3 relative">
         {keywords.slice(0, 10).map((keyword, index) => {
           const opportunityScore = calculateOpportunityScore(
-            keyword.profit_estimation,
-            keyword.growth_rate,
-            keyword.competition_score
+            keyword.profit_estimation ?? null,
+            keyword.growth_rate ?? null,
+            keyword.competition_score ?? null
           )
-          const TrendIcon = getTrendIcon(keyword.growth_rate)
-          const trendColor = getTrendColor(keyword.growth_rate)
+          const TrendIcon = getTrendIcon(keyword.growth_rate ?? null)
+          const trendColor = getTrendColor(keyword.growth_rate ?? null)
           const isNew = newKeywordIds.has(keyword.id)
 
           // Determine if item should be locked/blurred
@@ -364,10 +374,10 @@ export function LiveFeedList({ sortBy = "trending", filterBy = "all" }: LiveFeed
                         {keyword.keyword}
                       </h3>
                       <Badge
-                        variant={keyword.competition_level === 'HIGH' ? 'destructive' : keyword.competition_level === 'MEDIUM' ? 'default' : 'secondary'}
+                        variant={keyword.competition_level === 'high' ? 'destructive' : keyword.competition_level === 'medium' ? 'default' : 'secondary'}
                         className="text-xs"
                       >
-                        {keyword.competition_level || 'N/A'}
+                        {keyword.competition_level?.toUpperCase() || 'N/A'}
                       </Badge>
                     </div>
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">

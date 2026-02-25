@@ -166,18 +166,18 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
 
   // 计算指标
   const opportunityScore = detail
-    ? calculateOpportunityScore(detail.profit_estimation, detail.growth_rate, detail.competition_score)
+    ? calculateOpportunityScore(detail.profit_estimation ?? null, detail.growth_rate ?? null, detail.competition_score ?? null)
     : 0
   const profitOpportunity = detail
-    ? calculateProfitOpportunity(detail.profit_estimation, detail.growth_rate, detail.competition_score)
+    ? calculateProfitOpportunity(detail.profit_estimation ?? null, detail.growth_rate ?? null, detail.competition_score ?? null)
     : 0
   const marketOpportunity = detail
-    ? calculateMarketOpportunity(detail.search_volume, detail.cpc, detail.growth_rate, detail.competition_score)
+    ? calculateMarketOpportunity(detail.search_volume ?? null, detail.cpc ?? null, detail.growth_rate ?? null, detail.competition_score ?? null)
     : 0
 
   const opportunityGrade = getOpportunityScoreGrade(opportunityScore)
-  const competitionStars = detail ? getCompetitionStars(detail.competition_score) : 0
-  const trendInfo = detail ? getTrendDirection(detail.growth_rate) : { direction: 'flat' as const, color: 'text-gray-600' }
+  const competitionStars = detail ? getCompetitionStars(detail.competition_score ?? null) : 0
+  const trendInfo = detail ? getTrendDirection(detail.growth_rate ?? null) : { direction: 'flat' as const, color: 'text-gray-600' }
   const TrendIcon = trendInfo.direction === 'up' ? TrendingUp : trendInfo.direction === 'down' ? TrendingDown : Minus
 
   // 加载中时不显示对话框内容
@@ -293,8 +293,8 @@ export function KeywordDetailDialog({ keywordId, open, onOpenChange }: KeywordDe
                         />
                       </div>
                       <div className="flex items-center gap-2 flex-wrap">
-                        <Badge variant={detail.competition_level === 'HIGH' ? 'destructive' : detail.competition_level === 'MEDIUM' ? 'default' : 'secondary'} className="text-xs sm:text-sm font-semibold">
-                          {detail.competition_level ?? 'N/A'}
+                        <Badge variant={detail.competition_level === 'high' ? 'destructive' : detail.competition_level === 'medium' ? 'default' : 'secondary'} className="text-xs sm:text-sm font-semibold">
+                          {detail.competition_level?.toUpperCase() ?? 'N/A'}
                         </Badge>
                         <span className="text-xs sm:text-sm font-mono text-muted-foreground">({detail.competition_score ?? 0})</span>
                       </div>
