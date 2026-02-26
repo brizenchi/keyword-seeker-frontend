@@ -139,6 +139,9 @@ export interface Keyword {
   is_unlocked?: boolean;
   free: boolean;
   highlight?: KeywordHighlight;
+  category?: string; // 关键词分类
+  source?: string; // 数据来源（reddit, google等）
+  intent?: string; // 用户搜索意图描述
 }
 
 /**
