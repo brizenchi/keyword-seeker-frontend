@@ -24,6 +24,12 @@ interface SearchVolumeChartProps {
 export function SearchVolumeChart({ data, className }: SearchVolumeChartProps) {
   // 转换数据格式并排序（按时间倒序，最新的在右边）
   const chartData = useMemo(() => {
+    // Safety check: ensure data is an array
+    if (!Array.isArray(data)) {
+      console.warn('SearchVolumeChart: data is not an array', data)
+      return []
+    }
+
     return data
       .sort((a, b) => {
         if (a.year !== b.year) return a.year - b.year
@@ -38,6 +44,19 @@ export function SearchVolumeChart({ data, className }: SearchVolumeChartProps) {
 
   // 只显示最近12个月
   const recentData = chartData.slice(-12)
+
+  // If no data, show empty state
+  if (recentData.length === 0) {
+    return (
+      <div className={className}>
+        <div className="h-full flex items-center justify-center bg-muted/30 rounded-xl border-2 border-dashed border-muted-foreground/20">
+          <div className="text-center text-muted-foreground">
+            <p className="text-sm">No chart data available</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   // 自定义 Tooltip
   const CustomTooltip = ({ active, payload }: any) => {

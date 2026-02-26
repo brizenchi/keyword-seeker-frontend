@@ -142,6 +142,17 @@ export interface Keyword {
 }
 
 /**
+ * 竞争对手详细信息（Google Trends）
+ */
+export interface CompetitorDetail {
+  position: number;
+  title: string;
+  url: string;
+  domain: string;
+  description: string;
+}
+
+/**
  * 关键词详情数据（从详情接口返回）
  */
 export interface KeywordDetailData extends Keyword {
@@ -155,12 +166,25 @@ export interface KeywordDetailData extends Keyword {
   monthly_searches: MonthlySearch[] | null;
   search_volume_trend: SearchVolumeTrend | null;
   avg_backlinks_info: BacklinksInfo | null;
-  competitors: Competitor[];
+  competitors: Competitor[] | CompetitorDetail[];
+  competition_level: CompetitionLevel | null;
   search_intent_info?: SearchIntentInfo;
   top_domains: string[]; // Top ranking domains
   serp_info?: SerpInfo; // SERP information (需要从 response_result 中提取)
   created_at: string;
   updated_at: string;
+
+  // Google Trends 特有字段
+  intent?: string; // 用户搜索意图描述
+  target_market?: string; // 目标市场
+  time_to_mvp?: string; // MVP 开发时间
+  user_target?: string; // 目标用户类型
+  opportunity_score?: number; // 机会分数
+  reddit_posts?: any; // Reddit 讨论数据
+  commercialization_strategy?: string; // 商业化策略
+  risk_assessment?: string; // 风险评估
+  category?: string; // 关键词分类
+  source?: string; // 数据来源
 }
 
 /**
