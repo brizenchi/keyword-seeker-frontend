@@ -134,6 +134,7 @@ export interface Keyword {
   competition_level: CompetitionLevel | null;
   competition_score?: number | null;
   profit_estimation: number | null;
+  opportunity_score?: number | null; // 机会分数（从后端返回）
   search_intent_info?: SearchIntentInfo;
   is_locked: boolean;
   is_unlocked?: boolean;

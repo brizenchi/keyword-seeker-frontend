@@ -83,12 +83,8 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
 
   const TrendIcon = trendInfo.direction === 'up' ? TrendingUp : trendInfo.direction === 'down' ? TrendingDown : Minus
 
-  // Calculate total score
-  const totalScore = Math.round(
-    (growthRate ?? 0) * 0.3 +
-    (keyword.search_volume ?? 0) / 100 * 0.3 +
-    (100 - (keyword.competition_score ?? 50)) * 0.4
-  )
+  // Use opportunity score from API response (rounded to integer)
+  const totalScore = Math.round(keyword.opportunity_score ?? 0)
 
   return (
     <>
