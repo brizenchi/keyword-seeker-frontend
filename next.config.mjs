@@ -29,18 +29,6 @@ const nextConfig = {
     optimizeCss: true,
   },
 
-  // Force canonical host to avoid SEO dilution across www/non-www
-  async redirects() {
-    return [
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.nichepop.app" }],
-        destination: "https://nichepop.app/:path*",
-        permanent: true,
-      },
-    ]
-  },
-
   // Headers for better caching
   async headers() {
     return [
