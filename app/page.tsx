@@ -119,6 +119,32 @@ export default function HomePage() {
                   <span className="font-medium">Free trial included</span>
                 </div>
               </div>
+
+              <div className="pt-2">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#8B92B3] mb-3">
+                  Popular keyword guides
+                </p>
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                  <Link
+                    href="/use-cases/bloggers"
+                    className="text-xs px-3 py-1.5 rounded-full border border-[#1E2650] bg-[#0F1635]/70 text-[#8B92B3] hover:text-white hover:border-[#0080FF] transition-colors"
+                  >
+                    Low competition keywords for bloggers (examples)
+                  </Link>
+                  <Link
+                    href="/compare/ahrefs"
+                    className="text-xs px-3 py-1.5 rounded-full border border-[#1E2650] bg-[#0F1635]/70 text-[#8B92B3] hover:text-white hover:border-[#39FF14] transition-colors"
+                  >
+                    Ahrefs alternative comparison
+                  </Link>
+                  <Link
+                    href="/compare/semrush"
+                    className="text-xs px-3 py-1.5 rounded-full border border-[#1E2650] bg-[#0F1635]/70 text-[#8B92B3] hover:text-white hover:border-[#39FF14] transition-colors"
+                  >
+                    SEMrush alternative comparison
+                  </Link>
+                </div>
+              </div>
             </div>
 
             {/* Right Chart */}

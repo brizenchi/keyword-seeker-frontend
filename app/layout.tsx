@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { AuthProvider } from "@/hooks/useAuth"
+import { getSiteUrl } from "@/lib/seo/site-url"
 import "./globals.css"
 
 const inter = Inter({
@@ -21,28 +22,24 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(getSiteUrl()),
+  alternates: {
+    canonical: '/',
+  },
   title: {
-    default: "NichePop - Discover Trending Keywords & Profitable Niches",
+    default: "NichePop - Low Competition Keyword Research Tool",
     template: "%s | NichePop",
   },
-  description: "Discover trending keyword opportunities with real-time data from Reddit, Google Trends & more. AI-powered niche analysis, competition insights & profit estimation. Start free!",
+  description: "Discover low-competition keywords with real-time trend signals from Reddit and Google Trends. Built for bloggers, creators, and lean SEO teams.",
   keywords: [
-    "profitable niche finder",
-    "low competition keyword finder",
-    "ahrefs alternative cheap",
-    "affordable keyword research tool",
-    "reddit niche finder",
-    "trending keywords finder",
-    "niche opportunity discovery",
-    "keyword profitability calculator",
-    "affiliate marketing niche finder",
-    "real-time keyword trends",
-    "discover trending niches early",
-    "keyword research for beginners",
-    "SEO keyword opportunity finder",
-    "reddit trend analysis",
-    "cheap keyword research tool"
+    "trending keywords",
+    "profitable niches",
+    "keyword research",
+    "real-time insights",
+    "low-competition keywords",
+    "AI analysis",
+    "Reddit discussions",
+    "niche discovery"
   ],
   authors: [{ name: "NichePop" }],
   creator: "NichePop",
@@ -69,8 +66,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: '/',
-    title: 'NichePop - Discover Trending Keywords & Profitable Niches',
-    description: 'Discover trending keyword opportunities with real-time data from Reddit, Google Trends & more. AI-powered niche analysis, competition insights & profit estimation.',
+    title: 'NichePop - Low Competition Keyword Research Tool',
+    description: 'Find trending keyword opportunities with real-time data and competition signals.',
     siteName: 'NichePop',
     images: [{
       url: '/og-image.png',
@@ -81,8 +78,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NichePop - Discover Trending Keywords & Profitable Niches',
-    description: 'Discover trending keyword opportunities with real-time data from Reddit, Google Trends & more. Start free!',
+    title: 'NichePop - Low Competition Keyword Research Tool',
+    description: 'Find low-competition keyword opportunities faster with real-time trend data.',
     images: ['/twitter-image.png'],
     creator: '@nichepop',
   },

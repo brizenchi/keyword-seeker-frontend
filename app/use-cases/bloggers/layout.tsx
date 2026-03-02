@@ -1,11 +1,16 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Keyword Research Tool for Bloggers - Grow Your Blog Traffic | NichePop',
-  description: 'Discover trending blog topics and low-competition keywords that drive real traffic. Find content ideas with 500-5K monthly searches. Used by 1000+ bloggers. Start free.',
+  title: 'Low Competition Keywords for Bloggers (With Examples)',
+  description: 'Find low competition keywords for bloggers with real examples, search volume targets, and difficulty benchmarks. Build a content plan that ranks faster.',
   keywords: [
+    'low competition keywords for blogger examples',
+    'low competition keywords for blogger',
+    'low competition keywords for bloggers',
     'keyword research for bloggers',
+    'keyword research for blogger examples',
     'blog keyword tool',
+    'blog keyword examples',
     'blog topic ideas',
     'blog traffic growth',
     'blogging keywords',
@@ -18,16 +23,16 @@ export const metadata: Metadata = {
     'find blog topics',
   ],
   openGraph: {
-    title: 'Keyword Research for Bloggers - Find Topics That Rank | NichePop',
-    description: 'Stop guessing what to write. Discover trending topics with low competition. 500-5K monthly searches. See results in 2-4 weeks.',
+    title: 'Low Competition Keywords for Bloggers: Real Examples',
+    description: 'Get real blogger keyword examples with search volume and keyword difficulty so you can publish content that ranks faster.',
     type: 'website',
     url: '/use-cases/bloggers',
     siteName: 'NichePop',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Keyword Research for Bloggers - NichePop',
-    description: 'Find blog topics that actually get traffic. Real-time keyword trends + competition analysis.',
+    title: 'Low Competition Keywords for Bloggers (Examples)',
+    description: 'Use real keyword examples, KD benchmarks, and trend data to grow blog traffic.',
   },
   alternates: {
     canonical: '/use-cases/bloggers',

@@ -1,13 +1,39 @@
 'use client'
 
+import { getCanonicalOrigin, getSiteUrl } from "@/lib/seo/site-url"
+
+function resolveSiteOrigin() {
+  if (typeof window !== "undefined") {
+    return getCanonicalOrigin(window.location.origin)
+  }
+
+  return getSiteUrl()
+}
+
+function resolvePageUrl() {
+  if (typeof window === "undefined") {
+    return getSiteUrl()
+  }
+
+  try {
+    const currentUrl = new URL(window.location.href)
+    const canonicalOrigin = getCanonicalOrigin(currentUrl.origin)
+    return `${canonicalOrigin}${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`
+  } catch {
+    return getSiteUrl()
+  }
+}
+
 export function OrganizationSchema() {
+  const siteOrigin = resolveSiteOrigin()
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'NichePop',
     description: 'Discover trending keyword opportunities with real-time data from Reddit, Google Trends & more.',
-    url: typeof window !== 'undefined' ? window.location.origin : 'https://nichepop.com',
-    logo: typeof window !== 'undefined' ? `${window.location.origin}/icon.svg` : 'https://nichepop.com/icon.svg',
+    url: siteOrigin,
+    logo: `${siteOrigin}/icon.svg`,
     sameAs: [
       // Add your social media URLs here
       // 'https://twitter.com/nichepop',
@@ -24,13 +50,16 @@ export function OrganizationSchema() {
 }
 
 export function WebApplicationSchema() {
+  const siteOrigin = resolveSiteOrigin()
+
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: 'NichePop',
     description: 'Keyword research and niche discovery tool with real-time trend analysis',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Any',
+    url: siteOrigin,
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -63,6 +92,8 @@ export function WebApplicationSchema() {
 }
 
 export function BreadcrumbSchema({ items }: { items: Array<{ name: string; url: string }> }) {
+  const siteOrigin = resolveSiteOrigin()
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -70,7 +101,7 @@ export function BreadcrumbSchema({ items }: { items: Array<{ name: string; url: 
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: typeof window !== 'undefined' ? `${window.location.origin}${item.url}` : item.url,
+      item: `${siteOrigin}${item.url}`,
     })),
   }
 
@@ -115,6 +146,8 @@ export function ProductSchema({
   price: string
   priceCurrency: string
 }) {
+  const pageUrl = resolvePageUrl()
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -125,7 +158,7 @@ export function ProductSchema({
       price,
       priceCurrency,
       availability: 'https://schema.org/InStock',
-      url: typeof window !== 'undefined' ? window.location.href : '',
+      url: pageUrl,
     },
     aggregateRating: {
       '@type': 'AggregateRating',

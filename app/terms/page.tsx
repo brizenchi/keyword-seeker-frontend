@@ -6,6 +6,9 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Read NichePop's Terms of Service to understand the rules and regulations governing the use of our keyword research platform.",
+  alternates: {
+    canonical: "/terms",
+  },
 }
 
 export default function TermsPage() {

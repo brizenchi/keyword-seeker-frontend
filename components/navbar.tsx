@@ -13,6 +13,7 @@ import { BrandLogo } from "@/components/brand-logo"
 
 const navItems = [
   { label: "Features", href: "/#features" },
+  { label: "Compare", href: "/compare" },
   { label: "Blog", href: "/blog" },
   { label: "Use Cases", href: "/use-cases" },
   { label: "Pricing", href: "/pricing" },

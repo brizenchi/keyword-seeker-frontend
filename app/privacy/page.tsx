@@ -6,6 +6,9 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Learn how NichePop collects, uses, and protects your personal information. Our commitment to your privacy and data security.",
+  alternates: {
+    canonical: "/privacy",
+  },
 }
 
 export default function PrivacyPage() {

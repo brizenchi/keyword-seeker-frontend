@@ -45,6 +45,15 @@ const blogPosts = [
     publishedAt: '2026-02-03',
     author: 'NichePop Team',
   },
+  {
+    slug: 'how-to-evaluate-keyword-worth',
+    title: 'How to Evaluate if a Keyword is Worth Targeting: 7 Key Metrics Explained',
+    description: 'Learn how to scientifically evaluate keyword value using 7 core metrics including search volume, competition, profit estimation, and more. Stop wasting time on low-value keywords.',
+    category: 'Tutorial',
+    readTime: '15 min read',
+    publishedAt: '2026-03-01',
+    author: 'NichePop Team',
+  },
 ]
 
 export default function BlogPage() {

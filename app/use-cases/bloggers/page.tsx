@@ -16,8 +16,8 @@ import { ArrowRight, Check, FileText, TrendingUp, Zap, Target, Search, BarChart,
 
 const faqs = [
   {
-    question: "How does NichePop help bloggers find content ideas?",
-    answer: "NichePop tracks real-time trending topics from Reddit, Google Trends, and other platforms. You get instant visibility into what your audience is actively searching for and discussing, allowing you to create content that's guaranteed to have demand. Our live feed updates every few minutes, so you can catch trending topics before they become saturated."
+    question: "What are low competition keywords for bloggers? Can you share examples?",
+    answer: "Low competition keywords are terms with solid search demand but relatively weak SERP competition. A few example patterns are 'best budget standing desk for small apartments' or 'meal prep for nurses on night shift.' NichePop helps you find these opportunities by combining trend velocity, keyword difficulty, and search volume so you can pick topics that are easier to rank."
   },
   {
     question: "Can NichePop replace expensive tools like Ahrefs for bloggers?",
@@ -65,6 +65,45 @@ const relatedArticles = [
   },
 ]
 
+const keywordExamples = [
+  {
+    keyword: "best budget standing desk for small apartment",
+    searchVolume: "1.2K/mo",
+    difficulty: "18/100",
+    intent: "Commercial",
+  },
+  {
+    keyword: "meal prep ideas for nurses working night shift",
+    searchVolume: "900/mo",
+    difficulty: "14/100",
+    intent: "Informational",
+  },
+  {
+    keyword: "minimalist packing list for 2 week europe trip",
+    searchVolume: "1.6K/mo",
+    difficulty: "22/100",
+    intent: "Informational",
+  },
+  {
+    keyword: "notion content calendar template for bloggers",
+    searchVolume: "700/mo",
+    difficulty: "16/100",
+    intent: "Commercial",
+  },
+  {
+    keyword: "how to start a keto blog and make money",
+    searchVolume: "1.1K/mo",
+    difficulty: "21/100",
+    intent: "Transactional",
+  },
+  {
+    keyword: "best email newsletter examples for personal brands",
+    searchVolume: "1.4K/mo",
+    difficulty: "24/100",
+    intent: "Informational",
+  },
+]
+
 export default function BloggersUseCasePage() {
   return (
     <div className="min-h-screen bg-[#0A0E27]">
@@ -96,11 +135,11 @@ export default function BloggersUseCasePage() {
             </Badge>
 
             <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-              Grow Your Blog with Data-Driven Keyword Research
+              Low Competition Keywords for Bloggers (With Examples)
             </h1>
 
             <p className="text-lg sm:text-xl text-[#8B92B3] max-w-2xl mx-auto leading-relaxed font-light">
-              Stop guessing what to write about. Discover trending topics and low-competition keywords that actually drive traffic to your blog.
+              Stop guessing what to write about. Use real keyword examples, trend data, and competition metrics to publish blog posts with a faster path to rankings.
             </p>
 
             <Link href="/pricing">
@@ -109,6 +148,33 @@ export default function BloggersUseCasePage() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
+          </div>
+
+          {/* Low Competition Keyword Examples */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-black tracking-tight mb-4 text-center text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              Low Competition Keyword Examples for Bloggers
+            </h2>
+            <p className="text-center text-[#8B92B3] mb-8 max-w-3xl mx-auto">
+              These are sample keyword patterns with realistic search and difficulty ranges. Use them as templates to find your own low competition opportunities.
+            </p>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {keywordExamples.map((example) => (
+                <Card key={example.keyword} className="border-[#1E2650] bg-[#0F1635]/70 backdrop-blur-sm">
+                  <CardHeader className="space-y-3">
+                    <CardTitle className="text-base text-white leading-relaxed" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                      {example.keyword}
+                    </CardTitle>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge className="bg-[#0F1635] text-[#39FF14] border-[#1E2650]">{example.searchVolume}</Badge>
+                      <Badge className="bg-[#0F1635] text-[#0080FF] border-[#1E2650]">KD {example.difficulty}</Badge>
+                      <Badge className="bg-[#0F1635] text-white border-[#1E2650]">{example.intent}</Badge>
+                    </div>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
           </div>
 
           {/* The Problem */}

@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next'
+import { getSiteUrl } from '@/lib/seo/site-url'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = getSiteUrl()
   const currentDate = new Date()
 
   return [
@@ -52,6 +53,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/blog/estimate-keyword-profitability`,
       lastModified: new Date('2026-02-03'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/how-to-evaluate-keyword-worth`,
+      lastModified: new Date('2026-03-01'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
