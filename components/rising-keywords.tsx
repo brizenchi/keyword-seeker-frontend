@@ -285,22 +285,58 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
                   </Button>
 
                   <div className="flex items-center gap-1">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                      <Button
-                        key={page}
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setCurrentPage(page)}
-                        disabled={loading}
-                        className={`min-w-[32px] border-[#1E2650] cursor-pointer ${
-                          currentPage === page
-                            ? 'bg-[#0080FF] text-white border-[#0080FF]'
-                            : 'bg-[#0F1635] text-[#8B92B3] hover:bg-[#0080FF]/20 hover:border-[#0080FF] hover:text-white'
-                        } disabled:opacity-50 disabled:cursor-not-allowed`}
-                      >
-                        {page}
-                      </Button>
-                    ))}
+                    {(() => {
+                      const pages: (number | string)[] = []
+                      const showEllipsis = totalPages > 7
+                      
+                      if (!showEllipsis) {
+                        // Show all pages if total <= 7
+                        for (let i = 1; i <= totalPages; i++) {
+                          pages.push(i)
+                        }
+                      } else {
+                        // Always show first page
+                        pages.push(1)
+                        
+                        if (currentPage <= 3) {
+                          // Near start: 1 2 3 4 5 ... 50
+                          pages.push(2, 3, 4, 5, '...', totalPages)
+                        } else if (currentPage >= totalPages - 2) {
+                          // Near end: 1 ... 46 47 48 49 50
+                          pages.push('...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages)
+                        } else {
+                          // Middle: 1 ... 23 24 25 ... 50
+                          pages.push('...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages)
+                        }
+                      }
+                      
+                      return pages.map((page, idx) => {
+                        if (page === '...') {
+                          return (
+                            <span key={`ellipsis-${idx}`} className="px-2 text-[#8B92B3]">
+                              ...
+                            </span>
+                          )
+                        }
+                        
+                        return (
+                          <Button
+                            key={page}
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setCurrentPage(page as number)}
+                            disabled={loading}
+                            className={`min-w-[32px] border-[#1E2650] cursor-pointer ${
+                              currentPage === page
+                                ? 'bg-[#0080FF] text-white border-[#0080FF]'
+                                : 'bg-[#0F1635] text-[#8B92B3] hover:bg-[#0080FF]/20 hover:border-[#0080FF] hover:text-white'
+                            } disabled:opacity-50 disabled:cursor-not-allowed`}
+                          >
+                            {page}
+                          </Button>
+                        )
+                      })
+                    })()}
                   </div>
 
                   <Button
