@@ -199,6 +199,14 @@ export interface KeywordListParams {
   offset?: number;
   keyword_status?: KeywordStatus;
   search?: string;
+  field?: string;
+  category?: string;
+  competition_level?: CompetitionLevel;
+  sort_by?: 'created_at' | 'opportunity_score';
+  sort_order?: 'asc' | 'desc';
+  mrr_min?: number;
+  mrr_max?: number;
+  is_new?: boolean;
 }
 
 /**

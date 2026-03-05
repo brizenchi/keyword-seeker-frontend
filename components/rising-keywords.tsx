@@ -1,16 +1,16 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Sparkles, Unlock, ChevronLeft, ChevronRight } from "lucide-react"
+import { Sparkles, Unlock, ChevronLeft, ChevronRight, ChevronDown, X } from "lucide-react"
 import { UnlockKeywordDialog } from "@/components/unlock-keyword-dialog"
 import { KeywordCard } from "@/components/keyword-card"
 import { PricingModal } from "@/components/pricing-modal"
 import { KeywordDetailDialog } from "@/components/keyword-detail-dialog"
 import LoginDialog from "@/components/LoginDialog"
 import { Button } from "@/components/ui/button"
-import { keywordDetails, KeywordDetail } from "@/lib/data"
+import { keywordDetails } from "@/lib/data"
 import { keywordService } from "@/lib/api"
-import type { Keyword } from "@/lib/types"
+import type { Keyword, KeywordListParams, CompetitionLevel } from "@/lib/types"
 import { useAuth } from "@/hooks/useAuth"
 
 interface RisingKeywordsProps {
@@ -19,7 +19,6 @@ interface RisingKeywordsProps {
 
 // Helper to generate trend data from backend keyword
 const generateTrendDataFromKeyword = (kw: Keyword) => {
-  // Generate simple upward trend based on growth_rate
   const data = []
   const growth = (kw.growth_rate ?? 0) * 10
   let currentValue = 20
@@ -31,10 +30,138 @@ const generateTrendDataFromKeyword = (kw: Keyword) => {
   return data
 }
 
-// 模块级缓存 - 按页缓存
-const pageCache = new Map<number, { data: Keyword[], timestamp: number }>()
-const CACHE_DURATION = 5 * 60 * 1000 // 5分钟缓存
+// 模块级缓存 - 按参数组合缓存
+const pageCache = new Map<string, { data: Keyword[], total: number, totalPages: number, timestamp: number }>()
+const CACHE_DURATION = 5 * 60 * 1000
 const PAGE_SIZE = 8
+
+// Filter options
+const FIELD_OPTIONS = [
+  { value: "", label: "All Fields" },
+  { value: "openclaw", label: "OpenClaw" },
+]
+
+const COMPETITION_OPTIONS = [
+  { value: "", label: "All Competition" },
+  { value: "low", label: "Low" },
+  { value: "medium", label: "Medium" },
+  { value: "high", label: "High" },
+]
+
+const SORT_BY_OPTIONS = [
+  { value: "created_at", label: "Latest" },
+  { value: "opportunity_score", label: "Score" },
+]
+
+const MRR_OPTIONS = [
+  { value: "", label: "All MRR" },
+  { value: "0-1000", label: "$0 - $1K" },
+  { value: "1000-5000", label: "$1K - $5K" },
+  { value: "5000-20000", label: "$5K - $20K" },
+  { value: "20000-", label: "$20K+" },
+]
+
+interface FilterState {
+  field: string
+  category: string
+  competition_level: string
+  sort_by: string
+  sort_order: string
+  mrr: string
+  is_new: boolean | null
+}
+
+const defaultFilters: FilterState = {
+  field: "",
+  category: "",
+  competition_level: "",
+  sort_by: "created_at",
+  sort_order: "desc",
+  mrr: "",
+  is_new: null,
+}
+
+function buildCacheKey(page: number, filters: FilterState): string {
+  return JSON.stringify({ page, ...filters })
+}
+
+function buildApiParams(page: number, filters: FilterState): KeywordListParams {
+  const offset = (page - 1) * PAGE_SIZE
+
+  const params: KeywordListParams = {
+    limit: PAGE_SIZE,
+    offset,
+    sort_by: filters.sort_by as KeywordListParams["sort_by"],
+    sort_order: filters.sort_order as KeywordListParams["sort_order"],
+  }
+
+  if (filters.field) params.field = filters.field
+  if (filters.category) params.category = filters.category
+  if (filters.competition_level) params.competition_level = filters.competition_level as CompetitionLevel
+  if (filters.is_new !== null) params.is_new = filters.is_new
+
+  if (filters.mrr) {
+    const [min, max] = filters.mrr.split("-")
+    if (min) params.mrr_min = Number(min)
+    if (max) params.mrr_max = Number(max)
+  }
+
+  return params
+}
+
+// Dropdown component
+function FilterDropdown({ label, value, options, onChange }: {
+  label: string
+  value: string
+  options: { value: string; label: string }[]
+  onChange: (v: string) => void
+}) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const selected = options.find(o => o.value === value)
+  const isActive = value !== "" && value !== options[0]?.value
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener("mousedown", handler)
+    return () => document.removeEventListener("mousedown", handler)
+  }, [])
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer border ${
+          isActive
+            ? "bg-[#0080FF]/20 text-[#0080FF] border-[#0080FF]/50"
+            : "bg-[#0F1635] text-[#8B92B3] border-[#1E2650] hover:bg-[#1E2650] hover:text-white"
+        }`}
+      >
+        {selected?.label || label}
+        <ChevronDown className="h-3 w-3" />
+      </button>
+      {open && (
+        <div className="absolute top-full left-0 mt-1 bg-[#0F1635] border border-[#1E2650] rounded-lg shadow-xl z-50 min-w-[160px] py-1">
+          {options.map(opt => (
+            <button
+              key={opt.value}
+              onClick={() => { onChange(opt.value); setOpen(false) }}
+              className={`w-full text-left px-3 py-1.5 text-xs cursor-pointer transition-colors ${
+                value === opt.value
+                  ? "bg-[#0080FF]/20 text-[#0080FF]"
+                  : "text-[#8B92B3] hover:bg-[#1E2650] hover:text-white"
+              }`}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
   const { isAuthenticated, user, refresh } = useAuth()
@@ -50,19 +177,43 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
   const [keywordToUnlock, setKeywordToUnlock] = useState<Keyword | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
-  const [total, setTotal] = useState(0)
 
-  // Fetch keywords from API - 使用缓存策略
+  // Filters
+  const [filters, setFilters] = useState<FilterState>({ ...defaultFilters })
+
+  const updateFilter = (key: keyof FilterState, value: string | boolean | null) => {
+    setFilters(prev => ({ ...prev, [key]: value }))
+    setCurrentPage(1)
+    pageCache.clear()
+  }
+
+  const hasActiveFilters = (
+    filters.field !== "" ||
+    filters.category !== "" ||
+    filters.competition_level !== "" ||
+    filters.sort_by !== "created_at" ||
+    filters.sort_order !== "desc" ||
+    filters.mrr !== "" ||
+    filters.is_new !== null
+  )
+
+  const resetFilters = () => {
+    setFilters({ ...defaultFilters })
+    setCurrentPage(1)
+    pageCache.clear()
+  }
+
+  // Fetch keywords from API
   useEffect(() => {
     let ignore = false
 
     async function fetchKeywords(page: number) {
-      // 检查缓存是否有效
+      const cacheKey = buildCacheKey(page, filters)
       const now = Date.now()
-      const cached = pageCache.get(page)
+      const cached = pageCache.get(cacheKey)
       if (cached && (now - cached.timestamp < CACHE_DURATION)) {
-        console.log(`✅ Using cached data for page ${page}`)
         setBackendKeywords(cached.data)
+        setTotalPages(cached.totalPages)
         setLoading(false)
         return
       }
@@ -70,24 +221,25 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
       setLoading(true)
 
       try {
-        const offset = (page - 1) * PAGE_SIZE
-        const response = await keywordService.getList({
-          limit: PAGE_SIZE,
-          offset: offset,
-        })
+        const params = buildApiParams(page, filters)
+
+        const response = await keywordService.getList(params)
 
         if (ignore) return
 
-        // 更新缓存
         if (response && response.items && response.items.length > 0) {
-          pageCache.set(page, {
+          pageCache.set(cacheKey, {
             data: response.items,
+            total: response.total,
+            totalPages: response.total_pages,
             timestamp: Date.now()
           })
           setBackendKeywords(response.items)
-          setTotal(response.total)
           setTotalPages(response.total_pages)
           setLastUpdated(new Date())
+        } else if (response && response.items) {
+          setBackendKeywords([])
+          setTotalPages(1)
         }
       } catch (error) {
         if (!ignore) {
@@ -105,7 +257,7 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
     return () => {
       ignore = true
     }
-  }, [currentPage])
+  }, [currentPage, filters])
 
   const handleKeywordClick = (keyword: Keyword) => {
     // Check if keyword is locked based on backend data
@@ -200,6 +352,70 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
             <span className="font-mono text-xs text-muted-foreground">
               Updated {formatLastUpdated(lastUpdated)}
             </span>
+          </div>
+        </div>
+
+        {/* Filter Bar - Two Rows */}
+        <div className="space-y-3">
+          {/* Row 1: Field/Type pills */}
+          <div className="flex items-center gap-2">
+            {FIELD_OPTIONS.map(opt => (
+              <button
+                key={opt.value}
+                onClick={() => updateFilter("field", opt.value)}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer border ${
+                  filters.field === opt.value
+                    ? "bg-[#39FF14]/20 text-[#39FF14] border-[#39FF14]/50"
+                    : "bg-[#0F1635] text-[#8B92B3] border-[#1E2650] hover:bg-[#1E2650] hover:text-white"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Row 2: Dropdowns + toggles */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <FilterDropdown
+              label="Competition"
+              value={filters.competition_level}
+              options={COMPETITION_OPTIONS}
+              onChange={(v) => updateFilter("competition_level", v)}
+            />
+            <FilterDropdown
+              label="Est. MRR"
+              value={filters.mrr}
+              options={MRR_OPTIONS}
+              onChange={(v) => updateFilter("mrr", v)}
+            />
+            <FilterDropdown
+              label="Order By"
+              value={filters.sort_by}
+              options={SORT_BY_OPTIONS}
+              onChange={(v) => updateFilter("sort_by", v)}
+            />
+
+            {/* New keyword toggle */}
+            <button
+              onClick={() => updateFilter("is_new", filters.is_new === true ? null : true)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer border ${
+                filters.is_new === true
+                  ? "bg-[#39FF14]/20 text-[#39FF14] border-[#39FF14]/50"
+                  : "bg-[#0F1635] text-[#8B92B3] border-[#1E2650] hover:bg-[#1E2650] hover:text-white"
+              }`}
+            >
+              New Only
+            </button>
+
+            {hasActiveFilters && (
+              <button
+                onClick={resetFilters}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium text-red-400 bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 transition-colors cursor-pointer"
+              >
+                <X className="h-3 w-3" />
+                Reset
+              </button>
+            )}
           </div>
         </div>
 
