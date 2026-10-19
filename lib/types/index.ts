@@ -298,3 +298,275 @@ export interface EmailLoginResponse {
   token: string
   user: User
 }
+
+/**
+ * Radar（新词雷达 + AI 报告）相关类型
+ */
+export type RadarSignalSource = 'reddit' | 'google_trends' | 'serp' | 'competitor' | 'search_console' | 'keyword' | 'x'
+
+export type RadarVerdict = 'build' | 'content' | 'skip'
+
+export type RadarConfidence = 'high' | 'medium' | 'low'
+
+/** Opportunity score parts: momentum /25, durability /25, rankability /35, value /15. */
+export interface RadarScoreParts {
+  momentum: number
+  durability: number
+  rankability: number
+  value: number
+}
+
+export interface RadarWord {
+  id: string
+  keyword: string
+  score: number
+  scoreDelta: number
+  scoreParts: RadarScoreParts
+  confidence: RadarConfidence
+  root: string
+  category: string
+  firstSeenHoursAgo: number
+  growthPct: number
+  growthWindow: '24h' | '48h' | '72h' | '7d' | '30d'
+  trend: number[]
+  volume: number
+  kd: number
+  kgr: number
+  sitesThen: number
+  sitesNow: number
+  intents: string[]
+  verdict: RadarVerdict
+  reason: string
+}
+
+export interface RadarWatchlist {
+  roots: string[]
+  sites: string[]
+  delivery: {
+    email: string
+    realtimeAlerts: boolean
+  }
+}
+
+export type RadarActionType = 'rising_topic' | 'competitor_gap' | 'quick_win'
+
+export interface RadarSignal {
+  source: RadarSignalSource
+  value: string
+}
+
+export interface RadarBrief {
+  workingTitle: string
+  targetKeyword: string
+  secondaryKeywords: string[]
+  outline: string[]
+}
+
+export interface RadarAction {
+  id: string
+  type: RadarActionType
+  title: string
+  summary: string
+  score: number
+  window: string
+  effort: string
+  upside: string
+  signals: RadarSignal[]
+  brief: RadarBrief
+}
+
+export interface RadarCompetitorMove {
+  domain: string
+  change: string
+  impact: string
+  direction: 'up' | 'down'
+}
+
+export interface ReportScore {
+  label: string
+  value: string
+  note: string
+  tone: 'good' | 'warn' | 'bad'
+}
+
+/** Data sources the agent can call. Labels live in the dictionaries under tools. */
+export type AskTool = 'nichepop' | 'dfs_labs' | 'dfs_serp' | 'dfs_keywords' | 'dfs_trends' | 'dfs_content' | 'x' | 'gsc' | 'ai'
+
+/** One data call behind a report, shown as its evidence. */
+export interface ReportSource {
+  tool: AskTool
+  calls: number
+}
+
+/** What a report judges: a trending keyword, an idea, an existing product, or a whole market. */
+export type ReportKind = 'keyword' | 'idea' | 'product' | 'market'
+
+export type MentionSource = 'x' | 'reddit' | 'hn'
+
+/** Why someone posted: high-intent posts (recommendation, complaint) are pushed in real time. */
+export type MentionIntent = 'recommendation' | 'complaint' | 'question' | 'launch'
+
+export interface Mention {
+  id: string
+  source: MentionSource
+  author: string
+  text: string
+  hoursAgo: number
+  intent: MentionIntent
+  engagement: string
+  replyDraft?: string
+  /** Chinese readers get a translation of English posts. */
+  translation?: string
+}
+
+export interface ReportSerpRow {
+  rank: number
+  domain: string
+  pageType: string
+  note: string
+}
+
+export interface KeywordReport {
+  id: string
+  kind: 'keyword'
+  query: string
+  createdAt: string
+  wordAgeHours: number
+  verdict: RadarVerdict
+  headline: string
+  scores: ReportScore[]
+  roi: string
+  traps: string[]
+  serp: ReportSerpRow[]
+  nextSteps: string[]
+  /** Tool behind each score card, same order as scores. */
+  scoreSources?: AskTool[]
+  sources?: ReportSource[]
+}
+
+export interface CompetitorRow {
+  domain: string
+  traffic: string
+  trend: 'up' | 'down' | 'flat'
+  pricing: string
+  overlap: string
+  note: string
+}
+
+export interface KeywordGap {
+  keyword: string
+  volume: number
+  kd: number
+  owner: string
+  note: string
+}
+
+export interface DiscussionChannel {
+  source: MentionSource
+  label: string
+  volume: string
+  note: string
+}
+
+/** "Is this idea worth building?" — ends in a go / pivot / no-go call. */
+export interface IdeaReport {
+  id: string
+  kind: 'idea'
+  query: string
+  createdAt: string
+  verdict: 'go' | 'pivot' | 'no'
+  headline: string
+  demand: ReportScore[]
+  alternatives: CompetitorRow[]
+  complaints: { text: string; source: string; count: string }[]
+  monetization: string[]
+  angle: string
+  sources?: ReportSource[]
+}
+
+/** Where an existing product stands: traffic, competitors, what people say, what to do next. */
+export interface ProductReport {
+  id: string
+  kind: 'product'
+  query: string
+  createdAt: string
+  headline: string
+  ownerMetrics: { label: string; value: string; delta: string }[]
+  competitors: CompetitorRow[]
+  gaps: KeywordGap[]
+  channels: DiscussionChannel[]
+  mentions: Mention[]
+  actions: RadarAction[]
+  sources?: ReportSource[]
+}
+
+/** A map of a market: momentum, who leads, what's rising, where the openings are. */
+export interface MarketReport {
+  id: string
+  kind: 'market'
+  query: string
+  createdAt: string
+  headline: string
+  metrics: { label: string; value: string; note: string }[]
+  trend: number[]
+  players: CompetitorRow[]
+  rising: { keyword: string; growth: string; volume: number; kd: number }[]
+  openings: string[]
+  sources?: ReportSource[]
+}
+
+export type RadarReport = KeywordReport | IdeaReport | ProductReport | MarketReport
+
+/**
+ * Monitors: keep watch on a word you're building on, or on your own product.
+ */
+export type MonitorKind = 'keyword' | 'product' | 'market'
+
+export type MonitorTrack = 'mentions' | 'competitors' | 'rankings' | 'trends'
+
+export interface Monitor {
+  id: string
+  kind: MonitorKind
+  /** The keyword, the product's domain, or the market's name. */
+  name: string
+  /** Product and market monitors: one line describing it, used to find discussions. */
+  description: string
+  /** Site whose rankings are tracked. */
+  site: string
+  xQuery: string
+  competitors: string[]
+  rankKeywords: string[]
+  tracks: MonitorTrack[]
+  delivery: 'realtime' | 'digest'
+  /** Where pushes go: email plus optional webhooks (Telegram, Discord, Slack, Feishu). */
+  channels?: string[]
+  webhook?: string
+  createdAt: number
+  /** Seeded examples that come with demo data. */
+  demo?: boolean
+}
+
+export interface MonitorRanking {
+  keyword: string
+  position: number | null
+  change: number
+  volume: number
+  trend: number[]
+}
+
+export interface MonitorTrend {
+  topic: string
+  growth: string
+  note: string
+}
+
+export interface MonitorFeed {
+  lastCheckedMinutes: number
+  postsToday: number
+  postsThisMonth: number
+  mentions: Mention[]
+  competitorMoves: RadarCompetitorMove[]
+  rankings: MonitorRanking[]
+  trends: MonitorTrend[]
+  suggestions: RadarAction[]
+}

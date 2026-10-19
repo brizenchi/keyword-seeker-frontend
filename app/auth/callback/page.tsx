@@ -92,7 +92,7 @@ export default function AuthCallbackPage() {
             <button
               type="button"
               onClick={handleRetry}
-              className="rounded-full bg-indigo px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo/30"
+              className="rounded-full bg-indigo px-5 py-2 text-sm font-semibold text-foreground shadow-lg shadow-indigo/30"
             >
               Try again
             </button>

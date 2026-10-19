@@ -91,9 +91,9 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
       <Card
         onClick={onClick}
         className={cn(
-          "relative overflow-hidden border-[#1E2650] bg-[#0F1629] transition-all duration-300 h-full flex flex-col group",
-          "hover:border-[#67f745]/50 hover:shadow-[0_0_20px_rgba(103,247,69,0.15)] hover:scale-[1.02]",
-          isHot && "glow-hot border-[#67f745]/50",
+          "relative overflow-hidden border-border bg-card transition-all duration-300 h-full flex flex-col group",
+          "hover:border-success/30 hover:scale-[1.02]",
+          isHot && "glow-hot border-success/30",
           onClick && "cursor-pointer"
         )}
       >
@@ -104,33 +104,33 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
               {/* Category and special badges */}
               <div className="flex items-center gap-2 mb-2">
                 {keyword.category && (
-                  <span className="px-2 py-0.5 rounded bg-[#0080FF]/10 text-[9px] text-[#0080FF] font-medium uppercase">
+                  <span className="px-2 py-0.5 rounded bg-primary-soft text-[9px] text-primary font-medium uppercase">
                     {keyword.category}
                   </span>
                 )}
                 {isNew && (
-                  <span className="px-2 py-0.5 rounded bg-[#0080FF] text-white text-[9px] font-bold uppercase">
+                  <span className="px-2 py-0.5 rounded bg-primary text-white text-[9px] font-bold uppercase">
                     New
                   </span>
                 )}
                 {isHighDemand && (
-                  <span className="px-2 py-0.5 rounded bg-[#ff6b6b] text-white text-[9px] font-bold uppercase">
+                  <span className="px-2 py-0.5 rounded bg-[#ff6b6b] text-foreground text-[9px] font-bold uppercase">
                     High Demand
                   </span>
                 )}
                 {isHot && (
                   <div className="flex items-center gap-0.5">
-                    <Flame className="h-3 w-3 text-[#67f745] animate-pulse" />
+                    <Flame className="h-3 w-3 text-success animate-pulse" />
                   </div>
                 )}
               </div>
               {/* Keyword title */}
-              <h3 className="text-lg font-bold text-white group-hover:text-[#67f745] transition-colors break-words">
+              <h3 className="text-lg font-bold text-foreground group-hover:text-success transition-colors break-words">
                 {keyword.keyword}
               </h3>
             </div>
             {/* Total score */}
-            <div className="px-3 py-1.5 rounded-full text-xs font-bold shrink-0 bg-[#67f745]/10 text-[#67f745] border border-[#67f745]/30">
+            <div className="px-3 py-1.5 rounded-full text-xs font-bold shrink-0 bg-success-soft text-success border border-success/30">
               {totalScore}/100
             </div>
           </div>
@@ -143,7 +143,7 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
               </span>
             )}
             {growthRate > 0 && (
-              <span className="px-2 py-0.5 rounded border border-[#0080FF]/30 bg-[#0080FF]/10 text-[10px] text-[#0080FF] font-medium">
+              <span className="px-2 py-0.5 rounded border border-primary/40 bg-primary-soft text-[10px] text-primary font-medium">
                 {formatPercentage(growthRate)} growth
               </span>
             )}
@@ -153,7 +153,7 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
         <CardContent className="flex-grow flex flex-col">
           {/* Description */}
           {keyword.intent && (
-            <p className="text-sm text-white/50 leading-relaxed mb-4">
+            <p className="text-sm text-foreground/50 leading-relaxed mb-4">
               {keyword.intent}
             </p>
           )}
@@ -161,18 +161,18 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
           {/* Bottom section: Competition + Revenue with gradient backgrounds */}
           <div className="space-y-3 mt-auto">
             {/* Est. Revenue */}
-            <div className="bg-gradient-to-br from-[#67f745]/15 to-[#0080FF]/15 rounded-lg p-4 border border-[#67f745]/30">
+            <div className="bg-gradient-to-br from-success-soft to-primary-soft rounded-lg p-4 border border-success/30">
               <div className="flex items-center gap-2 mb-1">
-                <DollarSign className="h-4 w-4 text-[#67f745]" />
-                <span className="text-[9px] text-[#67f745] uppercase font-medium">Est. Revenue</span>
+                <DollarSign className="h-4 w-4 text-success" />
+                <span className="text-[9px] text-success uppercase font-medium">Est. Revenue</span>
               </div>
-              <div className="font-mono text-2xl font-bold text-[#67f745]">
+              <div className="font-mono text-2xl font-bold text-success">
                 {formatCurrency(keyword.profit_estimation)}
               </div>
             </div>
 
             {/* Competition */}
-            <div className="bg-gradient-to-br from-[#8b5cf6]/15 to-[#0080FF]/15 rounded-lg p-4 border border-[#8b5cf6]/30">
+            <div className="bg-gradient-to-br from-[#8b5cf6]/15 to-primary-soft rounded-lg p-4 border border-[#8b5cf6]/30">
               <div className="flex items-center gap-2 mb-1">
                 <Target className="h-4 w-4 text-[#8b5cf6]" />
                 <span className="text-[9px] text-[#8b5cf6] uppercase font-medium">Competition</span>
@@ -186,7 +186,7 @@ export function KeywordCard({ keyword, trendData, onClick }: KeywordCardProps) {
 
         {/* Hover arrow indicator */}
         <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-          <span className="text-[#67f745] text-lg">→</span>
+          <span className="text-success text-lg">→</span>
         </div>
       </Card>
 

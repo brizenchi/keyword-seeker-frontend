@@ -23,3 +23,13 @@ export const USER_KEY = createStorageKey('user');
  * export const THEME_KEY = createStorageKey('theme');
  * export const LANGUAGE_KEY = createStorageKey('language');
  */
+
+/**
+ * Radar（机会雷达）相关的存储键
+ */
+export const RADAR_WATCHLIST_KEY = createStorageKey('radar_watchlist');
+export const RADAR_VIEWS_KEY = createStorageKey('radar_views');
+export const RADAR_MONITORS_KEY = createStorageKey('radar_monitors');
+export const ONBOARDING_KEY = createStorageKey('onboarding');
+export const ONBOARDING_DRAFT_KEY = createStorageKey('onboarding_draft');
+export const CHAT_KEY = createStorageKey('chat');

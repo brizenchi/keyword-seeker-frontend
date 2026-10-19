@@ -3,83 +3,52 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Fintech/Crypto inspired color palette - Deep navy, electric blue, neon accents */
+/* NichePop design tokens: light, neutral surfaces with a single blue accent. */
 :root {
-  --background: oklch(0.08 0.015 250);
-  --foreground: oklch(0.98 0.005 250);
-  --card: oklch(0.12 0.02 250);
-  --card-foreground: oklch(0.98 0.005 250);
-  --popover: oklch(0.12 0.02 250);
-  --popover-foreground: oklch(0.98 0.005 250);
-  --primary: oklch(0.65 0.25 230);
-  --primary-foreground: oklch(0.98 0.005 250);
-  --secondary: oklch(0.18 0.025 250);
-  --secondary-foreground: oklch(0.98 0.005 250);
-  --muted: oklch(0.18 0.025 250);
-  --muted-foreground: oklch(0.55 0.015 250);
-  --accent: oklch(0.75 0.22 180);
-  --accent-foreground: oklch(0.08 0.015 250);
-  --destructive: oklch(0.65 0.28 25);
-  --destructive-foreground: oklch(0.98 0.005 250);
-  --border: oklch(0.22 0.03 250);
-  --input: oklch(0.22 0.03 250);
-  --ring: oklch(0.65 0.25 230);
-  --chart-1: oklch(0.65 0.25 230);
-  --chart-2: oklch(0.75 0.22 180);
-  --chart-3: oklch(0.7 0.25 150);
-  --chart-4: oklch(0.75 0.2 280);
-  --chart-5: oklch(0.65 0.28 25);
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #111827;
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --popover: #ffffff;
+  --popover-foreground: #111827;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --primary-hover: #1d4ed8;
+  --primary-soft: #eff6ff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #111827;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --accent: #f3f4f6;
+  --accent-foreground: #111827;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #2563eb;
+  --subtle: #f9fafb;
+  --body: #4b5563;
+  --faint: #9ca3af;
+  --success: #15803d;
+  --success-soft: #f0fdf4;
+  --warning: #b45309;
+  --warning-soft: #fffbeb;
+  --danger-soft: #fef2f2;
+  --chart-1: #2563eb;
+  --chart-2: #059669;
+  --chart-3: #d97706;
+  --chart-4: #7c3aed;
+  --chart-5: #dc2626;
   --radius: 0.75rem;
-  --sidebar: oklch(0.08 0.015 250);
-  --sidebar-foreground: oklch(0.55 0.015 250);
-  --sidebar-primary: oklch(0.65 0.25 230);
-  --sidebar-primary-foreground: oklch(0.98 0.005 250);
-  --sidebar-accent: oklch(0.12 0.02 250);
-  --sidebar-accent-foreground: oklch(0.98 0.005 250);
-  --sidebar-border: oklch(0.22 0.03 250);
-  --sidebar-ring: oklch(0.65 0.25 230);
-
-  /* Custom fintech colors */
-  --electric-blue: oklch(0.65 0.25 230);
-  --neon-cyan: oklch(0.75 0.22 180);
-  --neon-green: oklch(0.7 0.25 150);
-  --neon-purple: oklch(0.75 0.2 280);
-  --neon-orange: oklch(0.65 0.28 25);
-}
-
-.dark {
-  --background: oklch(0.08 0.015 250);
-  --foreground: oklch(0.98 0.005 250);
-  --card: oklch(0.12 0.02 250);
-  --card-foreground: oklch(0.98 0.005 250);
-  --popover: oklch(0.12 0.02 250);
-  --popover-foreground: oklch(0.98 0.005 250);
-  --primary: oklch(0.65 0.25 230);
-  --primary-foreground: oklch(0.98 0.005 250);
-  --secondary: oklch(0.18 0.025 250);
-  --secondary-foreground: oklch(0.98 0.005 250);
-  --muted: oklch(0.18 0.025 250);
-  --muted-foreground: oklch(0.55 0.015 250);
-  --accent: oklch(0.75 0.22 180);
-  --accent-foreground: oklch(0.08 0.015 250);
-  --destructive: oklch(0.65 0.28 25);
-  --destructive-foreground: oklch(0.98 0.005 250);
-  --border: oklch(0.22 0.03 250);
-  --input: oklch(0.22 0.03 250);
-  --ring: oklch(0.65 0.25 230);
-  --chart-1: oklch(0.65 0.25 230);
-  --chart-2: oklch(0.75 0.22 180);
-  --chart-3: oklch(0.7 0.25 150);
-  --chart-4: oklch(0.75 0.2 280);
-  --chart-5: oklch(0.65 0.28 25);
-  --sidebar: oklch(0.08 0.015 250);
-  --sidebar-foreground: oklch(0.55 0.015 250);
-  --sidebar-primary: oklch(0.65 0.25 230);
-  --sidebar-primary-foreground: oklch(0.98 0.005 250);
-  --sidebar-accent: oklch(0.12 0.02 250);
-  --sidebar-accent-foreground: oklch(0.98 0.005 250);
-  --sidebar-border: oklch(0.22 0.03 250);
-  --sidebar-ring: oklch(0.65 0.25 230);
+  --sidebar: #ffffff;
+  --sidebar-foreground: #6b7280;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f3f4f6;
+  --sidebar-accent-foreground: #111827;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #2563eb;
 }
 
 @theme inline {
@@ -121,11 +90,16 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --color-electric-blue: var(--electric-blue);
-  --color-neon-cyan: var(--neon-cyan);
-  --color-neon-green: var(--neon-green);
-  --color-neon-purple: var(--neon-purple);
-  --color-neon-orange: var(--neon-orange);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+  --color-subtle: var(--subtle);
+  --color-body: var(--body);
+  --color-faint: var(--faint);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger-soft: var(--danger-soft);
 }
 
 @layer base {
@@ -137,29 +111,60 @@
   }
 }
 
-/* Glow animation for hot keywords - neon cyan glow */
-@keyframes glow-pulse {
+/* Subtle pulse for "hot" items */
+@keyframes hot-pulse {
   0%,
   100% {
-    box-shadow: 0 0 5px oklch(0.75 0.22 180 / 0.4), 0 0 10px oklch(0.75 0.22 180 / 0.3), 0 0 20px
-      oklch(0.75 0.22 180 / 0.2);
+    box-shadow: 0 0 0 0 rgb(37 99 235 / 0.18);
   }
   50% {
-    box-shadow: 0 0 10px oklch(0.75 0.22 180 / 0.6), 0 0 20px oklch(0.75 0.22 180 / 0.4), 0 0 30px
-      oklch(0.75 0.22 180 / 0.3);
+    box-shadow: 0 0 0 4px rgb(37 99 235 / 0.08);
   }
 }
 
 .glow-hot {
-  animation: glow-pulse 2s ease-in-out infinite;
+  animation: hot-pulse 2s ease-in-out infinite;
 }
 
-/* Additional fintech-style animations */
-@keyframes neon-flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
+/* Radar app tokens: aliases of the global palette plus an app-canvas background. */
+.radar-theme {
+  --radar-bg: #f6f7f9;
+  --radar-surface: var(--card);
+  --radar-subtle: var(--subtle);
+  --radar-border: var(--border);
+  --radar-border-strong: #d1d5db;
+  --radar-text: var(--foreground);
+  --radar-text-2: var(--body);
+  --radar-text-3: var(--muted-foreground);
+  --radar-text-4: var(--faint);
+  --radar-primary: var(--primary);
+  --radar-primary-hover: var(--primary-hover);
+  --radar-primary-soft: var(--primary-soft);
+  --radar-success: var(--success);
+  --radar-success-soft: var(--success-soft);
+  --radar-warning: var(--warning);
+  --radar-warning-soft: var(--warning-soft);
+  --radar-danger: var(--destructive);
+  --radar-danger-soft: var(--danger-soft);
 }
 
-.neon-text {
-  text-shadow: 0 0 10px oklch(0.75 0.22 180 / 0.8), 0 0 20px oklch(0.75 0.22 180 / 0.5);
+@theme inline {
+  --color-radar-bg: var(--radar-bg);
+  --color-radar-surface: var(--radar-surface);
+  --color-radar-subtle: var(--radar-subtle);
+  --color-radar-border: var(--radar-border);
+  --color-radar-border-strong: var(--radar-border-strong);
+  --color-radar-text: var(--radar-text);
+  --color-radar-text-2: var(--radar-text-2);
+  --color-radar-text-3: var(--radar-text-3);
+  --color-radar-text-4: var(--radar-text-4);
+  --color-radar-primary: var(--radar-primary);
+  --color-radar-primary-hover: var(--radar-primary-hover);
+  --color-radar-primary-soft: var(--radar-primary-soft);
+  --color-radar-success: var(--radar-success);
+  --color-radar-success-soft: var(--radar-success-soft);
+  --color-radar-warning: var(--radar-warning);
+  --color-radar-warning-soft: var(--radar-warning-soft);
+  --color-radar-danger: var(--radar-danger);
+  --color-radar-danger-soft: var(--radar-danger-soft);
 }

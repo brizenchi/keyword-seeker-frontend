@@ -197,8 +197,8 @@ export function SettingsDialog({ open, onOpenChange }: SettingsDialogProps) {
         <DialogContent className="w-[70vw] min-w-[800px] max-w-[90vw] max-h-[85vh] p-0 gap-0">
           <DialogHeader className="px-6 pt-6 pb-4">
             <DialogTitle className="flex items-center gap-3 text-2xl">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600">
-                <SettingsIcon className="h-5 w-5 text-white" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-soft">
+                <SettingsIcon className="h-5 w-5 text-primary" />
               </div>
               Settings
             </DialogTitle>

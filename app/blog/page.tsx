@@ -67,22 +67,22 @@ const blogPosts = [
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-[#0A0E27]">
+    <div className="min-h-screen bg-background">
       <Navbar />
 
       <main className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
           {/* Header */}
           <div className="text-center space-y-6 mb-16">
-            <Badge className="bg-[#0F1635] text-[#39FF14] border-[#1E2650] px-4 py-1.5 backdrop-blur-sm">
+            <Badge className="bg-card text-success border-border px-4 py-1.5 backdrop-blur-sm">
               Blog
             </Badge>
 
-            <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground">
               Keyword Research Tips & Guides
             </h1>
 
-            <p className="text-lg sm:text-xl text-[#8B92B3] max-w-2xl mx-auto leading-relaxed font-light">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light">
               Expert insights on finding profitable keywords, analyzing competition, and discovering trending niches
             </p>
           </div>
@@ -91,26 +91,26 @@ export default function BlogPage() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
             {blogPosts.map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`}>
-                <Card className="h-full border-[#1E2650] hover:border-[#0080FF] transition-all duration-300 hover:shadow-2xl hover:shadow-[#0080FF]/20 hover:-translate-y-2 cursor-pointer bg-[#0F1635]/80 backdrop-blur-sm">
+                <Card className="h-full border-border hover:border-primary/40 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer bg-card backdrop-blur-sm">
                   <CardHeader>
                     <div className="flex items-center gap-2 mb-3">
-                      <Badge variant="outline" className="text-xs border-[#1E2650] text-[#39FF14]">
+                      <Badge variant="outline" className="text-xs border-border text-success">
                         {post.category}
                       </Badge>
-                      <span className="text-xs text-[#8B92B3] flex items-center gap-1">
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
                         <Clock className="h-3 w-3" />
                         {post.readTime}
                       </span>
                     </div>
-                    <CardTitle className="text-xl mb-2 text-white hover:text-[#0080FF] transition-colors" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                    <CardTitle className="text-xl mb-2 text-foreground hover:text-primary transition-colors">
                       {post.title}
                     </CardTitle>
-                    <CardDescription className="text-sm leading-relaxed text-[#8B92B3]">
+                    <CardDescription className="text-sm leading-relaxed text-muted-foreground">
                       {post.description}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center justify-between text-xs text-[#8B92B3]">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
                         {new Date(post.publishedAt).toLocaleDateString('en-US', {
@@ -119,7 +119,7 @@ export default function BlogPage() {
                           year: 'numeric',
                         })}
                       </div>
-                      <div className="flex items-center gap-1 text-[#0080FF]">
+                      <div className="flex items-center gap-1 text-primary">
                         Read more
                         <ArrowRight className="h-3 w-3" />
                       </div>
@@ -132,16 +132,16 @@ export default function BlogPage() {
 
           {/* CTA Section */}
           <div className="mt-20 text-center">
-            <Card className="border-2 border-[#0080FF]/30 bg-[#0F1635]/80 backdrop-blur-xl shadow-2xl shadow-[#0080FF]/20">
+            <Card className="border-2 border-primary/40 bg-card backdrop-blur-xl shadow-2xl">
               <CardContent className="p-12 space-y-6">
-                <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
                   Ready to Find Your Next Keyword Opportunity?
                 </h2>
-                <p className="text-[#8B92B3] max-w-2xl mx-auto font-light">
+                <p className="text-muted-foreground max-w-2xl mx-auto font-light">
                   Put these strategies into action with NichePop's real-time keyword research tool
                 </p>
                 <Link href="/dashboard">
-                  <Button size="lg" className="bg-[#39FF14] hover:bg-[#39FF14] text-[#0A0E27] font-bold text-lg px-10 py-6 rounded-xl hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] hover:-translate-y-0.5 transition-all duration-200">
+                  <Button size="lg" className="bg-primary hover:bg-primary text-primary-foreground font-bold text-lg px-10 py-6 rounded-xl hover:-translate-y-0.5 transition-all duration-200">
                     Start Exploring Keywords
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>

@@ -180,7 +180,7 @@ export function PricingModal({ open, onOpenChange, feature, onSelectPlan }: Pric
                 className={cn(
                   "w-full mt-5",
                   plan.popular
-                    ? "bg-indigo hover:bg-indigo/90 text-white"
+                    ? "bg-indigo hover:bg-indigo/90 text-foreground"
                     : "bg-secondary text-secondary-foreground hover:bg-secondary/80",
                 )}
               >
