@@ -13,13 +13,13 @@ interface StatsCardProps {
 
 export function StatsCard({ title, value, change, changeType, icon: Icon, accentColor }: StatsCardProps) {
   const colors = {
-    indigo: "text-[#0ea5e9] bg-[#0ea5e9]/10",
-    rose: "text-[#f43f5e] bg-[#f43f5e]/10",
-    green: "bg-[#10b981]/10 text-[#10b981]",
+    indigo: "text-primary bg-primary-soft",
+    rose: "text-destructive bg-danger-soft",
+    green: "bg-success-soft text-success",
   }
 
   return (
-    <Card className="border-border bg-card transition-all duration-300 hover:shadow-lg hover:border-[#0ea5e9]/50 cursor-pointer">
+    <Card className="border-border bg-card transition-all duration-300 hover:shadow-lg hover:border-primary cursor-pointer">
       <CardContent className="p-4">
         <div className="flex items-start justify-between">
           <div className="space-y-1">
@@ -33,8 +33,8 @@ export function StatsCard({ title, value, change, changeType, icon: Icon, accent
         <p
           className={cn(
             "mt-2 text-xs font-mono",
-            changeType === "positive" && "text-[#10b981]",
-            changeType === "negative" && "text-[#f43f5e]",
+            changeType === "positive" && "text-success",
+            changeType === "negative" && "text-destructive",
             changeType === "neutral" && "text-muted-foreground",
           )}
         >

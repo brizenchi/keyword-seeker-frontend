@@ -36,7 +36,7 @@ export function BrandMark({ className, withGlow = false }: BrandMarkProps) {
     <svg
       viewBox="0 0 44 44"
       aria-hidden="true"
-      className={cn("shrink-0", withGlow && "drop-shadow-[0_0_10px_rgba(0,128,255,0.45)]", className)}
+      className={cn("shrink-0", withGlow && "drop-", className)}
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
@@ -90,11 +90,10 @@ export function BrandLogo({
       {showText && (
         <span
           className={cn(
-            "font-bold tracking-tight bg-gradient-to-r from-[#0080FF] to-[#67F745] bg-clip-text text-transparent",
+            "font-semibold tracking-tight text-foreground",
             textSizes[size],
             textClassName,
           )}
-          style={{ fontFamily: "Space Grotesk, sans-serif" }}
         >
           NichePop
         </span>

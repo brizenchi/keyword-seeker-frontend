@@ -135,23 +135,23 @@ function FilterDropdown({ label, value, options, onChange }: {
         onClick={() => setOpen(!open)}
         className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer border ${
           isActive
-            ? "bg-[#0080FF]/20 text-[#0080FF] border-[#0080FF]/50"
-            : "bg-[#0F1635] text-[#8B92B3] border-[#1E2650] hover:bg-[#1E2650] hover:text-white"
+            ? "bg-primary-soft text-primary border-primary/40"
+            : "bg-card text-muted-foreground border-border hover:bg-muted hover:text-foreground"
         }`}
       >
         {selected?.label || label}
         <ChevronDown className="h-3 w-3" />
       </button>
       {open && (
-        <div className="absolute top-full left-0 mt-1 bg-[#0F1635] border border-[#1E2650] rounded-lg shadow-xl z-50 min-w-[160px] py-1">
+        <div className="absolute top-full left-0 mt-1 bg-card border border-border rounded-lg shadow-xl z-50 min-w-[160px] py-1">
           {options.map(opt => (
             <button
               key={opt.value}
               onClick={() => { onChange(opt.value); setOpen(false) }}
               className={`w-full text-left px-3 py-1.5 text-xs cursor-pointer transition-colors ${
                 value === opt.value
-                  ? "bg-[#0080FF]/20 text-[#0080FF]"
-                  : "text-[#8B92B3] hover:bg-[#1E2650] hover:text-white"
+                  ? "bg-primary-soft text-primary"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
               }`}
             >
               {opt.label}
@@ -365,8 +365,8 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
                 onClick={() => updateFilter("field", opt.value)}
                 className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors cursor-pointer border ${
                   filters.field === opt.value
-                    ? "bg-[#39FF14]/20 text-[#39FF14] border-[#39FF14]/50"
-                    : "bg-[#0F1635] text-[#8B92B3] border-[#1E2650] hover:bg-[#1E2650] hover:text-white"
+                    ? "bg-success-soft text-success border-success/30"
+                    : "bg-card text-muted-foreground border-border hover:bg-muted hover:text-foreground"
                 }`}
               >
                 {opt.label}
@@ -400,8 +400,8 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
               onClick={() => updateFilter("is_new", filters.is_new === true ? null : true)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer border ${
                 filters.is_new === true
-                  ? "bg-[#39FF14]/20 text-[#39FF14] border-[#39FF14]/50"
-                  : "bg-[#0F1635] text-[#8B92B3] border-[#1E2650] hover:bg-[#1E2650] hover:text-white"
+                  ? "bg-success-soft text-success border-success/30"
+                  : "bg-card text-muted-foreground border-border hover:bg-muted hover:text-foreground"
               }`}
             >
               New Only
@@ -450,21 +450,21 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
                       />
 
                       {shouldBlur && (
-                        <div className="absolute inset-0 backdrop-blur-[6px] bg-[#0A0E27]/60 rounded-xl z-10 flex flex-col items-center justify-center p-4 gap-3">
+                        <div className="absolute inset-0 backdrop-blur-[6px] bg-background/60 rounded-xl z-10 flex flex-col items-center justify-center p-4 gap-3">
                           {kw.highlight && (
-                            <div className="bg-[#0F1629] p-3 rounded-lg shadow-lg border-2 border-[#67f745] max-w-[180px]">
+                            <div className="bg-card p-3 rounded-lg shadow-lg border-2 border-success/30 max-w-[180px]">
                               <div className="flex items-center gap-1.5 mb-1.5">
-                                <Sparkles className="h-4 w-4 text-[#67f745]" />
-                                <span className="text-xs font-bold text-[#67f745]">Premium</span>
+                                <Sparkles className="h-4 w-4 text-success" />
+                                <span className="text-xs font-bold text-success">Premium</span>
                               </div>
-                              <p className="text-xs font-medium text-white">
+                              <p className="text-xs font-medium text-foreground">
                                 {kw.highlight.highlight_text}
                               </p>
                             </div>
                           )}
                           <Button
                             size="sm"
-                            className="bg-[#67f745] hover:bg-[#67f745]/90 text-[#0A0E27] font-semibold shadow-[0_0_20px_rgba(103,247,69,0.4)] cursor-pointer h-8 text-xs px-3"
+                            className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold cursor-pointer h-8 text-xs px-3"
                             onClick={(e) => {
                               e.stopPropagation()
                               if (isUnauthenticatedLock) {
@@ -495,7 +495,7 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
                     size="sm"
                     onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                     disabled={currentPage === 1 || loading}
-                    className="border-[#1E2650] bg-[#0F1635] text-white hover:bg-[#0080FF]/20 hover:border-[#0080FF] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                    className="border-border bg-card text-foreground hover:bg-primary-soft hover:border-primary/40 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                   >
                     <ChevronLeft className="h-4 w-4" />
                   </Button>
@@ -529,7 +529,7 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
                       return pages.map((page, idx) => {
                         if (page === '...') {
                           return (
-                            <span key={`ellipsis-${idx}`} className="px-2 text-[#8B92B3]">
+                            <span key={`ellipsis-${idx}`} className="px-2 text-muted-foreground">
                               ...
                             </span>
                           )
@@ -542,10 +542,10 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
                             size="sm"
                             onClick={() => setCurrentPage(page as number)}
                             disabled={loading}
-                            className={`min-w-[32px] border-[#1E2650] cursor-pointer ${
+                            className={`min-w-[32px] border-border cursor-pointer ${
                               currentPage === page
-                                ? 'bg-[#0080FF] text-white border-[#0080FF]'
-                                : 'bg-[#0F1635] text-[#8B92B3] hover:bg-[#0080FF]/20 hover:border-[#0080FF] hover:text-white'
+                                ? 'bg-primary text-white border-primary/40'
+                                : 'bg-card text-muted-foreground hover:bg-primary-soft hover:border-primary/40 hover:text-primary'
                             } disabled:opacity-50 disabled:cursor-not-allowed`}
                           >
                             {page}
@@ -560,7 +560,7 @@ export function RisingKeywords({ showResults = false }: RisingKeywordsProps) {
                     size="sm"
                     onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                     disabled={currentPage === totalPages || loading}
-                    className="border-[#1E2650] bg-[#0F1635] text-white hover:bg-[#0080FF]/20 hover:border-[#0080FF] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                    className="border-border bg-card text-foreground hover:bg-primary-soft hover:border-primary/40 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                   >
                     <ChevronRight className="h-4 w-4" />
                   </Button>

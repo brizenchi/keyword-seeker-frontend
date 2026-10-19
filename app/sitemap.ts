@@ -1,24 +1,34 @@
 import { MetadataRoute } from 'next'
 import { getSiteUrl } from '@/lib/seo/site-url'
+import { LOCALES, localizedHref } from '@/lib/i18n'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getSiteUrl()
   const currentDate = new Date()
 
+  // Pages that exist in English and Chinese, each listed once per language with hreflang alternates.
+  const localizedPages = [
+    { path: '/', changeFrequency: 'daily', priority: 1 },
+    { path: '/pricing', changeFrequency: 'weekly', priority: 0.9 },
+    { path: '/new-keywords', changeFrequency: 'daily', priority: 0.9 },
+  ] as const
+  const localized: MetadataRoute.Sitemap = localizedPages.flatMap((page) =>
+    LOCALES.map((locale) => ({
+      url: `${baseUrl}${localizedHref(page.path, locale) === '/' ? '' : localizedHref(page.path, locale)}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: locale === 'en' ? page.priority : page.priority - 0.1,
+      alternates: {
+        languages: {
+          en: `${baseUrl}${page.path === '/' ? '' : page.path}`,
+          'zh-CN': `${baseUrl}${localizedHref(page.path, 'zh')}`,
+        },
+      },
+    })),
+  )
+
   return [
-    // Main pages
-    {
-      url: baseUrl,
-      lastModified: currentDate,
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/pricing`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
+    ...localized,
     {
       url: `${baseUrl}/dashboard`,
       lastModified: currentDate,

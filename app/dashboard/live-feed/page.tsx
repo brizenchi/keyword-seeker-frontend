@@ -37,8 +37,8 @@ export default function LiveFeedPage() {
           <div className="flex items-center justify-between">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600">
-                  <Rss className="h-5 w-5 text-white" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-soft">
+                  <Rss className="h-5 w-5 text-primary" />
                 </div>
                 <h1 className="text-2xl font-bold text-foreground tracking-tight">Live Feed</h1>
                 <Badge className="bg-emerald-500/10 text-emerald-600 border-emerald-500/20">

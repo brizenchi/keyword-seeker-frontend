@@ -3,156 +3,95 @@
 import Link from "next/link"
 import { Mail } from "lucide-react"
 import { BrandLogo } from "@/components/brand-logo"
+import { useLocale, useT } from "@/components/i18n/locale-provider"
+import { localizedHref } from "@/lib/i18n"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const locale = useLocale()
+  const f = useT().footer
+
+  const footerSections = [
+    {
+      title: f.product,
+      links: [
+        { label: f.radar, href: "/trends" },
+        { label: f.askAi, href: "/ask" },
+        { label: f.monitors, href: "/monitors" },
+        { label: f.newKeywordsToday, href: localizedHref("/new-keywords", locale) },
+        { label: f.keywordExplorer, href: "/dashboard" },
+        { label: f.pricing, href: localizedHref("/pricing", locale) },
+      ],
+    },
+    {
+      title: f.resources,
+      links: [
+        { label: f.guideLowCompetition, href: "/blog/how-to-find-low-competition-keywords" },
+        { label: f.guideProfitability, href: "/blog/estimate-keyword-profitability" },
+        { label: f.guideScore, href: "/blog/keyword-opportunity-score-explained" },
+        { label: f.guideVsAhrefs, href: "/blog/nichepop-vs-ahrefs-comparison" },
+      ],
+    },
+    {
+      title: f.useCases,
+      links: [
+        { label: f.bloggers, href: "/use-cases/bloggers" },
+        { label: f.creators, href: "/use-cases/content-creators" },
+        { label: f.ecommerce, href: "/use-cases/ecommerce" },
+        { label: f.affiliate, href: "/use-cases/affiliate-marketing" },
+      ],
+    },
+    {
+      title: f.company,
+      links: [
+        { label: f.contact, href: "mailto:support@nichepop.app" },
+        { label: f.privacy, href: "/privacy" },
+        { label: f.terms, href: "/terms" },
+      ],
+    },
+  ]
 
   return (
-    <footer className="border-t border-[#1E2650] bg-[#0A0E27]/95 backdrop-blur-sm min-h-[400px]">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content */}
-        <div className="py-12 lg:py-16">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-            {/* Brand Section */}
-            <div className="lg:col-span-4">
-              <Link href="/" className="flex items-center gap-2 group mb-4">
-                <BrandLogo
-                  size="lg"
-                  markClassName="transition-all duration-200 group-hover:drop-shadow-[0_0_12px_rgba(103,247,69,0.5)]"
-                  textClassName="font-black"
-                />
-              </Link>
-              <p className="text-sm text-[#8B92B3] leading-relaxed mb-6 max-w-sm">
-                Discover trending keyword opportunities with real-time data. AI-powered niche analysis, competition insights, and profit estimation for marketers and entrepreneurs.
-              </p>
-              {/* Social Links */}
-              <div className="flex items-center gap-3">
-                
-                <a
-                  href="mailto:support@nichepop.app"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0F1629] border border-[#1E2650] text-[#8B92B3] hover:text-[#67f745] hover:border-[#67f745]/50 transition-all duration-200"
-                  aria-label="Email us"
-                >
-                  <Mail className="h-4 w-4" />
-                </a>
+    <footer className="border-t border-border bg-subtle">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="grid gap-10 py-14 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Link href={localizedHref("/", locale)} className="inline-flex rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30">
+              <BrandLogo size="sm" />
+            </Link>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
+              {f.tagline}
+            </p>
+            <a
+              href="mailto:support@nichepop.app"
+              className="mt-5 inline-flex items-center gap-2 text-sm text-body transition-colors hover:text-primary"
+            >
+              <Mail className="h-4 w-4" />
+              support@nichepop.app
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
+            {footerSections.map((section) => (
+              <div key={section.title}>
+                <h3 className="text-sm font-semibold text-foreground">{section.title}</h3>
+                <ul className="mt-4 space-y-3">
+                  {section.links.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-
-            {/* Product Links */}
-            <div className="lg:col-span-2">
-              <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Product</h3>
-              <ul className="space-y-3">
-                <li>
-                  <Link href="/" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/dashboard" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Dashboard
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/pricing" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/#features" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Features
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Resources Links */}
-            <div className="lg:col-span-2">
-              <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Resources</h3>
-              <ul className="space-y-3">
-               
-                <li>
-                  <Link href="/blog/how-to-find-low-competition-keywords" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Find Low Competition Keywords
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog/estimate-keyword-profitability" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Estimate Keyword Profitability
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog/keyword-opportunity-score-explained" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Opportunity Score Guide
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/blog/nichepop-vs-ahrefs-comparison" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    NichePop vs Ahrefs
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            
-
-            {/* Use Cases Links */}
-            <div className="lg:col-span-2">
-              <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Use Cases</h3>
-              <ul className="space-y-3">
-                <li>
-                  <Link href="/use-cases/bloggers" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    For Bloggers
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/use-cases/content-creators" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Content Creators
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/use-cases/ecommerce" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    E-commerce
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/use-cases/affiliate-marketing" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Affiliate Marketing
-                  </Link>
-                </li>
-              </ul>
-            </div>
-{/* Company Links */}
-            <div className="lg:col-span-2">
-              <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Company</h3>
-              <ul className="space-y-3">
-                <li>
-                  <a href="mailto:support@nichepop.app" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <Link href="/privacy" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/terms" className="text-sm text-[#8B92B3] hover:text-[#67f745] transition-colors duration-200">
-                    Terms of Service
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-[#1E2650] py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-[#8B92B3] text-center sm:text-left">
-              © {currentYear} NichePop. All rights reserved.
-            </p>
-            
-          </div>
+        <div className="flex flex-col gap-2 border-t border-border py-6 text-xs text-muted-foreground sm:flex-row sm:justify-between">
+          <p>{f.rights(currentYear)}</p>
+          <p>{f.builtFor}</p>
         </div>
       </div>
     </footer>

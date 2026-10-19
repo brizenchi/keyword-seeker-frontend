@@ -158,65 +158,65 @@ export default function BlogPost() {
 
         <h2>Feature-by-Feature Breakdown</h2>
 
-        <div className="overflow-x-auto my-8 rounded-lg border border-[#2A3150]">
+        <div className="overflow-x-auto my-8 rounded-lg border border-border">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="bg-[#1E2650]">
-                <th className="border border-[#2A3150] p-4 text-left font-semibold text-white">Feature</th>
-                <th className="border border-[#2A3150] p-4 text-center font-semibold text-white">Ahrefs</th>
-                <th className="border border-[#2A3150] p-4 text-center font-semibold text-white">NichePop</th>
+              <tr className="bg-muted">
+                <th className="border border-border p-4 text-left font-semibold text-foreground">Feature</th>
+                <th className="border border-border p-4 text-center font-semibold text-foreground">Ahrefs</th>
+                <th className="border border-border p-4 text-center font-semibold text-foreground">NichePop</th>
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-[#0F1635]/50 hover:bg-[#1E2650]/50 transition-colors">
-                <td className="border border-[#2A3150] p-4 text-[#8B92B3]">Real-time trend data</td>
-                <td className="border border-[#2A3150] p-4 text-center">❌</td>
-                <td className="border border-[#2A3150] p-4 text-center">✅</td>
+              <tr className="bg-card hover:bg-muted transition-colors">
+                <td className="border border-border p-4 text-muted-foreground">Real-time trend data</td>
+                <td className="border border-border p-4 text-center">❌</td>
+                <td className="border border-border p-4 text-center">✅</td>
               </tr>
-              <tr className="bg-[#0F1635]/50 hover:bg-[#1E2650]/50 transition-colors">
-                <td className="border border-[#2A3150] p-4 text-[#8B92B3]">Reddit integration</td>
-                <td className="border border-[#2A3150] p-4 text-center">❌</td>
-                <td className="border border-[#2A3150] p-4 text-center">✅</td>
+              <tr className="bg-card hover:bg-muted transition-colors">
+                <td className="border border-border p-4 text-muted-foreground">Reddit integration</td>
+                <td className="border border-border p-4 text-center">❌</td>
+                <td className="border border-border p-4 text-center">✅</td>
               </tr>
-              <tr className="bg-[#0F1635]/50 hover:bg-[#1E2650]/50 transition-colors">
-                <td className="border border-[#2A3150] p-4 text-[#8B92B3]">Backlink analysis</td>
-                <td className="border border-[#2A3150] p-4 text-center text-[#8B92B3]">✅ Extensive</td>
-                <td className="border border-[#2A3150] p-4 text-center text-[#8B92B3]">Basic</td>
+              <tr className="bg-card hover:bg-muted transition-colors">
+                <td className="border border-border p-4 text-muted-foreground">Backlink analysis</td>
+                <td className="border border-border p-4 text-center text-muted-foreground">✅ Extensive</td>
+                <td className="border border-border p-4 text-center text-muted-foreground">Basic</td>
               </tr>
-              <tr className="bg-[#0F1635]/50 hover:bg-[#1E2650]/50 transition-colors">
-                <td className="border border-[#2A3150] p-4 text-[#8B92B3]">Profit estimation</td>
-                <td className="border border-[#2A3150] p-4 text-center text-[#8B92B3]">Limited</td>
-                <td className="border border-[#2A3150] p-4 text-center text-[#8B92B3]">✅ Advanced</td>
+              <tr className="bg-card hover:bg-muted transition-colors">
+                <td className="border border-border p-4 text-muted-foreground">Profit estimation</td>
+                <td className="border border-border p-4 text-center text-muted-foreground">Limited</td>
+                <td className="border border-border p-4 text-center text-muted-foreground">✅ Advanced</td>
               </tr>
-              <tr className="bg-[#0F1635]/50 hover:bg-[#1E2650]/50 transition-colors">
-                <td className="border border-[#2A3150] p-4 text-[#8B92B3]">Opportunity scoring</td>
-                <td className="border border-[#2A3150] p-4 text-center">❌</td>
-                <td className="border border-[#2A3150] p-4 text-center">✅</td>
+              <tr className="bg-card hover:bg-muted transition-colors">
+                <td className="border border-border p-4 text-muted-foreground">Opportunity scoring</td>
+                <td className="border border-border p-4 text-center">❌</td>
+                <td className="border border-border p-4 text-center">✅</td>
               </tr>
-              <tr className="bg-[#0F1635]/50 hover:bg-[#1E2650]/50 transition-colors">
-                <td className="border border-[#2A3150] p-4 text-[#8B92B3]">Site audit</td>
-                <td className="border border-[#2A3150] p-4 text-center">✅</td>
-                <td className="border border-[#2A3150] p-4 text-center">❌</td>
+              <tr className="bg-card hover:bg-muted transition-colors">
+                <td className="border border-border p-4 text-muted-foreground">Site audit</td>
+                <td className="border border-border p-4 text-center">✅</td>
+                <td className="border border-border p-4 text-center">❌</td>
               </tr>
-              <tr className="bg-[#0F1635]/50 hover:bg-[#1E2650]/50 transition-colors">
-                <td className="border border-[#2A3150] p-4 text-[#8B92B3]">Content explorer</td>
-                <td className="border border-[#2A3150] p-4 text-center">✅</td>
-                <td className="border border-[#2A3150] p-4 text-center">❌</td>
+              <tr className="bg-card hover:bg-muted transition-colors">
+                <td className="border border-border p-4 text-muted-foreground">Content explorer</td>
+                <td className="border border-border p-4 text-center">✅</td>
+                <td className="border border-border p-4 text-center">❌</td>
               </tr>
-              <tr className="bg-[#0F1635]/50 hover:bg-[#1E2650]/50 transition-colors">
-                <td className="border border-[#2A3150] p-4 text-[#8B92B3]">Rank tracking</td>
-                <td className="border border-[#2A3150] p-4 text-center">✅</td>
-                <td className="border border-[#2A3150] p-4 text-center">❌</td>
+              <tr className="bg-card hover:bg-muted transition-colors">
+                <td className="border border-border p-4 text-muted-foreground">Rank tracking</td>
+                <td className="border border-border p-4 text-center">✅</td>
+                <td className="border border-border p-4 text-center">❌</td>
               </tr>
-              <tr className="bg-[#0F1635]/50 hover:bg-[#1E2650]/50 transition-colors">
-                <td className="border border-[#2A3150] p-4 text-[#8B92B3]">Entry price/month</td>
-                <td className="border border-[#2A3150] p-4 text-center text-[#8B92B3]">$129</td>
-                <td className="border border-[#2A3150] p-4 text-center text-[#8B92B3]">$0 (Free tier)</td>
+              <tr className="bg-card hover:bg-muted transition-colors">
+                <td className="border border-border p-4 text-muted-foreground">Entry price/month</td>
+                <td className="border border-border p-4 text-center text-muted-foreground">$129</td>
+                <td className="border border-border p-4 text-center text-muted-foreground">$0 (Free tier)</td>
               </tr>
-              <tr className="bg-[#0F1635]/50 hover:bg-[#1E2650]/50 transition-colors">
-                <td className="border border-[#2A3150] p-4 text-[#8B92B3]">Free trial</td>
-                <td className="border border-[#2A3150] p-4 text-center text-[#8B92B3]">$7 for 7 days</td>
-                <td className="border border-[#2A3150] p-4 text-center text-[#8B92B3]">✅ Free forever</td>
+              <tr className="bg-card hover:bg-muted transition-colors">
+                <td className="border border-border p-4 text-muted-foreground">Free trial</td>
+                <td className="border border-border p-4 text-center text-muted-foreground">$7 for 7 days</td>
+                <td className="border border-border p-4 text-center text-muted-foreground">✅ Free forever</td>
               </tr>
             </tbody>
           </table>
@@ -273,7 +273,7 @@ export default function BlogPost() {
         </p>
         <div className="my-8">
           <Link href="/dashboard">
-            <Button size="lg" className="bg-[#39FF14] hover:bg-[#39FF14] text-[#0A0E27] font-bold text-lg px-10 py-6 rounded-xl hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] hover:-translate-y-0.5 transition-all duration-200">
+            <Button size="lg" className="bg-primary hover:bg-primary text-primary-foreground font-bold text-lg px-10 py-6 rounded-xl hover:-translate-y-0.5 transition-all duration-200">
               Start Free Trial
             </Button>
           </Link>

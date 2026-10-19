@@ -372,30 +372,32 @@ export default function BlogPost() {
           Here's why opportunity scores beat analyzing metrics separately:
         </p>
 
-        <table className="w-full my-6 text-sm border border-[#1E2650]">
-          <thead className="bg-[#0F1635]">
+        <div className="overflow-x-auto">
+        <table className="w-full my-6 text-sm border border-border">
+          <thead className="bg-card">
             <tr>
-              <th className="p-3 text-left text-white">Approach</th>
-              <th className="p-3 text-left text-white">Time to Analyze</th>
-              <th className="p-3 text-left text-white">Accuracy</th>
-              <th className="p-3 text-left text-white">Actionability</th>
+              <th className="p-3 text-left text-foreground">Approach</th>
+              <th className="p-3 text-left text-foreground">Time to Analyze</th>
+              <th className="p-3 text-left text-foreground">Accuracy</th>
+              <th className="p-3 text-left text-foreground">Actionability</th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-t border-[#1E2650]">
-              <td className="p-3 text-white">Manual Analysis</td>
-              <td className="p-3 text-[#8B92B3]">10-15 min per keyword</td>
-              <td className="p-3 text-[#8B92B3]">Depends on experience</td>
-              <td className="p-3 text-[#8B92B3]">Requires interpretation</td>
+            <tr className="border-t border-border">
+              <td className="p-3 text-foreground">Manual Analysis</td>
+              <td className="p-3 text-muted-foreground">10-15 min per keyword</td>
+              <td className="p-3 text-muted-foreground">Depends on experience</td>
+              <td className="p-3 text-muted-foreground">Requires interpretation</td>
             </tr>
-            <tr className="border-t border-[#1E2650]">
-              <td className="p-3 text-white">Opportunity Score</td>
-              <td className="p-3 text-[#8B92B3]">Instant</td>
-              <td className="p-3 text-[#8B92B3]">Consistent algorithm</td>
-              <td className="p-3 text-[#8B92B3]">Clear priority ranking</td>
+            <tr className="border-t border-border">
+              <td className="p-3 text-foreground">Opportunity Score</td>
+              <td className="p-3 text-muted-foreground">Instant</td>
+              <td className="p-3 text-muted-foreground">Consistent algorithm</td>
+              <td className="p-3 text-muted-foreground">Clear priority ranking</td>
             </tr>
           </tbody>
         </table>
+        </div>
 
         <h2>Frequently Asked Questions</h2>
 

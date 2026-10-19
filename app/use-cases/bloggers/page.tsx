@@ -106,7 +106,7 @@ const keywordExamples = [
 
 export default function BloggersUseCasePage() {
   return (
-    <div className="min-h-screen bg-[#0A0E27]">
+    <div className="min-h-screen bg-background">
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },
@@ -130,20 +130,20 @@ export default function BloggersUseCasePage() {
 
           {/* Header */}
           <div className="text-center space-y-6 mb-16">
-            <Badge className="bg-[#0F1635] text-[#0080FF] border-[#1E2650] px-4 py-1.5 backdrop-blur-sm">
+            <Badge className="bg-card text-primary border-border px-4 py-1.5 backdrop-blur-sm">
               For Bloggers
             </Badge>
 
-            <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground">
               Low Competition Keywords for Bloggers (With Examples)
             </h1>
 
-            <p className="text-lg sm:text-xl text-[#8B92B3] max-w-2xl mx-auto leading-relaxed font-light">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-light">
               Stop guessing what to write about. Use real keyword examples, trend data, and competition metrics to publish blog posts with a faster path to rankings.
             </p>
 
             <Link href="/pricing">
-              <Button size="lg" className="bg-[#39FF14] hover:bg-[#39FF14] text-[#0A0E27] font-bold text-base px-8 py-5 rounded-xl hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] hover:-translate-y-0.5 transition-all duration-200">
+              <Button size="lg" className="bg-primary hover:bg-primary text-primary-foreground font-bold text-base px-8 py-5 rounded-xl hover:-translate-y-0.5 transition-all duration-200">
                 Start Finding Topics
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -152,24 +152,24 @@ export default function BloggersUseCasePage() {
 
           {/* Low Competition Keyword Examples */}
           <div className="mb-16">
-            <h2 className="text-3xl font-black tracking-tight mb-4 text-center text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-semibold tracking-tight mb-4 text-center text-foreground">
               Low Competition Keyword Examples for Bloggers
             </h2>
-            <p className="text-center text-[#8B92B3] mb-8 max-w-3xl mx-auto">
+            <p className="text-center text-muted-foreground mb-8 max-w-3xl mx-auto">
               These are sample keyword patterns with realistic search and difficulty ranges. Use them as templates to find your own low competition opportunities.
             </p>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {keywordExamples.map((example) => (
-                <Card key={example.keyword} className="border-[#1E2650] bg-[#0F1635]/70 backdrop-blur-sm">
+                <Card key={example.keyword} className="border-border bg-card backdrop-blur-sm">
                   <CardHeader className="space-y-3">
-                    <CardTitle className="text-base text-white leading-relaxed" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                    <CardTitle className="text-base text-foreground leading-relaxed">
                       {example.keyword}
                     </CardTitle>
                     <div className="flex flex-wrap gap-2">
-                      <Badge className="bg-[#0F1635] text-[#39FF14] border-[#1E2650]">{example.searchVolume}</Badge>
-                      <Badge className="bg-[#0F1635] text-[#0080FF] border-[#1E2650]">KD {example.difficulty}</Badge>
-                      <Badge className="bg-[#0F1635] text-white border-[#1E2650]">{example.intent}</Badge>
+                      <Badge className="bg-card text-success border-border">{example.searchVolume}</Badge>
+                      <Badge className="bg-card text-primary border-border">KD {example.difficulty}</Badge>
+                      <Badge className="bg-card text-foreground border-border">{example.intent}</Badge>
                     </div>
                   </CardHeader>
                 </Card>
@@ -178,15 +178,15 @@ export default function BloggersUseCasePage() {
           </div>
 
           {/* The Problem */}
-          <Card className="mb-16 border-2 border-red-500/50 bg-red-950/30 backdrop-blur-sm">
+          <Card className="mb-16 border border-red-200 bg-danger-soft">
             <CardHeader>
-              <CardTitle className="text-2xl text-white font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>The Blogger's Dilemma</CardTitle>
+              <CardTitle className="text-2xl text-foreground font-bold">The Blogger's Dilemma</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-[#8B92B3]">
+              <p className="text-muted-foreground">
                 You spend hours researching and writing a blog post, publish it with excitement, and then... crickets. No traffic, no engagement, no results.
               </p>
-              <p className="text-[#8B92B3]">
+              <p className="text-muted-foreground">
                 Why? Because you're competing for keywords that are either too competitive or not being searched for at all.
               </p>
             </CardContent>
@@ -194,54 +194,54 @@ export default function BloggersUseCasePage() {
 
           {/* The Solution */}
           <div className="mb-16">
-            <h2 className="text-3xl font-black tracking-tight mb-8 text-center text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-semibold tracking-tight mb-8 text-center text-foreground">
               How NichePop Helps Bloggers Succeed
             </h2>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              <Card className="border-[#1E2650] hover:border-[#0080FF] transition-all duration-300 hover:shadow-xl hover:shadow-[#0080FF]/20 bg-[#0F1635]/80 backdrop-blur-sm">
+              <Card className="border-border hover:border-primary/40 transition-all duration-300 hover:shadow-xl bg-card backdrop-blur-sm">
                 <CardHeader>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 mb-4 shadow-lg shadow-blue-500/50">
-                    <TrendingUp className="h-6 w-6 text-white" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-soft mb-4">
+                    <TrendingUp className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle className="text-lg text-white font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Find Trending Topics</CardTitle>
-                  <CardDescription className="text-[#8B92B3]">
+                  <CardTitle className="text-lg text-foreground font-bold">Find Trending Topics</CardTitle>
+                  <CardDescription className="text-muted-foreground">
                     Discover what people are talking about right now on Reddit, Google Trends, and more
                   </CardDescription>
                 </CardHeader>
               </Card>
 
-              <Card className="border-[#1E2650] hover:border-[#39FF14] transition-all duration-300 hover:shadow-xl hover:shadow-[#39FF14]/20 bg-[#0F1635]/80 backdrop-blur-sm">
+              <Card className="border-border hover:border-success/30 transition-all duration-300 hover:shadow-xl bg-card backdrop-blur-sm">
                 <CardHeader>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 mb-4 shadow-lg shadow-green-500/50">
-                    <Target className="h-6 w-6 text-white" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-soft mb-4">
+                    <Target className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle className="text-lg text-white font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Low Competition</CardTitle>
-                  <CardDescription className="text-[#8B92B3]">
+                  <CardTitle className="text-lg text-foreground font-bold">Low Competition</CardTitle>
+                  <CardDescription className="text-muted-foreground">
                     Identify keywords with high search volume but low competition that you can actually rank for
                   </CardDescription>
                 </CardHeader>
               </Card>
 
-              <Card className="border-[#1E2650] hover:border-[#0080FF] transition-all duration-300 hover:shadow-xl hover:shadow-[#0080FF]/20 bg-[#0F1635]/80 backdrop-blur-sm">
+              <Card className="border-border hover:border-primary/40 transition-all duration-300 hover:shadow-xl bg-card backdrop-blur-sm">
                 <CardHeader>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 mb-4 shadow-lg shadow-purple-500/50">
-                    <FileText className="h-6 w-6 text-white" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-soft mb-4">
+                    <FileText className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle className="text-lg text-white font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Content Ideas</CardTitle>
-                  <CardDescription className="text-[#8B92B3]">
+                  <CardTitle className="text-lg text-foreground font-bold">Content Ideas</CardTitle>
+                  <CardDescription className="text-muted-foreground">
                     Never run out of blog post ideas with our real-time trending keyword discovery
                   </CardDescription>
                 </CardHeader>
               </Card>
 
-              <Card className="border-[#1E2650] hover:border-[#39FF14] transition-all duration-300 hover:shadow-xl hover:shadow-[#39FF14]/20 bg-[#0F1635]/80 backdrop-blur-sm">
+              <Card className="border-border hover:border-success/30 transition-all duration-300 hover:shadow-xl bg-card backdrop-blur-sm">
                 <CardHeader>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-red-500 mb-4 shadow-lg shadow-orange-500/50">
-                    <Zap className="h-6 w-6 text-white" />
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-soft mb-4">
+                    <Zap className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle className="text-lg text-white font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Quick Analysis</CardTitle>
-                  <CardDescription className="text-[#8B92B3]">
+                  <CardTitle className="text-lg text-foreground font-bold">Quick Analysis</CardTitle>
+                  <CardDescription className="text-muted-foreground">
                     Get instant opportunity scores to know which topics to prioritize for maximum impact
                   </CardDescription>
                 </CardHeader>
@@ -251,62 +251,62 @@ export default function BloggersUseCasePage() {
 
           {/* Real Blogger Workflow */}
           <div className="mb-16">
-            <h2 className="text-3xl font-black tracking-tight mb-8 text-center text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-semibold tracking-tight mb-8 text-center text-foreground">
               Your New Content Creation Workflow
             </h2>
 
             <div className="space-y-6">
-              <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+              <Card className="border-border bg-card backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-white font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0080FF] text-white text-sm font-bold">1</span>
+                  <CardTitle className="flex items-center gap-3 text-foreground font-bold">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white text-sm font-bold">1</span>
                     Discover Trending Topics
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-[#8B92B3]">
+                  <p className="text-muted-foreground">
                     Browse the live feed to see what's trending in your niche right now. Find discussions happening on Reddit, emerging searches on Google Trends, and popular topics across multiple platforms.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+              <Card className="border-border bg-card backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-white font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0080FF] text-white text-sm font-bold">2</span>
+                  <CardTitle className="flex items-center gap-3 text-foreground font-bold">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white text-sm font-bold">2</span>
                     Analyze Competition
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-[#8B92B3]">
+                  <p className="text-muted-foreground">
                     Check the competition level for each keyword. Focus on opportunities with high search volume but low to medium competition where you have a realistic chance to rank.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+              <Card className="border-border bg-card backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-white font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0080FF] text-white text-sm font-bold">3</span>
+                  <CardTitle className="flex items-center gap-3 text-foreground font-bold">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white text-sm font-bold">3</span>
                     Estimate Traffic Potential
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-[#8B92B3]">
+                  <p className="text-muted-foreground">
                     Use our profit estimation and opportunity scoring to understand the potential impact of ranking for a keyword. Prioritize high-opportunity topics.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+              <Card className="border-border bg-card backdrop-blur-sm">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-white font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0080FF] text-white text-sm font-bold">4</span>
+                  <CardTitle className="flex items-center gap-3 text-foreground font-bold">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white text-sm font-bold">4</span>
                     Create Targeted Content
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-[#8B92B3]">
+                  <p className="text-muted-foreground">
                     Write your blog post targeting the keyword, knowing you've chosen a topic with real search demand and winnable competition.
                   </p>
                 </CardContent>
@@ -316,20 +316,20 @@ export default function BloggersUseCasePage() {
 
           {/* Metrics Explanation */}
           <div className="mb-16">
-            <h2 className="text-3xl font-black tracking-tight mb-8 text-center text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-semibold tracking-tight mb-8 text-center text-foreground">
               Key Metrics for Blogger Success
             </h2>
 
             <div className="grid gap-6 md:grid-cols-2">
-              <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm hover:border-[#0080FF] transition-all">
+              <Card className="border-border bg-card backdrop-blur-sm hover:border-primary/40 transition-all">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex-shrink-0">
-                      <Search className="h-6 w-6 text-white" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-soft flex-shrink-0">
+                      <Search className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg text-white mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Search Volume</CardTitle>
-                      <CardDescription className="text-[#8B92B3]">
+                      <CardTitle className="text-lg text-foreground mb-2">Search Volume</CardTitle>
+                      <CardDescription className="text-muted-foreground">
                         The number of monthly searches for a keyword. For bloggers, target 500-5,000 searches/month—enough traffic to make an impact without overwhelming competition.
                       </CardDescription>
                     </div>
@@ -337,15 +337,15 @@ export default function BloggersUseCasePage() {
                 </CardHeader>
               </Card>
 
-              <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm hover:border-[#39FF14] transition-all">
+              <Card className="border-border bg-card backdrop-blur-sm hover:border-success/30 transition-all">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex-shrink-0">
-                      <Target className="h-6 w-6 text-white" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-soft flex-shrink-0">
+                      <Target className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg text-white mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Keyword Difficulty</CardTitle>
-                      <CardDescription className="text-[#8B92B3]">
+                      <CardTitle className="text-lg text-foreground mb-2">Keyword Difficulty</CardTitle>
+                      <CardDescription className="text-muted-foreground">
                         Competition level (0-100). Look for keywords under 30 for quick wins. Under 20 means you can often rank within 2-4 weeks with quality content.
                       </CardDescription>
                     </div>
@@ -353,15 +353,15 @@ export default function BloggersUseCasePage() {
                 </CardHeader>
               </Card>
 
-              <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm hover:border-[#0080FF] transition-all">
+              <Card className="border-border bg-card backdrop-blur-sm hover:border-primary/40 transition-all">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex-shrink-0">
-                      <TrendingUp className="h-6 w-6 text-white" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-soft flex-shrink-0">
+                      <TrendingUp className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg text-white mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Trend Velocity</CardTitle>
-                      <CardDescription className="text-[#8B92B3]">
+                      <CardTitle className="text-lg text-foreground mb-2">Trend Velocity</CardTitle>
+                      <CardDescription className="text-muted-foreground">
                         How quickly a keyword is gaining popularity. Rising trends indicate growing interest—perfect timing to create content before it becomes competitive.
                       </CardDescription>
                     </div>
@@ -369,15 +369,15 @@ export default function BloggersUseCasePage() {
                 </CardHeader>
               </Card>
 
-              <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm hover:border-[#39FF14] transition-all">
+              <Card className="border-border bg-card backdrop-blur-sm hover:border-success/30 transition-all">
                 <CardHeader>
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex-shrink-0">
-                      <DollarSign className="h-6 w-6 text-white" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-soft flex-shrink-0">
+                      <DollarSign className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg text-white mb-2" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>CPC Value</CardTitle>
-                      <CardDescription className="text-[#8B92B3]">
+                      <CardTitle className="text-lg text-foreground mb-2">CPC Value</CardTitle>
+                      <CardDescription className="text-muted-foreground">
                         Cost-per-click in advertising. Higher CPC ($2+) indicates commercial intent and potential for affiliate monetization or ad revenue.
                       </CardDescription>
                     </div>
@@ -389,25 +389,25 @@ export default function BloggersUseCasePage() {
 
           {/* Content Strategy Section */}
           <div className="mb-16">
-            <h2 className="text-3xl font-black tracking-tight mb-8 text-center text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-semibold tracking-tight mb-8 text-center text-foreground">
               Proven Blog Content Strategies
             </h2>
 
             <div className="grid gap-8 md:grid-cols-3 mb-8">
-              <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+              <Card className="border-border bg-card backdrop-blur-sm">
                 <CardHeader>
-                  <Badge className="bg-[#0F1635] text-[#0080FF] border-[#1E2650] w-fit mb-3">Strategy 1</Badge>
-                  <CardTitle className="text-xl text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                  <Badge className="bg-card text-primary border-border w-fit mb-3">Strategy 1</Badge>
+                  <CardTitle className="text-xl text-foreground">
                     The Quick Win Approach
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <p className="text-[#8B92B3]">
+                  <p className="text-muted-foreground">
                     Target ultra-specific long-tail keywords with 100-500 monthly searches and difficulty under 15.
                   </p>
                   <div className="space-y-2">
-                    <p className="text-sm text-white font-semibold">Best for:</p>
-                    <ul className="text-sm text-[#8B92B3] space-y-1 ml-4">
+                    <p className="text-sm text-foreground font-semibold">Best for:</p>
+                    <ul className="text-sm text-muted-foreground space-y-1 ml-4">
                       <li>• New blogs building initial traffic</li>
                       <li>• Quick content wins (1-2 weeks to rank)</li>
                       <li>• Building topical authority</li>
@@ -416,20 +416,20 @@ export default function BloggersUseCasePage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+              <Card className="border-border bg-card backdrop-blur-sm">
                 <CardHeader>
-                  <Badge className="bg-[#0F1635] text-[#39FF14] border-[#1E2650] w-fit mb-3">Strategy 2</Badge>
-                  <CardTitle className="text-xl text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                  <Badge className="bg-card text-success border-border w-fit mb-3">Strategy 2</Badge>
+                  <CardTitle className="text-xl text-foreground">
                     The Growth Strategy
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <p className="text-[#8B92B3]">
+                  <p className="text-muted-foreground">
                     Balance keywords: 70% low-competition (KD &lt; 20), 30% medium-competition (KD 20-40).
                   </p>
                   <div className="space-y-2">
-                    <p className="text-sm text-white font-semibold">Best for:</p>
-                    <ul className="text-sm text-[#8B92B3] space-y-1 ml-4">
+                    <p className="text-sm text-foreground font-semibold">Best for:</p>
+                    <ul className="text-sm text-muted-foreground space-y-1 ml-4">
                       <li>• Blogs with 6+ months of content</li>
                       <li>• Steady traffic growth</li>
                       <li>• Building domain authority</li>
@@ -438,20 +438,20 @@ export default function BloggersUseCasePage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-[#1E2650] bg-[#0F1635]/80 backdrop-blur-sm">
+              <Card className="border-border bg-card backdrop-blur-sm">
                 <CardHeader>
-                  <Badge className="bg-[#0F1635] text-[#0080FF] border-[#1E2650] w-fit mb-3">Strategy 3</Badge>
-                  <CardTitle className="text-xl text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                  <Badge className="bg-card text-primary border-border w-fit mb-3">Strategy 3</Badge>
+                  <CardTitle className="text-xl text-foreground">
                     The Authority Play
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <p className="text-[#8B92B3]">
+                  <p className="text-muted-foreground">
                     Create comprehensive pillar content for medium-competition keywords (KD 30-50) with 2,000+ words.
                   </p>
                   <div className="space-y-2">
-                    <p className="text-sm text-white font-semibold">Best for:</p>
-                    <ul className="text-sm text-[#8B92B3] space-y-1 ml-4">
+                    <p className="text-sm text-foreground font-semibold">Best for:</p>
+                    <ul className="text-sm text-muted-foreground space-y-1 ml-4">
                       <li>• Established blogs with authority</li>
                       <li>• Long-term traffic goals</li>
                       <li>• High-value conversions</li>
@@ -461,15 +461,15 @@ export default function BloggersUseCasePage() {
               </Card>
             </div>
 
-            <Card className="border-[#1E2650] bg-[#0F1635]/50 backdrop-blur-sm">
+            <Card className="border-border bg-card backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#39FF14]/20 flex-shrink-0">
-                    <Zap className="h-5 w-5 text-[#39FF14]" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-success-soft flex-shrink-0">
+                    <Zap className="h-5 w-5 text-success" />
                   </div>
                   <div>
-                    <p className="text-white font-semibold mb-2">Pro Tip: The Content Cluster Method</p>
-                    <p className="text-[#8B92B3] text-sm">
+                    <p className="text-foreground font-semibold mb-2">Pro Tip: The Content Cluster Method</p>
+                    <p className="text-muted-foreground text-sm">
                       Instead of isolated articles, create topic clusters: 1 comprehensive pillar post (2,000+ words) linking to 5-8 supporting articles (800-1,200 words each). This signals topical authority to Google and dramatically improves rankings across all cluster keywords.
                     </p>
                   </div>
@@ -479,88 +479,88 @@ export default function BloggersUseCasePage() {
           </div>
 
           {/* Case Study */}
-          <Card className="mb-16 border-2 border-green-500/50 bg-gradient-to-br from-green-950/30 to-emerald-950/30 backdrop-blur-sm">
+          <Card className="mb-16 border border-green-200 bg-success-soft">
             <CardHeader>
-              <CardTitle className="text-2xl text-white font-bold" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>Real Example: Tech Blog Success</CardTitle>
+              <CardTitle className="text-2xl text-foreground font-bold">Real Example: Tech Blog Success</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-[#8B92B3]">
-                <strong className="text-white">Challenge:</strong> Sarah runs a tech blog but struggled to compete with major tech sites for popular keywords like "best laptop 2026."
+              <p className="text-muted-foreground">
+                <strong className="text-foreground">Challenge:</strong> Sarah runs a tech blog but struggled to compete with major tech sites for popular keywords like "best laptop 2026."
               </p>
-              <p className="text-[#8B92B3]">
-                <strong className="text-white">Solution:</strong> Using NichePop, she discovered emerging discussions on Reddit about "best laptop for digital nomads with long battery life"—a specific niche with 2,400 monthly searches and low competition.
+              <p className="text-muted-foreground">
+                <strong className="text-foreground">Solution:</strong> Using NichePop, she discovered emerging discussions on Reddit about "best laptop for digital nomads with long battery life"—a specific niche with 2,400 monthly searches and low competition.
               </p>
-              <p className="text-[#8B92B3]">
-                <strong className="text-white">Results:</strong> Her blog post ranked #3 within 2 weeks, driving 800+ visitors per month and generating $400 in affiliate commissions monthly.
+              <p className="text-muted-foreground">
+                <strong className="text-foreground">Results:</strong> Her blog post ranked #3 within 2 weeks, driving 800+ visitors per month and generating $400 in affiliate commissions monthly.
               </p>
             </CardContent>
           </Card>
 
           {/* Benefits List */}
           <div className="mb-16">
-            <h2 className="text-3xl font-black tracking-tight mb-8 text-center text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-semibold tracking-tight mb-8 text-center text-foreground">
               Why Bloggers Love NichePop
             </h2>
 
             <div className="grid gap-6 md:grid-cols-2">
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <Check className="h-6 w-6 text-[#39FF14] flex-shrink-0 mt-0.5" />
+                  <Check className="h-6 w-6 text-success flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-white">Find Untapped Niches</p>
-                    <p className="text-sm text-[#8B92B3]">Discover sub-niches your competitors haven't found yet</p>
+                    <p className="font-semibold text-foreground">Find Untapped Niches</p>
+                    <p className="text-sm text-muted-foreground">Discover sub-niches your competitors haven't found yet</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="h-6 w-6 text-[#39FF14] flex-shrink-0 mt-0.5" />
+                  <Check className="h-6 w-6 text-success flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-white">Real-Time Opportunities</p>
-                    <p className="text-sm text-[#8B92B3]">Catch trending topics early before they become saturated</p>
+                    <p className="font-semibold text-foreground">Real-Time Opportunities</p>
+                    <p className="text-sm text-muted-foreground">Catch trending topics early before they become saturated</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="h-6 w-6 text-[#39FF14] flex-shrink-0 mt-0.5" />
+                  <Check className="h-6 w-6 text-success flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-white">Save Research Time</p>
-                    <p className="text-sm text-[#8B92B3]">Find winning topics in minutes instead of hours</p>
+                    <p className="font-semibold text-foreground">Save Research Time</p>
+                    <p className="text-sm text-muted-foreground">Find winning topics in minutes instead of hours</p>
                   </div>
                 </li>
               </ul>
 
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <Check className="h-6 w-6 text-[#39FF14] flex-shrink-0 mt-0.5" />
+                  <Check className="h-6 w-6 text-success flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-white">Affordable Pricing</p>
-                    <p className="text-sm text-[#8B92B3]">At $19/month, it's accessible for bloggers at any stage</p>
+                    <p className="font-semibold text-foreground">Affordable Pricing</p>
+                    <p className="text-sm text-muted-foreground">At $19/month, it's accessible for bloggers at any stage</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="h-6 w-6 text-[#39FF14] flex-shrink-0 mt-0.5" />
+                  <Check className="h-6 w-6 text-success flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-white">Content Calendar Ideas</p>
-                    <p className="text-sm text-[#8B92B3]">Build a 3-month content calendar in one sitting</p>
+                    <p className="font-semibold text-foreground">Content Calendar Ideas</p>
+                    <p className="text-sm text-muted-foreground">Build a 3-month content calendar in one sitting</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <Check className="h-6 w-6 text-[#39FF14] flex-shrink-0 mt-0.5" />
+                  <Check className="h-6 w-6 text-success flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-semibold text-white">No Learning Curve</p>
-                    <p className="text-sm text-[#8B92B3]">Intuitive interface designed for content creators</p>
+                    <p className="font-semibold text-foreground">No Learning Curve</p>
+                    <p className="text-sm text-muted-foreground">Intuitive interface designed for content creators</p>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
 
-          <Separator className="my-12 bg-[#1E2650]" />
+          <Separator className="my-12 bg-muted" />
 
           {/* Common Blogger Questions */}
           <div className="mb-16">
-            <h2 className="text-3xl font-black tracking-tight mb-4 text-center text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <h2 className="text-3xl font-semibold tracking-tight mb-4 text-center text-foreground">
               Frequently Asked Questions
             </h2>
-            <p className="text-center text-[#8B92B3] mb-8 max-w-2xl mx-auto">
+            <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
               Everything you need to know about using keyword research to grow your blog
             </p>
 
@@ -569,12 +569,12 @@ export default function BloggersUseCasePage() {
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="border border-[#1E2650] rounded-lg px-6 bg-[#0F1635]/50 backdrop-blur-sm"
+                  className="border border-border rounded-lg px-6 bg-card backdrop-blur-sm"
                 >
-                  <AccordionTrigger className="text-left text-white hover:text-[#0080FF] transition-colors">
+                  <AccordionTrigger className="text-left text-foreground hover:text-primary transition-colors">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-[#8B92B3] pt-4">
+                  <AccordionContent className="text-muted-foreground pt-4">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -587,24 +587,24 @@ export default function BloggersUseCasePage() {
             <RelatedArticles articles={relatedArticles} />
           </div>
 
-          <Separator className="my-12 bg-[#1E2650]" />
+          <Separator className="my-12 bg-muted" />
 
           {/* Final CTA */}
-          <Card className="border-2 border-[#0080FF]/30 bg-[#0F1635]/80 backdrop-blur-xl shadow-2xl shadow-[#0080FF]/20">
+          <Card className="border-2 border-primary/40 bg-card backdrop-blur-xl shadow-2xl">
             <CardContent className="p-12 text-center space-y-6">
-              <h2 className="text-3xl font-black tracking-tight text-white" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground">
                 Start Growing Your Blog Today
               </h2>
-              <p className="text-lg text-[#8B92B3] max-w-2xl mx-auto font-light">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
                 Join thousands of bloggers who use NichePop to find winning topics and grow their traffic
               </p>
               <Link href="/dashboard">
-                <Button size="lg" className="bg-[#39FF14] hover:bg-[#39FF14] text-[#0A0E27] font-bold text-lg px-10 py-6 rounded-xl hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] hover:-translate-y-0.5 transition-all duration-200">
+                <Button size="lg" className="bg-primary hover:bg-primary text-primary-foreground font-bold text-lg px-10 py-6 rounded-xl hover:-translate-y-0.5 transition-all duration-200">
                   Start Free Trial
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <p className="text-sm text-[#8B92B3] mt-4">
+              <p className="text-sm text-muted-foreground mt-4">
                 Free forever • No credit card required • 1 searches per day
               </p>
             </CardContent>
