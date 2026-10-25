@@ -31,7 +31,7 @@ export function OrganizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'NichePop',
-    description: 'Discover trending keyword opportunities with real-time data from Reddit, Google Trends & more.',
+    description: 'Spot trends early, judge them with an AI analyst, and monitor products and markets.',
     url: siteOrigin,
     logo: `${siteOrigin}/icon.svg`,
     sameAs: [

@@ -44,7 +44,7 @@ export const REPORT_PLANS: Record<ReportKind, ReportPlan> = {
       { tool: 'ai', calls: 1, points: 1 },
       { tool: 'dfs_keywords', calls: 2, points: 1 },
       { tool: 'dfs_serp', calls: 3, points: 1 },
-      { tool: 'x', calls: 2, points: 2 },
+      { tool: 'community', calls: 3, points: 2 },
       { tool: 'ai', calls: 1, points: 2 },
     ],
   },
@@ -54,7 +54,7 @@ export const REPORT_PLANS: Record<ReportKind, ReportPlan> = {
     steps: [
       { tool: 'gsc', calls: 2, points: 0 },
       { tool: 'dfs_labs', calls: 4, points: 3 },
-      { tool: 'x', calls: 2, points: 2 },
+      { tool: 'community', calls: 3, points: 2 },
       { tool: 'dfs_serp', calls: 2, points: 1 },
       { tool: 'ai', calls: 1, points: 2 },
     ],
@@ -190,7 +190,7 @@ const ideaCopy = {
     headline: 'Real demand, crowded middle. Worth building for one niche the incumbents ignore: freelancers paid in several currencies.',
     demand: [
       { label: 'Search demand', value: '720/mo · +190% in 30d', note: '"receipt scanner ai" is climbing steadily, not spiking.' },
-      { label: 'People asking', value: '~25 posts a week', note: 'Mostly Reddit and X, asking for something cheaper and simpler.' },
+      { label: 'People asking', value: '~25 posts a week', note: 'Mostly X, Bluesky and Indie Hackers, asking for something cheaper and simpler.' },
       { label: 'Willingness to pay', value: 'CPC $4.10', note: 'Advertisers pay well; incumbents charge $9–$15 a month.' },
       { label: 'Competition', value: 'KD 18 · 11 sites', note: 'Three funded products own the generic terms.' },
     ],
@@ -200,8 +200,8 @@ const ideaCopy = {
       { traffic: '~18K visits/mo', pricing: 'free · $6/mo', overlap: 'AI categorizing', note: 'New, growing fast on Product Hunt traffic.' },
     ],
     complaints: [
-      { text: 'Too expensive for one person with 20 receipts a month', source: 'Reddit, X', count: '14 posts' },
-      { text: 'Can’t handle receipts in other currencies', source: 'r/digitalnomad', count: '9 posts' },
+      { text: 'Too expensive for one person with 20 receipts a month', source: 'X, Indie Hackers', count: '14 posts' },
+      { text: 'Can’t handle receipts in other currencies', source: 'Bluesky', count: '9 posts' },
       { text: 'My accountant can’t use the export', source: 'X', count: '6 posts' },
     ],
     monetization: [
@@ -218,7 +218,7 @@ const ideaCopy = {
     headline: '需求是真的，但中间地带很挤。值得做，前提是只做一个老玩家忽略的人群：收入来自多种货币的自由职业者。',
     demand: [
       { label: '搜索需求', value: '月搜 720 · 30 天 +190%', note: '“receipt scanner ai” 在稳定上涨，不是尖峰。' },
-      { label: '有人在问', value: '每周约 25 条帖子', note: '主要在 Reddit 和 X，想要更便宜、更简单的工具。' },
+      { label: '有人在问', value: '每周约 25 条帖子', note: '主要在 X、Bluesky 和 Indie Hackers，想要更便宜、更简单的工具。' },
       { label: '付费意愿', value: 'CPC $4.10', note: '广告主出价不低；老玩家每月收 $9–$15。' },
       { label: '竞争', value: 'KD 18 · 11 个站', note: '三个拿了融资的产品占着通用词。' },
     ],
@@ -228,8 +228,8 @@ const ideaCopy = {
       { traffic: '约 1.8 万访问/月', pricing: '免费 · $6/月', overlap: 'AI 分类', note: '新产品，靠 Product Hunt 的流量涨得很快。' },
     ],
     complaints: [
-      { text: '一个人每月就 20 张收据，太贵了', source: 'Reddit、X', count: '14 条帖子' },
-      { text: '处理不了其他货币的收据', source: 'r/digitalnomad', count: '9 条帖子' },
+      { text: '一个人每月就 20 张收据，太贵了', source: 'X、Indie Hackers', count: '14 条帖子' },
+      { text: '处理不了其他货币的收据', source: 'Bluesky', count: '9 条帖子' },
       { text: '导出的文件会计用不了', source: 'X', count: '6 条帖子' },
     ],
     monetization: [
@@ -265,7 +265,7 @@ function ideaReport(locale: Locale): IdeaReport {
       { tool: 'nichepop', calls: 1 },
       { tool: 'dfs_keywords', calls: 2 },
       { tool: 'dfs_serp', calls: 3 },
-      { tool: 'x', calls: 2 },
+      { tool: 'community', calls: 3 },
       { tool: 'ai', calls: 1 },
     ],
   }
@@ -284,7 +284,7 @@ const competitorCopy = {
       'The incumbent. Dropped out of the top 10 for 9 queries this month; pricing is the most common complaint.',
       'Strongest on SEO: owns the "free uptime monitor" cluster with 40+ comparison pages.',
       'Entered 4 months ago with status-page templates. Growing fastest.',
-      'Cheapest. Small, mostly Product Hunt and Reddit traffic.',
+      'Cheapest. Small, mostly Product Hunt and X traffic.',
     ],
     gapNotes: ['Low competition and exactly your audience.', 'People leaving the incumbent search this.', 'An adjacent feature you already have.', 'Nobody targets it yet.'],
     owners: ['statuskit.dev (#3)', 'uptimely.io (#2)', 'uptimely.io (#4)', 'nobody'],
@@ -304,7 +304,7 @@ const competitorCopy = {
       '老牌玩家。这个月有 9 个词掉出前 10，用户吐槽最多的是价格。',
       'SEO 最强：靠 40 多个对比页占住了 “free uptime monitor” 这一组词。',
       '4 个月前靠状态页模板进场，增长最快。',
-      '最便宜。体量小，流量主要来自 Product Hunt 和 Reddit。',
+      '最便宜。体量小，流量主要来自 Product Hunt 和 X。',
     ],
     gapNotes: ['竞争小，搜的正是你的目标用户。', '想离开老牌产品的人在搜这个。', '你已经有的相邻功能。', '还没人做这个词。'],
     owners: ['statuskit.dev（第 3）', 'uptimely.io（第 2）', 'uptimely.io（第 4）', '还没人做'],
@@ -322,7 +322,7 @@ const discussionCopy = {
     headline: '8 high-intent posts this week. 3 people are actively looking for a cheaper status page.',
     channels: [
       { label: 'X', volume: '~40 relevant posts a day', note: '8 high-intent this week. Checked every hour.' },
-      { label: 'Reddit · r/SaaS, r/selfhosted, r/sideproject', volume: '6 threads this week', note: 'Found through Google search, so 1–3 days behind.' },
+      { label: 'Indie Hackers and forums', volume: '6 threads this week', note: 'Found with a licensed web search when you ask; nothing is stored.' },
       { label: 'Hacker News', volume: '2 threads this week', note: 'Mostly competitor launches.' },
     ],
   },
@@ -331,7 +331,7 @@ const discussionCopy = {
     headline: '这周有 8 条高意图帖子，其中 3 个人正在找更便宜的状态页。',
     channels: [
       { label: 'X', volume: '每天约 40 条相关帖子', note: '这周 8 条高意图。每小时检查一次。' },
-      { label: 'Reddit · r/SaaS、r/selfhosted、r/sideproject', volume: '这周 6 个帖子', note: '通过 Google 搜索找到，会晚 1–3 天。' },
+      { label: 'Indie Hackers 和论坛', volume: '这周 6 个帖子', note: '提问时通过授权的网页搜索找到，不保存。' },
       { label: 'Hacker News', volume: '这周 2 个帖子', note: '大多是竞品发布。' },
     ],
   },
@@ -358,8 +358,8 @@ const productCopy = {
           window: 'Threads go quiet after about a day',
           effort: '~15 min',
           upside: '2 warm leads',
-          signals: ['@mara_ships · 14 replies, no clear answer', 'u/quietstack · 23 comments'],
-          brief: { workingTitle: 'Replies for @mara_ships and u/quietstack', outline: ['Answer the question first', 'Mention pagepulse last and say you made it', 'Skip the link unless asked'] },
+          signals: ['@mara_ships · 14 replies, no clear answer', 'quietstack on Indie Hackers · 23 comments'],
+          brief: { workingTitle: 'Replies for @mara_ships and quietstack (Indie Hackers)', outline: ['Answer the question first', 'Mention pagepulse last and say you made it', 'Skip the link unless asked'] },
         },
 ] as ActionCopy[],
   },
@@ -383,8 +383,8 @@ const productCopy = {
           window: '帖子过一天左右就没人看了',
           effort: '约 15 分钟',
           upside: '2 个潜在客户',
-          signals: ['@mara_ships · 14 条回复，还没有明确答案', 'u/quietstack · 23 条评论'],
-          brief: { workingTitle: '给 @mara_ships 和 u/quietstack 的回复', outline: ['先回答问题', '最后再提 pagepulse，并说明是你做的', '别人没要就先别放链接'] },
+          signals: ['@mara_ships · 14 条回复，还没有明确答案', 'Indie Hackers 上的 quietstack · 23 条评论'],
+          brief: { workingTitle: '给 @mara_ships 和 quietstack（Indie Hackers）的回复', outline: ['先回答问题', '最后再提 pagepulse，并说明是你做的', '别人没要就先别放链接'] },
         },
 ] as ActionCopy[],
   },
@@ -396,7 +396,7 @@ export function getPagepulseActions(locale: Locale) {
     productCopy[locale].actions,
     [
       { id: 'p-alt', type: 'competitor_gap', score: 84, signals: [{ source: 'competitor', value: '' }, { source: 'x', value: '' }, { source: 'keyword', value: '' }] },
-      { id: 'p-reply', type: 'quick_win', score: 79, signals: [{ source: 'x', value: '' }, { source: 'reddit', value: '' }] },
+      { id: 'p-reply', type: 'quick_win', score: 79, signals: [{ source: 'x', value: '' }, { source: 'community', value: '' }] },
     ],
     [
       { targetKeyword: 'pingward alternative', secondaryKeywords: ['cheap status page', 'pingward pricing'] },
@@ -421,7 +421,7 @@ function productReport(locale: Locale): ProductReport {
     { keyword: 'cron job monitoring free', volume: 390, kd: 11 },
     { keyword: 'uptime monitor for indie hackers', volume: 170, kd: 3 },
   ]
-  const channelSources = ['x', 'reddit', 'hn'] as const
+  const channelSources = ['x', 'web', 'hn'] as const
   return {
     id: 'rpt-pagepulse',
     kind: 'product',
@@ -441,7 +441,7 @@ function productReport(locale: Locale): ProductReport {
     sources: [
       { tool: 'gsc', calls: 2 },
       { tool: 'dfs_labs', calls: 4 },
-      { tool: 'x', calls: 2 },
+      { tool: 'community', calls: 3 },
       { tool: 'dfs_serp', calls: 2 },
       { tool: 'ai', calls: 1 },
     ],
@@ -575,7 +575,7 @@ const followUps: Record<Locale, Record<ReportKind, FollowUp[]>> = {
       },
       {
         question: 'Where do I find my first 20 users?',
-        answer: 'r/digitalnomad and r/freelance threads about taxes (9 complaints about currencies this month), plus X replies to people asking for a cheaper receiptly. Offer the export free for the first 20.',
+        answer: 'Indie Hackers and Bluesky threads about taxes (9 complaints about currencies this month), plus X replies to people asking for a cheaper receiptly. Offer the export free for the first 20.',
       },
     ],
     product: [
@@ -585,7 +585,7 @@ const followUps: Record<Locale, Record<ReportKind, FollowUp[]>> = {
       },
       {
         question: 'Which posts should I reply to first?',
-        answer: '@mara_ships (asking for a cheaper status page) and u/quietstack (23 comments, no good answer yet). Both ask for exactly what you sell. Reply within a few hours — threads go quiet after a day.',
+        answer: '@mara_ships (asking for a cheaper status page) and quietstack on Indie Hackers (23 comments, no good answer yet). Both ask for exactly what you sell. Reply within a few hours — threads go quiet after a day.',
       },
       {
         question: 'How do I reply without sounding like an ad?',
@@ -625,7 +625,7 @@ const followUps: Record<Locale, Record<ReportKind, FollowUp[]>> = {
       },
       {
         question: '前 20 个用户去哪找？',
-        answer: 'r/digitalnomad 和 r/freelance 里聊报税的帖子（这个月有 9 条在吐槽货币问题），以及 X 上想找更便宜替代品的人。前 20 个用户的导出功能免费。',
+        answer: 'Indie Hackers 和 Bluesky 上聊报税的帖子（这个月有 9 条在吐槽货币问题），以及 X 上想找更便宜替代品的人。前 20 个用户的导出功能免费。',
       },
     ],
     product: [
@@ -635,7 +635,7 @@ const followUps: Record<Locale, Record<ReportKind, FollowUp[]>> = {
       },
       {
         question: '我应该先回复哪几条？',
-        answer: '@mara_ships（在找更便宜的状态页）和 u/quietstack（23 条评论，还没有好答案）。两个人要的正是你卖的东西。几个小时内回复，帖子过一天就没人看了。',
+        answer: '@mara_ships（在找更便宜的状态页）和 Indie Hackers 上的 quietstack（23 条评论，还没有好答案）。两个人要的正是你卖的东西。几个小时内回复，帖子过一天就没人看了。',
       },
       {
         question: '怎么回复才不像打广告？',

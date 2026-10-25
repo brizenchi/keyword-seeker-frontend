@@ -1,4 +1,5 @@
 "use client"
+/* Hallmark · genre: playful · macrostructure: workbench · design-system: design.md · designed-as-app */
 
 import { Suspense, useEffect, useState, type ReactNode } from "react"
 import Link from "next/link"
@@ -53,8 +54,8 @@ function RecentChats({ onNavigate }: { onNavigate?: () => void }) {
               href={`/ask?c=${c.id}`}
               onClick={onNavigate}
               className={cn(
-                "flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-sm transition-colors",
-                c.id === activeId ? "bg-primary-soft text-primary" : "text-body hover:bg-subtle",
+                "flex items-center gap-2 rounded-full px-3 py-1.5 text-sm transition-colors",
+                c.id === activeId ? "bg-raised font-medium text-foreground ring-1 ring-rule" : "text-body hover:bg-paper-3 hover:text-foreground",
               )}
             >
               <Icon className="h-3.5 w-3.5 shrink-0 opacity-70" />
@@ -82,7 +83,7 @@ function SidebarContent({ onNavigate, onUpgrade }: { onNavigate?: () => void; on
       <div className="flex h-14 shrink-0 items-center gap-2 px-4">
         <BrandMark className="h-7 w-7" />
         <span className="text-[15px] font-semibold tracking-tight text-foreground">NichePop</span>
-        <span className="rounded-md bg-subtle px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground ring-1 ring-border">{t.workspace.name}</span>
+        <span className="rounded-full bg-raised px-2 py-0.5 text-[11px] font-medium text-muted-foreground ring-1 ring-rule">{t.workspace.name}</span>
       </div>
 
       <div className="px-3">
@@ -100,11 +101,13 @@ function SidebarContent({ onNavigate, onUpgrade }: { onNavigate?: () => void; on
                 onClick={onNavigate}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm transition-colors",
-                  active ? "bg-primary-soft font-medium text-primary" : "text-body hover:bg-subtle hover:text-foreground",
+                  "flex items-center gap-2.5 rounded-full py-1.5 pl-1.5 pr-3 text-sm transition-colors",
+                  active ? "bg-raised font-semibold text-foreground ring-1 ring-rule" : "text-body hover:bg-paper-3 hover:text-foreground",
                 )}
               >
-                <item.icon className="h-4 w-4" />
+                <span className={cn("flex h-7 w-7 items-center justify-center rounded-full", active && "bg-pear text-ink")}>
+                  <item.icon className="h-4 w-4" />
+                </span>
                 {item.label}
               </Link>
             )
@@ -113,14 +116,14 @@ function SidebarContent({ onNavigate, onUpgrade }: { onNavigate?: () => void; on
       </div>
 
       <div className="mt-5 min-h-0 flex-1 overflow-y-auto px-3">
-        <p className="mb-1.5 px-2.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t.workspace.recent}</p>
+        <p className="mono-label mb-2 px-3 text-muted-foreground">{t.workspace.recent}</p>
         <Suspense>
           <RecentChats onNavigate={onNavigate} />
         </Suspense>
       </div>
 
-      <div className="shrink-0 space-y-3 border-t border-border p-3">
-        <div className="rounded-lg bg-subtle p-3">
+      <div className="shrink-0 space-y-3 border-t border-rule p-3">
+        <div className="rounded-xl bg-raised p-3 ring-1 ring-rule">
           <div className="flex items-center justify-between text-xs">
             <span className="font-medium text-muted-foreground">{t.ask.balanceLabel}</span>
             <Link href="/usage" onClick={onNavigate} className="font-medium text-primary hover:text-primary-hover">
@@ -128,8 +131,8 @@ function SidebarContent({ onNavigate, onUpgrade }: { onNavigate?: () => void; on
             </Link>
           </div>
           <p className="mt-1 text-sm font-semibold tabular-nums text-foreground">{t.ask.balance(balance)}</p>
-          <div className="mt-1.5 h-1.5 rounded-full bg-border">
-            <div className="h-1.5 rounded-full bg-primary" style={{ width: `${Math.max(0, (balance / limits.points) * 100)}%` }} />
+          <div className="mt-1.5 h-1.5 rounded-full bg-paper-3">
+            <div className="h-1.5 rounded-full bg-sky" style={{ width: `${Math.max(0, (balance / limits.points) * 100)}%` }} />
           </div>
           {plan !== "premium" && (
             <button onClick={onUpgrade} className="mt-2.5 inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary-hover cursor-pointer">
@@ -141,10 +144,10 @@ function SidebarContent({ onNavigate, onUpgrade }: { onNavigate?: () => void; on
         <div className="flex items-center justify-between gap-2">
           <LanguageSwitcher />
           <div className="flex items-center gap-1">
-            <Link href="/trends/setup" onClick={onNavigate} className="rounded-md p-1.5 text-muted-foreground hover:bg-subtle hover:text-foreground" aria-label={t.workspace.settings} title={t.workspace.settings}>
+            <Link href="/trends/setup" onClick={onNavigate} className="rounded-full p-1.5 text-muted-foreground hover:bg-paper-3 hover:text-foreground" aria-label={t.workspace.settings} title={t.workspace.settings}>
               <Settings className="h-4 w-4" />
             </Link>
-            <Link href={localizedHref("/", locale)} className="rounded-md p-1.5 text-muted-foreground hover:bg-subtle hover:text-foreground" aria-label={t.workspace.backToSite} title={t.workspace.backToSite}>
+            <Link href={localizedHref("/", locale)} className="rounded-full p-1.5 text-muted-foreground hover:bg-paper-3 hover:text-foreground" aria-label={t.workspace.backToSite} title={t.workspace.backToSite}>
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
@@ -170,11 +173,11 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="radar-theme min-h-dvh bg-radar-bg text-radar-text lg:flex">
-      <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 border-r border-radar-border bg-radar-surface lg:block">
+      <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 border-r border-rule bg-paper-2 lg:block">
         <SidebarContent onUpgrade={() => setShowPricing(true)} />
       </aside>
 
-      <header className="sticky top-0 z-40 flex h-14 items-center gap-3 border-b border-radar-border bg-radar-surface/90 px-4 backdrop-blur lg:hidden">
+      <header className="sticky top-0 z-40 flex h-14 items-center gap-3 border-b border-rule bg-paper/90 px-4 backdrop-blur lg:hidden">
         <button onClick={() => setDrawer(true)} className="-ml-1 rounded-md p-1.5 text-muted-foreground hover:text-foreground cursor-pointer" aria-label={t.workspace.menu}>
           <Menu className="h-5 w-5" />
         </button>
@@ -185,15 +188,15 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
         <div className="ml-auto flex items-center gap-2">
           <LanguageSwitcher compact />
           <button onClick={() => setShowPricing(true)} className={cn(buttonStyles.secondary, "h-8 px-2.5")} aria-label={t.common.upgrade}>
-            <Sparkles className="h-3.5 w-3.5 text-radar-primary" />
+            <Sparkles className="h-3.5 w-3.5 text-sky-ink" />
           </button>
         </div>
       </header>
 
       {drawer && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <button className="absolute inset-0 bg-black/30" onClick={() => setDrawer(false)} aria-label={t.workspace.close} />
-          <aside className="relative h-full w-72 max-w-[85%] bg-radar-surface shadow-xl">
+          <button className="absolute inset-0 bg-ink/30" onClick={() => setDrawer(false)} aria-label={t.workspace.close} />
+          <aside className="relative h-full w-72 max-w-[85%] bg-paper-2 shadow-lift">
             <button onClick={() => setDrawer(false)} className="absolute right-3 top-3.5 rounded-md p-1 text-muted-foreground hover:text-foreground cursor-pointer" aria-label={t.workspace.close}>
               <X className="h-5 w-5" />
             </button>
@@ -204,7 +207,7 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
 
       <div className="min-w-0 flex-1">{children}</div>
 
-      <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-3 border-t border-radar-border bg-radar-surface/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden" aria-label="NichePop">
+      <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-3 border-t border-rule bg-paper/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden" aria-label="NichePop">
         {navItems.map((item) => {
           const active = isActive(item.href)
           return (
@@ -212,9 +215,11 @@ export function WorkspaceShell({ children }: { children: ReactNode }) {
               key={item.href}
               href={item.href}
               aria-current={active ? "page" : undefined}
-              className={cn("flex flex-col items-center gap-0.5 py-2 text-[11px] transition-colors", active ? "font-medium text-radar-primary" : "text-radar-text-3")}
+              className={cn("flex flex-col items-center gap-0.5 py-1.5 text-[11px] transition-colors", active ? "font-semibold text-foreground" : "text-radar-text-3")}
             >
-              <item.icon className="h-5 w-5" />
+              <span className={cn("flex h-7 w-12 items-center justify-center rounded-full transition-colors", active && "bg-pear text-ink")}>
+                <item.icon className="h-5 w-5" />
+              </span>
               {item.label}
             </Link>
           )

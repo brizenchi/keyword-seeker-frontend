@@ -1,0 +1,43 @@
+[
+  {
+    "date": "2026-10-25",
+    "verb": "redesign",
+    "scope": "app",
+    "designSystem": "design.md",
+    "genre": "playful",
+    "theme": "hum",
+    "macrostructure": {
+      "marketing": "narrative-workflow (F4: numbering 1.0/2.0/3.0 · vertical stack · dashed rail)",
+      "pricing": "F3 tabular spec sheet (3 plan columns · every-row rules · tabular numbers)",
+      "trendsToday": "workbench (live list)",
+      "app": "workbench (sidebar + canvas, no enrichment)"
+    },
+    "nav": "N12 banner + retract (tint+ink · dismissible · floating pill bar)",
+    "footer": "Ft8 marquee (32s · left · dot glyph) + one link row",
+    "hero": "headline across, AI box offset right of the pitch",
+    "characterMoment": "pear radar blip on the AI box: breathes, leans in while typing, coral star-burst on submit",
+    "designedException": "tilted lavender 'Demo data · real UI' sticker on the 2.0 preview",
+    "critique": "P4 H4 E4 S4 R4 V4",
+    "slopTest": "58 gates checked; fixed 18, 25, 26, 27, 35, 49 during the run",
+    "files": [
+      "design.md",
+      "app/tokens.css",
+      "app/globals.css",
+      "app/layout.tsx",
+      "components/navbar.tsx",
+      "components/footer.tsx",
+      "components/marketing/home-page.tsx",
+      "components/marketing/ai-box.tsx",
+      "components/marketing/feature-previews.tsx",
+      "components/marketing/pricing-page.tsx",
+      "components/marketing/new-keywords-page.tsx",
+      "components/pricing-cards.tsx",
+      "components/workspace/workspace-shell.tsx",
+      "components/radar/ui.ts",
+      "components/radar/word-row.tsx",
+      "components/i18n/language-switcher.tsx",
+      "lib/i18n/en.ts",
+      "lib/i18n/zh.ts"
+    ]
+  }
+]

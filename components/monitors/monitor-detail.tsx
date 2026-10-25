@@ -7,7 +7,7 @@ import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, Hash, Hourglass, Map, Packag
 import { useLocale, useT } from "@/components/i18n/locale-provider"
 import { ActionList } from "@/components/radar/action-list"
 import { CompetitorMovesList } from "@/components/radar/brief-lists"
-import { MentionCard, isHighIntent } from "@/components/radar/mention-card"
+import { INTENT_STYLES, MentionCard, isHighIntent } from "@/components/radar/mention-card"
 import { buttonStyles, cardStyles } from "@/components/radar/ui"
 import { MiniTrend } from "@/components/radar/word-row"
 import { useMonitors } from "@/hooks/use-monitors"
@@ -17,33 +17,45 @@ import type { MentionIntent, Monitor, MonitorFeed } from "@/lib/types"
 import { usePlan } from "./use-plan"
 
 type Tab = "mentions" | "competitors" | "rankings" | "trends" | "suggestions"
-const INTENTS: MentionIntent[] = ["recommendation", "complaint", "question", "launch"]
-
-const chipClass = (active: boolean) =>
-  cn(
-    "rounded-full border px-2.5 py-1 text-xs transition-colors cursor-pointer",
-    active ? "border-primary bg-primary-soft font-medium text-primary" : "border-border bg-card text-body hover:border-primary/40",
-  )
+const INTENTS: MentionIntent[] = ["alternatives", "recommendation", "pain", "advice", "money", "launch"]
 
 function MentionsTab({ feed }: { feed: MonitorFeed }) {
   const t = useT()
   const [intent, setIntent] = useState<MentionIntent | "all">("all")
+  const themes = INTENTS.filter((value) => feed.themes?.[value] || feed.mentions.some((m) => m.intent === value))
   const mentions = intent === "all" ? feed.mentions : feed.mentions.filter((m) => m.intent === intent)
   return (
-    <div className="space-y-3">
-      <div className="flex flex-wrap items-center gap-1.5">
-        <button onClick={() => setIntent("all")} className={chipClass(intent === "all")}>
-          {t.mentions.all} · {feed.mentions.length}
-        </button>
-        {INTENTS.map((value) => {
-          const count = feed.mentions.filter((m) => m.intent === value).length
-          return (
-            <button key={value} onClick={() => setIntent(value)} className={chipClass(intent === value)} disabled={count === 0}>
-              {t.mentions.intents[value]} · {count}
+    <div className="space-y-5">
+      <section>
+        <div className="mb-2.5 flex items-baseline justify-between gap-3">
+          <h3 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t.mentions.themesTitle}</h3>
+          {intent !== "all" && (
+            <button onClick={() => setIntent("all")} className="text-xs font-medium text-primary hover:text-primary-hover cursor-pointer">
+              {t.mentions.all} · {feed.mentions.length}
             </button>
-          )
-        })}
-      </div>
+          )}
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {themes.map((value) => {
+            const count = feed.mentions.filter((m) => m.intent === value).length
+            const active = intent === value
+            return (
+              <button
+                key={value}
+                onClick={() => setIntent(active ? "all" : value)}
+                aria-pressed={active}
+                className={cn(cardStyles, "p-3.5 text-left transition-colors cursor-pointer", active ? "border-primary ring-1 ring-primary" : "hover:border-primary/40")}
+              >
+                <span className="flex items-center justify-between gap-2">
+                  <span className={cn("rounded-md px-1.5 py-0.5 text-[11px] font-semibold", INTENT_STYLES[value])}>{t.mentions.intents[value]}</span>
+                  <span className="text-xs font-semibold tabular-nums text-foreground">{count}</span>
+                </span>
+                {feed.themes?.[value] && <span className="mt-2 block text-xs leading-relaxed text-body">{feed.themes[value]}</span>}
+              </button>
+            )
+          })}
+        </div>
+      </section>
       <p className="text-xs text-muted-foreground">{t.monitors.intentNote}</p>
       <ul className={cn(cardStyles, "divide-y divide-border")}>
         {mentions.length === 0 && <li className="px-5 py-8 text-center text-sm text-muted-foreground">{t.monitors.noPosts}</li>}

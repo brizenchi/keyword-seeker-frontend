@@ -1,0 +1,91 @@
+/* Hallmark · genre: playful · theme: hum · design-system: design.md · designed-as-app
+ * The one source of colour, type, space, radius and motion values for NichePop.
+ * Components reference these through the shadcn / Tailwind names in globals.css. */
+:root {
+  /* Paper & ink */
+  --color-paper: oklch(97% 0.012 95);
+  --color-paper-2: oklch(94.5% 0.016 95);
+  --color-paper-3: oklch(91% 0.02 95);
+  --color-raised: oklch(99% 0.006 95);
+  --color-ink: oklch(20% 0.012 250);
+  --color-ink-deep: oklch(12% 0.012 250);
+  --color-ink-2: oklch(36% 0.012 250);
+  --color-ink-3: oklch(48% 0.012 250);
+  --color-ink-4: oklch(54% 0.01 250);
+  --color-rule: oklch(89% 0.016 95);
+  --color-rule-strong: oklch(82% 0.018 95);
+
+  /* Accents — each owns its own surface, never blended */
+  --color-pear: oklch(86% 0.18 95);
+  --color-pear-deep: oklch(74% 0.17 88);
+  --color-pear-soft: oklch(95.5% 0.06 98);
+  --color-pear-cast: oklch(76% 0.2 95 / 0.45);
+  --color-sky: oklch(66% 0.18 235);
+  --color-sky-ink: oklch(50% 0.15 240);
+  --color-sky-deep: oklch(40% 0.13 245);
+  --color-sky-soft: oklch(95.5% 0.03 235);
+  --color-sky-cast: oklch(50% 0.15 240 / 0.35);
+  --color-coral: oklch(68% 0.24 18);
+  --color-coral-ink: oklch(52% 0.2 22);
+  --color-coral-soft: oklch(95.5% 0.035 18);
+  --color-mint: oklch(80% 0.16 150);
+  --color-mint-ink: oklch(46% 0.12 150);
+  --color-mint-soft: oklch(95.5% 0.045 150);
+  --color-lavender: oklch(74% 0.16 305);
+  --color-lavender-ink: oklch(48% 0.16 305);
+  --color-lavender-soft: oklch(95.5% 0.03 305);
+  --color-amber-ink: oklch(52% 0.12 65);
+  --color-amber-soft: oklch(95.5% 0.05 85);
+  --color-focus: oklch(60% 0.17 235);
+
+  /* Shadows (ink at opacity, layered contact + ambient) */
+  --color-shadow: oklch(20% 0.012 250 / 0.06);
+  --color-shadow-2: oklch(20% 0.012 250 / 0.14);
+  --color-ink-cast: oklch(20% 0.012 250 / 0.3);
+  --color-scrim: oklch(20% 0.012 250 / 0.32);
+  --shadow-card: 0 1px 2px var(--color-shadow), 0 12px 32px -18px var(--color-shadow-2);
+  --shadow-lift: 0 2px 4px var(--color-shadow), 0 24px 48px -24px var(--color-shadow-2);
+
+  /* Type */
+  --font-body: var(--font-jakarta), "Plus Jakarta Sans", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-display: var(--font-body);
+  --font-label: var(--font-jetbrains), "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+  --text-display: clamp(2.5rem, 4.2vw + 1rem, 4.5rem);
+  --text-display-s: clamp(2rem, 3vw + 1rem, 3.25rem);
+  --tracking-display: -0.025em;
+
+  /* Space — 4pt, named by role */
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 9rem;
+
+  /* Radius */
+  --radius-input: 12px;
+  --radius-card: 20px;
+  --radius-surface: 24px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-press: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+
+  /* Z — six named levels */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 400;
+  --z-toast: 500;
+}

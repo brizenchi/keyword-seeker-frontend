@@ -70,7 +70,7 @@ export function SitesEntered({ then, now }: { then: number; now: number }) {
   const t = useT()
   const crowded = now - then >= 5
   return (
-    <span className={cn("text-xs tabular-nums", crowded ? "text-warning" : "text-body")}>
+    <span className={cn("whitespace-nowrap text-xs tabular-nums", crowded ? "text-warning" : "text-body")}>
       <span className="font-semibold">{then}</span> → <span className="font-semibold">{now}</span> {t.word.sites}
     </span>
   )
@@ -171,7 +171,7 @@ export function WordRow({ word, showTimeGap = false, askHref, showBuild = false,
                 {t.word.valueLocked}
               </p>
               {onUpgrade && (
-                <button onClick={onUpgrade} className="shrink-0 rounded-md bg-primary px-2.5 py-1 text-xs font-medium text-white hover:bg-primary-hover cursor-pointer">
+                <button onClick={onUpgrade} className="btn btn--sm shrink-0">
                   {t.common.upgrade}
                 </button>
               )}
@@ -190,14 +190,14 @@ export function WordRow({ word, showTimeGap = false, askHref, showBuild = false,
         </dl>
       </div>
 
-      <div className="col-start-2 flex items-center justify-between gap-4 md:col-start-auto md:w-24 md:flex-col md:items-end md:gap-1.5">
+      <div className="col-start-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 md:col-start-auto md:w-28 md:flex-col md:items-end md:gap-1.5">
         <SitesEntered then={word.sitesThen} now={word.sitesNow} />
         {(askHref || showBuild) && (
-          <div className="flex items-center gap-4 md:flex-col md:items-end md:gap-1">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 md:flex-col md:items-end md:gap-1">
             {askHref && (
               <Link
                 href={askHref}
-                className="inline-flex items-center gap-1 rounded-md text-sm font-medium text-primary hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+                className="inline-flex items-center gap-1 whitespace-nowrap rounded-md text-sm font-medium text-primary hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
               >
                 {t.word.askAi}
                 <ArrowRight className="h-3.5 w-3.5" />
@@ -206,7 +206,7 @@ export function WordRow({ word, showTimeGap = false, askHref, showBuild = false,
             {showBuild && word.verdict !== "skip" && (
               <Link
                 href={`/monitors/new?${monitorParamsFromWord(word)}`}
-                className="inline-flex items-center gap-1 rounded-md text-sm font-medium text-body hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+                className="inline-flex items-center gap-1 whitespace-nowrap rounded-md text-sm font-medium text-body hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
               >
                 <Eye className="h-3.5 w-3.5" />
                 {t.word.buildIt}

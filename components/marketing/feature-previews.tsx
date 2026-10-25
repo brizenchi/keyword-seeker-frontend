@@ -10,7 +10,7 @@ import { getDemoWords } from "@/lib/data/radar"
 import { REPORT_PLANS, reportFor } from "@/lib/data/reports"
 import { cn } from "@/lib/utils"
 
-const frame = "overflow-hidden rounded-2xl border border-border bg-background shadow-[0_24px_64px_-28px_rgba(16,24,40,0.28)]"
+const frame = "overflow-hidden rounded-2xl bg-raised shadow-lift ring-1 ring-rule"
 
 /** Static previews of the three workspace places, built from the real components and demo data. */
 export function TrendPreview() {
@@ -54,29 +54,29 @@ export function ChatPreview() {
   const report = reportFor("", "idea", locale)
   const plan = REPORT_PLANS.idea
   return (
-    <div className={cn(frame, "space-y-4 bg-subtle p-5")}>
+    <div className={cn(frame, "space-y-4 p-5")}>
       <p className="ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-md bg-primary px-4 py-2.5 text-sm text-white">{t.ask.starters.idea}</p>
       <div className="flex gap-3">
-        <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary-soft text-primary">
+        <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sky-soft text-sky-ink">
           <Bot className="h-4 w-4" />
         </span>
         <div className="min-w-0 flex-1 space-y-3">
           <p className="text-sm leading-relaxed text-foreground">{t.ask.intro.idea(report.query)}</p>
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-background p-3.5">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-paper p-3.5 ring-1 ring-rule">
             <div>
               <p className="text-sm font-semibold text-foreground">{t.reports.kinds.idea.title}</p>
               <p className="text-xs text-muted-foreground">{t.ask.estimate(plan.estimate[0], plan.estimate[1])}</p>
             </div>
-            <span className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-primary px-3 text-xs font-medium text-white">
+            <span className="btn btn--sm pointer-events-none" aria-hidden>
               <Sparkles className="h-3.5 w-3.5" />
               {t.ask.generate(t.reports.kinds.idea.label)}
             </span>
           </div>
           {report.kind === "idea" && (
-            <div className="rounded-xl border border-border bg-background p-3.5">
+            <div className="rounded-xl bg-paper p-3.5 ring-1 ring-rule">
               <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-foreground">
                 {report.query}
-                <span className="rounded-md bg-warning-soft px-1.5 py-0.5 text-[11px] font-semibold text-warning">{t.report.ideaVerdicts[report.verdict]}</span>
+                <span className="rounded-full bg-warning-soft px-2 py-0.5 text-[11px] font-semibold text-warning">{t.report.ideaVerdicts[report.verdict]}</span>
               </p>
               <p className="mt-1.5 text-xs leading-relaxed text-body">{report.headline}</p>
             </div>
@@ -98,7 +98,7 @@ export function MonitorPreview() {
         <p className="text-xs font-semibold text-foreground">{t.home.previewMonitor}</p>
         <div className="mt-2 flex gap-4 text-xs">
           {(["mentions", "competitors", "rankings"] as const).map((tab, i) => (
-            <span key={tab} className={cn("pb-2", i === 0 ? "border-b-2 border-primary font-medium text-foreground" : "text-muted-foreground")}>
+            <span key={tab} className={cn("pb-2", i === 0 ? "border-b-2 border-sky font-semibold text-foreground" : "text-muted-foreground")}>
               {t.monitors.tabs[tab]}
             </span>
           ))}

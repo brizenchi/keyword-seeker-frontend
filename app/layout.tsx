@@ -1,24 +1,27 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, JetBrains_Mono } from "next/font/google"
+import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { AuthProvider } from "@/hooks/useAuth"
 import { getSiteUrl } from "@/lib/seo/site-url"
 import "./globals.css"
 
-const inter = Inter({
+// Hum type: Plus Jakarta Sans for display + body, JetBrains Mono for labels.
+// Chinese falls back to the system CJK faces listed in app/tokens.css.
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  display: 'swap',
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-jakarta",
+  display: "swap",
   preload: true,
-  fallback: ['system-ui', 'arial']
 })
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-jetbrains",
-  display: 'swap',
-  preload: true,
-  fallback: ['monospace']
+  display: "swap",
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -30,7 +33,7 @@ export const metadata: Metadata = {
     default: "NichePop - Low Competition Keyword Research Tool",
     template: "%s | NichePop",
   },
-  description: "Discover low-competition keywords with real-time trend signals from Reddit and Google Trends. Built for bloggers, creators, and lean SEO teams.",
+  description: "Spot trends early, ask an AI analyst whether they are worth building, and keep watch on products and markets. Built for indie developers.",
   keywords: [
     "trending keywords",
     "profitable niches",
@@ -38,7 +41,7 @@ export const metadata: Metadata = {
     "real-time insights",
     "low-competition keywords",
     "AI analysis",
-    "Reddit discussions",
+    "social listening",
     "niche discovery"
   ],
   authors: [{ name: "NichePop" }],
@@ -109,12 +112,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${jakarta.variable} ${jetbrainsMono.variable}`}>
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
       </head>
-      <body className={`${inter.className} ${jetbrainsMono.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         <AuthProvider>
           {children}
           <Analytics />

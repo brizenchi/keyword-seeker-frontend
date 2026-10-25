@@ -120,11 +120,11 @@ export function WordFilters({ filters, onChange, categories, roots, resultCount,
           ))}
         </div>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex min-w-0 items-center gap-2 sm:shrink-0">
           <label htmlFor="radar-sort" className="sr-only">
             {tf.sortBy}
           </label>
-          <select id="radar-sort" value={filters.sort} onChange={(e) => set({ sort: e.target.value as RadarSort })} className={cn(selectClass, "w-auto")}>
+          <select id="radar-sort" value={filters.sort} onChange={(e) => set({ sort: e.target.value as RadarSort })} className={cn(selectClass, "min-w-0 flex-1 sm:w-auto sm:flex-none")}>
             {SORT_KEYS.map((key) => (
               <option key={key} value={key}>
                 {tf.sortPrefix} {tf.sort[key]}
@@ -135,7 +135,7 @@ export function WordFilters({ filters, onChange, categories, roots, resultCount,
             onClick={() => setPanelOpen((v) => !v)}
             aria-expanded={panelOpen}
             className={cn(
-              "inline-flex h-9 items-center gap-1.5 rounded-lg border px-3 text-sm font-medium shadow-sm transition-colors cursor-pointer",
+              "inline-flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3 text-sm font-medium shadow-sm transition-colors cursor-pointer",
               panelOpen || chips.length ? "border-primary bg-primary-soft text-primary" : "border-border bg-card text-foreground hover:bg-subtle",
             )}
           >

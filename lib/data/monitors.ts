@@ -94,7 +94,7 @@ const feedCopy = {
           effort: '~20 min',
           upside: 'Move #4 → top 3',
           signals: ['Your page: #4 for "driftbound codes"', 'driftbound.fandom.com updated after 3 days last time'],
-          brief: { workingTitle: 'Driftbound Codes (Update 1.2) — All Working Codes', outline: ['Add the 3 new codes at the top', 'Mark expired codes', 'Update the date under the H1', 'Share in the Reddit thread asking for codes'] },
+          brief: { workingTitle: 'Driftbound Codes (Update 1.2) — All Working Codes', outline: ['Add the 3 new codes at the top', 'Mark expired codes', 'Update the date under the H1', 'Reply to the X post asking for working codes'] },
         },
       ] as ActionCopy[],
     },
@@ -144,7 +144,7 @@ const feedCopy = {
           effort: '约 20 分钟',
           upside: '从第 4 升到前 3',
           signals: ['你的页面：“driftbound codes” 排第 4', '上次 driftbound.fandom.com 隔了 3 天才更新'],
-          brief: { workingTitle: 'Driftbound 兑换码（1.2 更新）—— 全部可用兑换码', outline: ['把 3 个新兑换码放在最上面', '标出过期的兑换码', '更新 H1 下面的日期', '发到那个求兑换码的 Reddit 帖里'] },
+          brief: { workingTitle: 'Driftbound 兑换码（1.2 更新）—— 全部可用兑换码', outline: ['把 3 个新兑换码放在最上面', '标出过期的兑换码', '更新 H1 下面的日期', '回复那条在 X 上问兑换码的帖子'] },
         },
       ] as ActionCopy[],
     },
@@ -162,16 +162,60 @@ const feedCopy = {
   },
 }
 
+const themeCopy = {
+  en: {
+    driftbound: {
+      advice: 'Players keep asking which codes still work; every site lists expired ones.',
+      recommendation: 'People want a proper wiki: Fandom has two pages.',
+      launch: 'Update 1.2 lands Friday with a new map and 3 codes; a competitor just shipped a tier list.',
+    },
+    pagepulse: {
+      alternatives: '3 people this week want something cheaper than pingward; its price rise is the trigger.',
+      pain: 'False alarms from single-region checks are the top complaint about uptimely.',
+      advice: 'Founders with many small sites want flat pricing, not per-monitor pricing.',
+      recommendation: 'People ask what to use for a few cron jobs; existing tools feel heavy.',
+      money: 'Budgets are small: about $10 a month for monitoring across all side projects.',
+      launch: 'Statuskit launched on Hacker News with status-page templates (84 points).',
+    },
+    video: {
+      recommendation: 'Real-estate agents want listing videos without a $50/month tool.',
+      pain: 'Watermarks on "free" plans are the main reason people switch.',
+      launch: 'clipforge 3.0 shipped a bigger free tier.',
+    },
+  },
+  zh: {
+    driftbound: {
+      advice: '玩家一直在问哪些兑换码还能用，各个网站列的都是过期的。',
+      recommendation: '大家想要一个像样的 wiki，Fandom 上只有两页。',
+      launch: '1.2 更新周五上线，有新地图和 3 个兑换码；一个竞争站刚上线了排行榜。',
+    },
+    pagepulse: {
+      alternatives: '这周有 3 个人想找比 pingward 便宜的替代品，导火索是它涨价。',
+      pain: '对 uptimely 最多的抱怨：单区域检查导致误报。',
+      advice: '手上有很多小站的人想要按账号收费，而不是按监控项收费。',
+      recommendation: '有人在问几个 cron 任务该用什么监控，现有工具都太重。',
+      money: '预算很小：所有副业项目的监控加起来每月约 $10。',
+      launch: 'Statuskit 带着状态页模板在 Hacker News 发布（84 分）。',
+    },
+    video: {
+      recommendation: '房产经纪想要做房源视频，但不想用每月 $50 的工具。',
+      pain: '“免费版”带水印是大家换工具的主要原因。',
+      launch: 'clipforge 3.0 上线，免费额度更大。',
+    },
+  },
+}
+
 function driftboundFeed(locale: Locale): MonitorFeed {
   const c = feedCopy[locale].driftbound
   const en = feedCopy.en.driftbound
   const mentionBase = [
     { id: 'd-leak', source: 'x' as const, author: '@rbx_leaks', hoursAgo: 1, intent: 'launch' as const },
-    { id: 'd-kaito', source: 'x' as const, author: '@kaito_plays', hoursAgo: 3, intent: 'question' as const },
-    { id: 'd-main', source: 'reddit' as const, author: 'u/driftmain', hoursAgo: 6, intent: 'recommendation' as const },
+    { id: 'd-kaito', source: 'x' as const, author: '@kaito_plays', hoursAgo: 3, intent: 'advice' as const },
+    { id: 'd-main', source: 'youtube' as const, author: 'YouTube · @driftmain', hoursAgo: 6, intent: 'recommendation' as const },
     { id: 'd-gcw', source: 'x' as const, author: '@gamecodeswiki', hoursAgo: 8, intent: 'launch' as const },
   ]
   return {
+    themes: themeCopy[locale].driftbound,
     lastCheckedMinutes: 12,
     postsToday: 18,
     postsThisMonth: 212,
@@ -214,6 +258,7 @@ function driftboundFeed(locale: Locale): MonitorFeed {
 function pagepulseFeed(locale: Locale): MonitorFeed {
   const c = feedCopy[locale].pagepulse
   return {
+    themes: themeCopy[locale].pagepulse,
     lastCheckedMinutes: 12,
     postsToday: 9,
     postsThisMonth: 100,
@@ -299,9 +344,10 @@ function videoFeed(locale: Locale): MonitorFeed {
   const base = [
     { id: 'v-nora', source: 'x' as const, author: '@nora_makes', hoursAgo: 4, intent: 'recommendation' as const, text: 'Need an AI video tool for real estate listings that doesn’t cost $50/mo. Anything?' },
     { id: 'v-clipforge', source: 'x' as const, author: '@clipforge', hoursAgo: 9, intent: 'launch' as const, text: 'clipforge 3.0 is live: 60-second clips and a bigger free tier.' },
-    { id: 'v-tinker', source: 'reddit' as const, author: 'u/vidtinker', hoursAgo: 26, intent: 'complaint' as const, text: 'The watermark on reelsmith’s "free" plan is huge. Switching.' },
+    { id: 'v-tinker', source: 'bluesky' as const, author: '@vidtinker', hoursAgo: 26, intent: 'pain' as const, text: 'The watermark on reelsmith’s "free" plan is huge. Switching.' },
   ]
   return {
+    themes: themeCopy[locale].video,
     lastCheckedMinutes: 40,
     postsToday: 6,
     postsThisMonth: 140,
