@@ -53,6 +53,16 @@ once each per view. shadcn `--primary` maps to `--color-sky-ink` so existing
 - No serif anywhere. No italic headings — emphasis via the pear highlighter
   (`.hl`, background-image + box-decoration-break: clone) or weight.
 
+## Logo
+- Mark: the pear radar blip from the homepage (pear face, pear-deep edge, two ink
+  eyes glancing up-right) and a coral dot that just popped up. The gap around the
+  dot is a mask cut-out, so the mark works on paper, white and dark tab bars.
+- Source of truth: `components/brand-logo.tsx` (tokens). Static copies with hex
+  values: `public/icon.svg`, `public/nichepop-logo.svg`; PNGs rendered from icon.svg.
+- Wordmark: "NichePop", Plus Jakarta Sans 700, tracking -0.03em, ink.
+- The coral dot is the one standing brand use of coral; it does not count as the
+  page's coral moment.
+
 ## Radii
 card 20px (`rounded-xl`) · large surface 24px (`rounded-2xl`) · input 12px
 (`rounded-lg`) · pill 999px (buttons, chips). No square corners.
@@ -96,7 +106,7 @@ the start strip compact.
 - Content pages: typography only.
 
 ## What pages MUST share
-- The wordmark (`BrandLogo` / `BrandMark`, unchanged).
+- The logo (`BrandLogo` / `BrandMark`, see § Logo).
 - Paper / ink / accent tokens and their roles.
 - Plus Jakarta Sans + JetBrains Mono.
 - The `.btn` system and radii.

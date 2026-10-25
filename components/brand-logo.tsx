@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils"
 
 type BrandMarkProps = {
   className?: string
+  /** Kept for older call sites; the Hum mark has no glow. */
   withGlow?: boolean
 }
 
@@ -26,53 +27,27 @@ const textSizes: Record<NonNullable<BrandLogoProps["size"]>, string> = {
   lg: "text-2xl",
 }
 
-export function BrandMark({ className, withGlow = false }: BrandMarkProps) {
-  const uniqueId = useId().replace(/:/g, "")
-  const bgGradientId = `${uniqueId}-bg`
-  const borderGradientId = `${uniqueId}-border`
-  const lineGradientId = `${uniqueId}-line`
+/**
+ * The NichePop mark: the pear radar blip from the homepage, glancing at a coral dot
+ * that just popped up. The gap around the dot is cut out, so it sits on any background.
+ * Static copies live in public/icon.svg and public/nichepop-logo.svg.
+ */
+export function BrandMark({ className }: BrandMarkProps) {
+  const maskId = `${useId().replace(/:/g, "")}-np-mark`
 
   return (
-    <svg
-      viewBox="0 0 44 44"
-      aria-hidden="true"
-      className={cn("shrink-0", withGlow && "drop-", className)}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id={bgGradientId} x1="8" y1="5" x2="36" y2="39" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#0F1633" />
-          <stop offset="1" stopColor="#0A0E27" />
-        </linearGradient>
-        <linearGradient id={borderGradientId} x1="8" y1="6" x2="36" y2="38" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#0080FF" />
-          <stop offset="1" stopColor="#67F745" />
-        </linearGradient>
-        <linearGradient id={lineGradientId} x1="11.5" y1="28.5" x2="32" y2="16.6" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#0080FF" />
-          <stop offset="1" stopColor="#67F745" />
-        </linearGradient>
-      </defs>
-
-      <rect x="1" y="1" width="42" height="42" rx="11" fill={`url(#${bgGradientId})`} />
-      <rect x="1" y="1" width="42" height="42" rx="11" stroke={`url(#${borderGradientId})`} strokeOpacity="0.85" />
-
-      <path
-        d="M11.5 28.5L18.8 21.2L24 24.6L32 16.6"
-        stroke={`url(#${lineGradientId})`}
-        strokeWidth="2.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M28.6 16.6H32V20"
-        stroke={`url(#${lineGradientId})`}
-        strokeWidth="2.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="11.5" cy="28.5" r="1.4" fill="#0080FF" />
-      <circle cx="32" cy="16.6" r="1.8" fill="#67F745" />
+    <svg viewBox="0 0 48 48" aria-hidden="true" className={cn("shrink-0", className)} xmlns="http://www.w3.org/2000/svg">
+      <mask id={maskId}>
+        <rect width="48" height="48" fill="white" />
+        <circle cx="38" cy="10" r="10.5" fill="black" />
+      </mask>
+      <g mask={`url(#${maskId})`}>
+        <circle cx="22" cy="27.5" r="17" className="fill-pear-deep" />
+        <circle cx="22" cy="25" r="17" className="fill-pear" />
+        <rect x="17.4" y="17.6" width="4.4" height="7" rx="2.2" className="fill-ink" />
+        <rect x="26.6" y="17.6" width="4.4" height="7" rx="2.2" className="fill-ink" />
+      </g>
+      <circle cx="38" cy="10" r="7.5" className="fill-coral" />
     </svg>
   )
 }
@@ -88,13 +63,7 @@ export function BrandLogo({
     <span className={cn("inline-flex items-center gap-2", className)}>
       <BrandMark className={cn(markSizes[size], markClassName)} />
       {showText && (
-        <span
-          className={cn(
-            "font-semibold tracking-tight text-foreground",
-            textSizes[size],
-            textClassName,
-          )}
-        >
+        <span className={cn("font-bold tracking-[-0.03em] text-foreground", textSizes[size], textClassName)}>
           NichePop
         </span>
       )}

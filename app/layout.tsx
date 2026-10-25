@@ -24,6 +24,8 @@ const jetbrainsMono = JetBrains_Mono({
   preload: false,
 })
 
+const ICON_VERSION = 2
+
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   alternates: {
@@ -86,22 +88,14 @@ export const metadata: Metadata = {
     images: ['/twitter-image.png'],
     creator: '@nichepop',
   },
+  // Bump ICON_VERSION whenever the logo changes: browsers cache favicons by URL and
+  // otherwise keep showing the old one.
   icons: {
     icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
+      { url: `/favicon.ico?v=${ICON_VERSION}`, sizes: "32x32" },
+      { url: `/icon.svg?v=${ICON_VERSION}`, type: "image/svg+xml" },
     ],
-    apple: "/apple-icon.png",
+    apple: `/apple-icon.png?v=${ICON_VERSION}`,
   },
   manifest: '/manifest.json',
 }

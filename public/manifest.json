@@ -4,21 +4,21 @@
   "description": "Discover trending keyword opportunities with real-time data",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2563eb",
+  "background_color": "#F7F5EC",
+  "theme_color": "#F7F5EC",
   "icons": [
     {
-      "src": "/icon-light-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
+      "src": "/favicon.ico?v=2",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
     },
     {
-      "src": "/apple-icon.png",
+      "src": "/apple-icon.png?v=2",
       "sizes": "180x180",
       "type": "image/png"
     },
     {
-      "src": "/icon.svg",
+      "src": "/icon.svg?v=2",
       "sizes": "any",
       "type": "image/svg+xml"
     }
