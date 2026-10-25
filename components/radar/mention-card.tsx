@@ -1,22 +1,24 @@
 "use client"
 
 import { useState, type ReactNode } from "react"
-import { AtSign, Check, Copy, MessageSquare, Newspaper, PenLine, type LucideIcon } from "lucide-react"
+import { AtSign, Check, Cloud, Copy, Globe, Newspaper, PenLine, Youtube, type LucideIcon } from "lucide-react"
 import { useT } from "@/components/i18n/locale-provider"
 import { cn } from "@/lib/utils"
 import type { Mention, MentionIntent, MentionSource } from "@/lib/types"
 
-const SOURCE_ICONS: Record<MentionSource, LucideIcon> = { x: AtSign, reddit: MessageSquare, hn: Newspaper }
+const SOURCE_ICONS: Record<MentionSource, LucideIcon> = { x: AtSign, hn: Newspaper, bluesky: Cloud, youtube: Youtube, web: Globe }
 
-const INTENT_STYLES: Record<MentionIntent, string> = {
+export const INTENT_STYLES: Record<MentionIntent, string> = {
+  alternatives: "bg-success-soft text-success",
   recommendation: "bg-success-soft text-success",
-  complaint: "bg-warning-soft text-warning",
-  question: "bg-primary-soft text-primary",
+  money: "bg-primary-soft text-primary",
+  pain: "bg-warning-soft text-warning",
+  advice: "bg-primary-soft text-primary",
   launch: "bg-muted text-muted-foreground",
 }
 
-/** Posts from people asking for a tool or unhappy with a competitor are pushed in real time. */
-export const isHighIntent = (mention: Mention) => mention.intent === "recommendation" || mention.intent === "complaint"
+/** People asking for a recommendation or an alternative are ready to buy, so their posts are pushed in real time. */
+export const isHighIntent = (mention: Mention) => mention.intent === "recommendation" || mention.intent === "alternatives"
 
 /** `context` renders above the post, e.g. which monitor it came from. */
 export function MentionCard({ mention, showDraft = true, context }: { mention: Mention; showDraft?: boolean; context?: ReactNode }) {

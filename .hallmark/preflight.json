@@ -1,0 +1,17 @@
+{
+  "scannedAt": "2026-10-25",
+  "framework": "Next.js 16.0.10 (app router), React 19, Tailwind v4 (@theme inline), shadcn/ui",
+  "fonts": {
+    "before": "Inter + JetBrains Mono via next/font (app/layout.tsx L3, L10, L16)",
+    "after": "Plus Jakarta Sans + JetBrains Mono via next/font, CJK system fallback"
+  },
+  "palette": {
+    "before": "hex custom properties, single blue accent #2563eb (app/globals.css :root)",
+    "after": "Hum OKLCH tokens in app/tokens.css, mapped onto shadcn names in app/globals.css"
+  },
+  "motion": "motion-cut: tw-animate-css + tailwindcss-animate only (package.json), no framer-motion / gsap / lenis",
+  "spacing": "Tailwind default 4-point scale",
+  "designMd": "design.md written by this run (scope: app)",
+  "preserved": ["BrandLogo / BrandMark wordmark", "routes and information architecture", "i18n dictionaries and copy intent", "Tailwind spacing scale"],
+  "introduced": ["Hum theme tokens", "Plus Jakarta Sans", ".btn push system", "N12 nav", "Ft8 footer", "Narrative Workflow homepage", "pricing comparison table"]
+}

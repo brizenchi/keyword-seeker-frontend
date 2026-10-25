@@ -302,7 +302,7 @@ export interface EmailLoginResponse {
 /**
  * Radar（新词雷达 + AI 报告）相关类型
  */
-export type RadarSignalSource = 'reddit' | 'google_trends' | 'serp' | 'competitor' | 'search_console' | 'keyword' | 'x'
+export type RadarSignalSource = 'community' | 'google_trends' | 'serp' | 'competitor' | 'search_console' | 'keyword' | 'x'
 
 export type RadarVerdict = 'build' | 'content' | 'skip'
 
@@ -390,7 +390,7 @@ export interface ReportScore {
 }
 
 /** Data sources the agent can call. Labels live in the dictionaries under tools. */
-export type AskTool = 'nichepop' | 'dfs_labs' | 'dfs_serp' | 'dfs_keywords' | 'dfs_trends' | 'dfs_content' | 'x' | 'gsc' | 'ai'
+export type AskTool = 'nichepop' | 'dfs_labs' | 'dfs_serp' | 'dfs_keywords' | 'dfs_trends' | 'dfs_content' | 'x' | 'community' | 'web' | 'gsc' | 'ai'
 
 /** One data call behind a report, shown as its evidence. */
 export interface ReportSource {
@@ -401,10 +401,14 @@ export interface ReportSource {
 /** What a report judges: a trending keyword, an idea, an existing product, or a whole market. */
 export type ReportKind = 'keyword' | 'idea' | 'product' | 'market'
 
-export type MentionSource = 'x' | 'reddit' | 'hn'
+/** Sources with official or open APIs, plus the open web through a licensed search API. No Reddit data. */
+export type MentionSource = 'x' | 'hn' | 'bluesky' | 'youtube' | 'web'
 
-/** Why someone posted: high-intent posts (recommendation, complaint) are pushed in real time. */
-export type MentionIntent = 'recommendation' | 'complaint' | 'question' | 'launch'
+/**
+ * What a post is about, GummySearch-style themes. People asking for a recommendation or an
+ * alternative are high intent and pushed in real time.
+ */
+export type MentionIntent = 'pain' | 'recommendation' | 'advice' | 'money' | 'alternatives' | 'launch'
 
 export interface Mention {
   id: string
@@ -569,4 +573,6 @@ export interface MonitorFeed {
   rankings: MonitorRanking[]
   trends: MonitorTrend[]
   suggestions: RadarAction[]
+  /** One-line AI summary per theme: the pattern across this week's posts. */
+  themes?: Partial<Record<MentionIntent, string>>
 }

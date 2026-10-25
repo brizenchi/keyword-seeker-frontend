@@ -42,7 +42,7 @@ export function LanguageSwitcher({ className, compact = false }: { className?: s
         onClick={() => switchTo(other)}
         aria-label={t.switcher.label}
         className={cn(
-          "inline-flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground cursor-pointer",
+          "inline-flex h-8 items-center gap-1 whitespace-nowrap rounded-full px-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground cursor-pointer",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30",
           className,
         )}
@@ -53,7 +53,7 @@ export function LanguageSwitcher({ className, compact = false }: { className?: s
   }
 
   return (
-    <div className={cn("inline-flex items-center gap-1 rounded-lg bg-muted p-0.5", className)} role="group" aria-label={t.switcher.label}>
+    <div className={cn("inline-flex shrink-0 items-center gap-1 rounded-full bg-muted p-0.5", className)} role="group" aria-label={t.switcher.label}>
       <Languages className="ml-1.5 h-3.5 w-3.5 text-muted-foreground" aria-hidden />
       {(["en", "zh"] as const).map((option) => (
         <button
@@ -61,7 +61,7 @@ export function LanguageSwitcher({ className, compact = false }: { className?: s
           onClick={() => switchTo(option)}
           aria-pressed={locale === option}
           className={cn(
-            "rounded-md px-2 py-1 text-xs font-medium transition-colors cursor-pointer",
+            "whitespace-nowrap rounded-full px-2 py-1 text-xs font-medium transition-colors cursor-pointer",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30",
             locale === option ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
           )}
